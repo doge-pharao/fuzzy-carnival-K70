@@ -33,7 +33,7 @@
 #################
 
 *.pydevproject
-.project
+RemoteSystemsTempFiles/
 .metadata
 bin/
 tmp/
