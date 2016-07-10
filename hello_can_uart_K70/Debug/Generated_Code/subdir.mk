@@ -13,8 +13,6 @@ C_SRCS += \
 ../Generated_Code/GREENLED.c \
 ../Generated_Code/KSDK1.c \
 ../Generated_Code/PE_LDD.c \
-../Generated_Code/Pins1.c \
-../Generated_Code/REDLED.c \
 ../Generated_Code/TU1.c \
 ../Generated_Code/UART_RxBuff.c 
 
@@ -28,8 +26,6 @@ OBJS += \
 ./Generated_Code/GREENLED.o \
 ./Generated_Code/KSDK1.o \
 ./Generated_Code/PE_LDD.o \
-./Generated_Code/Pins1.o \
-./Generated_Code/REDLED.o \
 ./Generated_Code/TU1.o \
 ./Generated_Code/UART_RxBuff.o 
 
@@ -43,8 +39,6 @@ C_DEPS += \
 ./Generated_Code/GREENLED.d \
 ./Generated_Code/KSDK1.d \
 ./Generated_Code/PE_LDD.d \
-./Generated_Code/Pins1.d \
-./Generated_Code/REDLED.d \
 ./Generated_Code/TU1.d \
 ./Generated_Code/UART_RxBuff.d 
 

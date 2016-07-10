@@ -1,7 +1,7 @@
 /* ###################################################################
 **     Filename    : main.c
 **     Project     : KE06CAN
-**     Processor   : MKE06Z128VLK4
+**     Processor   : MK70FN1M0VMJ12
 **     Version     : Driver 01.01
 **     Compiler    : GNU C Compiler
 **     Date/Time   : 2014-07-25, 17:01, # CodeGen: 0
@@ -30,9 +30,10 @@
 /* Including needed modules to compile this module/procedure */
 #include "Cpu.h"
 #include "Events.h"
-#include "Pins1.h"
+#include "timer_events.h"
+#include "uart_events.h"
+#include "can_events.h"
 #include "TU1.h"
-#include "REDLED.h"
 #include "GREENLED.h"
 #include "AS1.h"
 #include "UART_RxBuff.h"

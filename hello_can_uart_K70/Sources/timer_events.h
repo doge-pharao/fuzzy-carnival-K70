@@ -1,33 +1,33 @@
 /* ###################################################################
-**     Filename    : Events.h
+**     Filename    : timer_events.h
 **     Project     : hello_can_uart_K70
 **     Processor   : MK70FN1M0VMJ12
 **     Component   : Events
 **     Version     : Driver 01.00
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2016-07-09, 17:24, # CodeGen: 18
+**     Date/Time   : 2016-07-09, 17:18, # CodeGen: 17
 **     Abstract    :
 **         This is user's event module.
 **         Put your event handler code here.
 **     Contents    :
-**         Cpu_OnNMI - void Cpu_OnNMI(void);
+**         TU1_OnCounterRestart - void TU1_OnCounterRestart(LDD_TUserData *UserDataPtr);
 **
 ** ###################################################################*/
 /*!
-** @file Events.h
+** @file timer_events.h
 ** @version 01.00
 ** @brief
 **         This is user's event module.
 **         Put your event handler code here.
 */         
 /*!
-**  @addtogroup Events_module Events module documentation
+**  @addtogroup timer_events_module timer_events module documentation
 **  @{
 */         
 
-#ifndef __Events_H
-#define __Events_H
-/* MODULE Events */
+#ifndef __timer_events_H
+#define __timer_events_H
+/* MODULE timer_events */
 
 #include "PE_Types.h"
 #include "PE_Error.h"
@@ -49,43 +49,34 @@ extern "C" {
 
 /*
 ** ===================================================================
-**     Event       :  Cpu_OnNMI (module Events)
+**     Event       :  TU1_OnCounterRestart (module timer_events)
 **
-**     Component   :  Cpu [MKE06Z128LK4]
+**     Component   :  TU1 [TimerUnit_LDD]
 */
 /*!
 **     @brief
-**         This event is called when the Non maskable interrupt had
-**         occurred. This event is automatically enabled when the [NMI
-**         interrupt] property is set to 'Enabled'.
+**         Called if counter overflow/underflow or counter is
+**         reinitialized by modulo or compare register matching.
+**         OnCounterRestart event and Timer unit must be enabled. See
+**         [SetEventMask] and [GetEventMask] methods. This event is
+**         available only if a [Interrupt] is enabled.
+**     @param
+**         UserDataPtr     - Pointer to the user or
+**                           RTOS specific data. The pointer passed as
+**                           the parameter of Init method.
 */
 /* ===================================================================*/
-void Cpu_OnNMI(void);
+void TU1_OnCounterRestart(LDD_TUserData *UserDataPtr);
 
 
-/*
-** ===================================================================
-**     Event       :  Cpu_OnNMIINT (module Events)
-**
-**     Component   :  Cpu [MK70FN1M0MJ15]
-*/
-/*!
-**     @brief
-**         This event is called when the Non maskable interrupt had
-**         occurred. This event is automatically enabled when the [NMI
-**         interrupt] property is set to 'Enabled'.
-*/
-/* ===================================================================*/
-void Cpu_OnNMIINT(void);
-
-/* END Events */
+/* END timer_events */
 
 #ifdef __cplusplus
 }  /* extern "C" */
 #endif 
 
 #endif 
-/* ifndef __Events_H*/
+/* ifndef __timer_events_H*/
 /*!
 ** @}
 */

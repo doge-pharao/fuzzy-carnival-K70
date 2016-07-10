@@ -55,8 +55,6 @@ static void Init(void) {
 void APP_Run(void) {
 	Init();
 	SendString((unsigned char*) "Hello World\r\n", &uartData);
-	DataFrameRxFlg = FALSE;
-	DataFrameTxFlg = FALSE;
 
 	for (;;) {
 		if (UART_RxBuff_NofElements() != 0) {
@@ -97,13 +95,6 @@ void APP_Run(void) {
 				SendString((unsigned char*) "\r\n", &uartData);
 			}
 		}
-
-		GREENLED_NegVal(GREENLED_DeviceData);
-		// Wait counter reset
-		TU1_ResetCounter(TU1_DeviceData);
-		// wait 500 ticks (~ 0.5s)
-		while (TU1_GetCounterValue(TU1_DeviceData) < 500) {
-		};
 
 	}
 }

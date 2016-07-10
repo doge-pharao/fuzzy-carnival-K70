@@ -6,17 +6,26 @@
 C_SRCS += \
 ../Sources/Application.c \
 ../Sources/Events.c \
-../Sources/main.c 
+../Sources/can_events.c \
+../Sources/main.c \
+../Sources/timer_events.c \
+../Sources/uart_events.c 
 
 OBJS += \
 ./Sources/Application.o \
 ./Sources/Events.o \
-./Sources/main.o 
+./Sources/can_events.o \
+./Sources/main.o \
+./Sources/timer_events.o \
+./Sources/uart_events.o 
 
 C_DEPS += \
 ./Sources/Application.d \
 ./Sources/Events.d \
-./Sources/main.d 
+./Sources/can_events.d \
+./Sources/main.d \
+./Sources/timer_events.d \
+./Sources/uart_events.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes

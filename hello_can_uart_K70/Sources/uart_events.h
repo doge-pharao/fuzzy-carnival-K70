@@ -1,33 +1,34 @@
 /* ###################################################################
-**     Filename    : Events.h
+**     Filename    : uart_events.h
 **     Project     : hello_can_uart_K70
 **     Processor   : MK70FN1M0VMJ12
 **     Component   : Events
 **     Version     : Driver 01.00
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2016-07-09, 17:24, # CodeGen: 18
+**     Date/Time   : 2016-07-09, 17:18, # CodeGen: 17
 **     Abstract    :
 **         This is user's event module.
 **         Put your event handler code here.
 **     Contents    :
-**         Cpu_OnNMI - void Cpu_OnNMI(void);
+**         AS1_OnBlockReceived - void AS1_OnBlockReceived(LDD_TUserData *UserDataPtr);
+**         AS1_OnBlockSent     - void AS1_OnBlockSent(LDD_TUserData *UserDataPtr);
 **
 ** ###################################################################*/
 /*!
-** @file Events.h
+** @file uart_events.h
 ** @version 01.00
 ** @brief
 **         This is user's event module.
 **         Put your event handler code here.
 */         
 /*!
-**  @addtogroup Events_module Events module documentation
+**  @addtogroup uart_events_module uart_events module documentation
 **  @{
 */         
 
-#ifndef __Events_H
-#define __Events_H
-/* MODULE Events */
+#ifndef __uart_events_H
+#define __uart_events_H
+/* MODULE uart_events */
 
 #include "PE_Types.h"
 #include "PE_Error.h"
@@ -49,43 +50,49 @@ extern "C" {
 
 /*
 ** ===================================================================
-**     Event       :  Cpu_OnNMI (module Events)
+**     Event       :  AS1_OnBlockReceived (module uart_events)
 **
-**     Component   :  Cpu [MKE06Z128LK4]
+**     Component   :  AS1 [Serial_LDD]
 */
 /*!
 **     @brief
-**         This event is called when the Non maskable interrupt had
-**         occurred. This event is automatically enabled when the [NMI
-**         interrupt] property is set to 'Enabled'.
+**         This event is called when the requested number of data is
+**         moved to the input buffer.
+**     @param
+**         UserDataPtr     - Pointer to the user or
+**                           RTOS specific data. This pointer is passed
+**                           as the parameter of Init method.
 */
 /* ===================================================================*/
-void Cpu_OnNMI(void);
-
+void AS1_OnBlockReceived(LDD_TUserData *UserDataPtr);
 
 /*
 ** ===================================================================
-**     Event       :  Cpu_OnNMIINT (module Events)
+**     Event       :  AS1_OnBlockSent (module uart_events)
 **
-**     Component   :  Cpu [MK70FN1M0MJ15]
+**     Component   :  AS1 [Serial_LDD]
 */
 /*!
 **     @brief
-**         This event is called when the Non maskable interrupt had
-**         occurred. This event is automatically enabled when the [NMI
-**         interrupt] property is set to 'Enabled'.
+**         This event is called after the last character from the
+**         output buffer is moved to the transmitter. 
+**     @param
+**         UserDataPtr     - Pointer to the user or
+**                           RTOS specific data. This pointer is passed
+**                           as the parameter of Init method.
 */
 /* ===================================================================*/
-void Cpu_OnNMIINT(void);
+void AS1_OnBlockSent(LDD_TUserData *UserDataPtr);
 
-/* END Events */
+
+/* END uart_events */
 
 #ifdef __cplusplus
 }  /* extern "C" */
 #endif 
 
 #endif 
-/* ifndef __Events_H*/
+/* ifndef __uart_events_H*/
 /*!
 ** @}
 */
