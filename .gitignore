@@ -34,6 +34,8 @@
 
 *.pydevproject
 RemoteSystemsTempFiles/
+**/Generated_Code/
+**/Static_Code/
 .metadata
 bin/
 tmp/
