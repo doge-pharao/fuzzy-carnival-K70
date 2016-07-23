@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+  Copyright : 2012 Freescale, Inc. All Rights Reserved.
+
+  This configuration file is a standard interchange file that's format is maintained
+  by Freescale, Inc. The configuration file is a derivative work
+  of the Processor Expert Software technology licensed for use by customers
+  as defined as SOFTWARE in the product's End User License Agreement. This file
+  and format are free to use and distribute for read-only purposes. You do not have
+  the right to create these files or modify this format or use for any purposes other
+  than interchange with the Processor Expert Software technology.
+
+  THIS SOFTWARE IS PROVIDED "AS IS".
+
+  NO WARRANTIES, WHETHER EXPRESS, IMPLIED OR STATUTORY, INCLUDING, BUT NOT
+  LIMITED TO, IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+  PURPOSE APPLY TO THIS SOFTWARE. IN NO EVENT WILL FREESCALE BE LIABLE, WHETHER
+  IN CONTRACT, TORT, OR OTHERWISE, FOR ANY INCIDENTAL, SPECIAL, INDIRECT,
+  CONSEQUENTIAL OR PUNITIVE DAMAGES, INCLUDING, BUT NOT LIMITED TO, DAMAGES FOR
+  ANY LOSS OF USE, LOSS OF TIME, INCONVENIENCE, COMMERCIAL LOSS, OR LOST PROFITS,
+  SAVINGS, OR REVENUES TO THE FULL EXTENT SUCH MAY BE DISCLAIMED BY LAW.
+
+-->
+<export xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="ProjectInfoDescription.xsd">
+  <PROCESSOR>
+    <DeviceID>MK70FN1M0xxx12</DeviceID>
+    <CoreNum>1</CoreNum>
+    <Cores>
+      <Core>
+        <CoreSet>Cortex-M4</CoreSet>
+      </Core>
+    </Cores>
+    <SRAMsize>128k</SRAMsize>
+    <FLASHsize>1M</FLASHsize>
+  </PROCESSOR>
+  <PATHS>
+    <LinkerCommandFile>/home/alejandro/workspace.kds.k70/control_panel/Project_Settings/Linker_Files/ProcessorExpert.ld</LinkerCommandFile>
+    <IncludePaths>
+      <Path>/home/alejandro/workspace.kds.k70/control_panel/Sources/TSS/</Path>
+      <Path>/home/alejandro/workspace.kds.k70/control_panel/Static_Code/PDD/</Path>
+      <Path>/home/alejandro/workspace.kds.k70/control_panel/Static_Code/IO_Map/</Path>
+      <Path>/home/alejandro/workspace.kds.k70/control_panel/Sources/</Path>
+      <Path>/home/alejandro/workspace.kds.k70/control_panel/Generated_Code/</Path>
+    </IncludePaths>
+    <SourceCodePaths>
+      <Path>/home/alejandro/workspace.kds.k70/control_panel/Generated_Code/</Path>
+      <Path>/home/alejandro/workspace.kds.k70/control_panel/Project_Settings/Startup_Code/</Path>
+      <Path>/home/alejandro/workspace.kds.k70/control_panel/Sources/</Path>
+      <Path>/home/alejandro/workspace.kds.k70/control_panel/Sources/TSS/</Path>
+    </SourceCodePaths>
+    <LibPaths>
+      <Path>/home/alejandro/workspace.kds.k70/control_panel/Sources/TSS/</Path>
+    </LibPaths>
+  </PATHS>
+  <FILES>
+    <GeneratedCs>
+      <PathName>/home/alejandro/workspace.kds.k70/control_panel/Generated_Code/AS1.c</PathName>
+      <PathName>/home/alejandro/workspace.kds.k70/control_panel/Generated_Code/BLUELED.c</PathName>
+      <PathName>/home/alejandro/workspace.kds.k70/control_panel/Generated_Code/CAN1.c</PathName>
+      <PathName>/home/alejandro/workspace.kds.k70/control_panel/Generated_Code/CAN_RxBuff.c</PathName>
+      <PathName>/home/alejandro/workspace.kds.k70/control_panel/Generated_Code/CS1.c</PathName>
+      <PathName>/home/alejandro/workspace.kds.k70/control_panel/Generated_Code/CS2.c</PathName>
+      <PathName>/home/alejandro/workspace.kds.k70/control_panel/Generated_Code/Cpu.c</PathName>
+      <PathName>/home/alejandro/workspace.kds.k70/control_panel/Generated_Code/GREENLED.c</PathName>
+      <PathName>/home/alejandro/workspace.kds.k70/control_panel/Generated_Code/KSDK1.c</PathName>
+      <PathName>/home/alejandro/workspace.kds.k70/control_panel/Generated_Code/ORANGELED.c</PathName>
+      <PathName>/home/alejandro/workspace.kds.k70/control_panel/Generated_Code/PE_LDD.c</PathName>
+      <PathName>/home/alejandro/workspace.kds.k70/control_panel/Generated_Code/TSS1.c</PathName>
+      <PathName>/home/alejandro/workspace.kds.k70/control_panel/Generated_Code/TU1.c</PathName>
+      <PathName>/home/alejandro/workspace.kds.k70/control_panel/Generated_Code/UART_RxBuff.c</PathName>
+      <PathName>/home/alejandro/workspace.kds.k70/control_panel/Generated_Code/Vectors.c</PathName>
+      <PathName>/home/alejandro/workspace.kds.k70/control_panel/Generated_Code/YELLOWLED.c</PathName>
+      <PathName>/home/alejandro/workspace.kds.k70/control_panel/Project_Settings/Startup_Code/startup.c</PathName>
+      <PathName>/home/alejandro/workspace.kds.k70/control_panel/Sources/Application.c</PathName>
+      <PathName>/home/alejandro/workspace.kds.k70/control_panel/Sources/CAN1_Events.c</PathName>
+      <PathName>/home/alejandro/workspace.kds.k70/control_panel/Sources/Events.c</PathName>
+      <PathName>/home/alejandro/workspace.kds.k70/control_panel/Sources/TSS/TSS_Freemaster.c</PathName>
+      <PathName>/home/alejandro/workspace.kds.k70/control_panel/Sources/TSS/TSS_Sensor.c</PathName>
+      <PathName>/home/alejandro/workspace.kds.k70/control_panel/Sources/TSS/TSS_SensorGPIO.c</PathName>
+      <PathName>/home/alejandro/workspace.kds.k70/control_panel/Sources/TSS/TSS_SensorTSI.c</PathName>
+      <PathName>/home/alejandro/workspace.kds.k70/control_panel/Sources/TSS/TSS_SensorTSIL.c</PathName>
+      <PathName>/home/alejandro/workspace.kds.k70/control_panel/Sources/TSS/TSS_SystemSetupData.c</PathName>
+      <PathName>/home/alejandro/workspace.kds.k70/control_panel/Sources/TSS_Events.c</PathName>
+      <PathName>/home/alejandro/workspace.kds.k70/control_panel/Sources/Timer1_Events.c</PathName>
+      <PathName>/home/alejandro/workspace.kds.k70/control_panel/Sources/UART2_Events.c</PathName>
+      <PathName>/home/alejandro/workspace.kds.k70/control_panel/Sources/main.c</PathName>
+    </GeneratedCs>
+    <GeneratedHs>
+      <PathName>/home/alejandro/workspace.kds.k70/control_panel/Generated_Code/AS1.h</PathName>
+      <PathName>/home/alejandro/workspace.kds.k70/control_panel/Generated_Code/BLUELED.h</PathName>
+      <PathName>/home/alejandro/workspace.kds.k70/control_panel/Generated_Code/CAN1.h</PathName>
+      <PathName>/home/alejandro/workspace.kds.k70/control_panel/Generated_Code/CAN_RxBuff.h</PathName>
+      <PathName>/home/alejandro/workspace.kds.k70/control_panel/Generated_Code/CS1.h</PathName>
+      <PathName>/home/alejandro/workspace.kds.k70/control_panel/Generated_Code/CS2.h</PathName>
+      <PathName>/home/alejandro/workspace.kds.k70/control_panel/Generated_Code/Cpu.h</PathName>
+      <PathName>/home/alejandro/workspace.kds.k70/control_panel/Generated_Code/GREENLED.h</PathName>
+      <PathName>/home/alejandro/workspace.kds.k70/control_panel/Generated_Code/IO_Map.h</PathName>
+      <PathName>/home/alejandro/workspace.kds.k70/control_panel/Generated_Code/KSDK1.h</PathName>
+      <PathName>/home/alejandro/workspace.kds.k70/control_panel/Generated_Code/ORANGELED.h</PathName>
+      <PathName>/home/alejandro/workspace.kds.k70/control_panel/Generated_Code/PE_Const.h</PathName>
+      <PathName>/home/alejandro/workspace.kds.k70/control_panel/Generated_Code/PE_Error.h</PathName>
+      <PathName>/home/alejandro/workspace.kds.k70/control_panel/Generated_Code/PE_LDD.h</PathName>
+      <PathName>/home/alejandro/workspace.kds.k70/control_panel/Generated_Code/PE_Types.h</PathName>
+      <PathName>/home/alejandro/workspace.kds.k70/control_panel/Generated_Code/TSS1.h</PathName>
+      <PathName>/home/alejandro/workspace.kds.k70/control_panel/Generated_Code/TU1.h</PathName>
+      <PathName>/home/alejandro/workspace.kds.k70/control_panel/Generated_Code/UART_RxBuff.h</PathName>
+      <PathName>/home/alejandro/workspace.kds.k70/control_panel/Generated_Code/YELLOWLED.h</PathName>
+      <PathName>/home/alejandro/workspace.kds.k70/control_panel/Sources/Application.h</PathName>
+      <PathName>/home/alejandro/workspace.kds.k70/control_panel/Sources/CAN1_Events.h</PathName>
+      <PathName>/home/alejandro/workspace.kds.k70/control_panel/Sources/Events.h</PathName>
+      <PathName>/home/alejandro/workspace.kds.k70/control_panel/Sources/TSS/TSS_API.h</PathName>
+      <PathName>/home/alejandro/workspace.kds.k70/control_panel/Sources/TSS/TSS_DataTypes.h</PathName>
+      <PathName>/home/alejandro/workspace.kds.k70/control_panel/Sources/TSS/TSS_GPIO.h</PathName>
+      <PathName>/home/alejandro/workspace.kds.k70/control_panel/Sources/TSS/TSS_Sensor.h</PathName>
+      <PathName>/home/alejandro/workspace.kds.k70/control_panel/Sources/TSS/TSS_SensorGPIO.h</PathName>
+      <PathName>/home/alejandro/workspace.kds.k70/control_panel/Sources/TSS/TSS_SensorGPIO_def.h</PathName>
+      <PathName>/home/alejandro/workspace.kds.k70/control_panel/Sources/TSS/TSS_SensorTSI.h</PathName>
+      <PathName>/home/alejandro/workspace.kds.k70/control_panel/Sources/TSS/TSS_SensorTSIL.h</PathName>
+      <PathName>/home/alejandro/workspace.kds.k70/control_panel/Sources/TSS/TSS_SensorTSIL_def.h</PathName>
+      <PathName>/home/alejandro/workspace.kds.k70/control_panel/Sources/TSS/TSS_SensorTSI_def.h</PathName>
+      <PathName>/home/alejandro/workspace.kds.k70/control_panel/Sources/TSS/TSS_StatusCodes.h</PathName>
+      <PathName>/home/alejandro/workspace.kds.k70/control_panel/Sources/TSS/TSS_SystemSetupVal.h</PathName>
+      <PathName>/home/alejandro/workspace.kds.k70/control_panel/Sources/TSS/TSS_Timer.h</PathName>
+      <PathName>/home/alejandro/workspace.kds.k70/control_panel/Sources/TSS_Events.h</PathName>
+      <PathName>/home/alejandro/workspace.kds.k70/control_panel/Sources/TSS_SystemSetup.h</PathName>
+      <PathName>/home/alejandro/workspace.kds.k70/control_panel/Sources/Timer1_Events.h</PathName>
+      <PathName>/home/alejandro/workspace.kds.k70/control_panel/Sources/UART2_Events.h</PathName>
+      <PathName>/home/alejandro/workspace.kds.k70/control_panel/Sources/derivative.h</PathName>
+      <PathName>/home/alejandro/workspace.kds.k70/control_panel/Static_Code/IO_Map/MK70F12.h</PathName>
+      <PathName>/home/alejandro/workspace.kds.k70/control_panel/Static_Code/PDD/ADC_PDD.h</PathName>
+      <PathName>/home/alejandro/workspace.kds.k70/control_panel/Static_Code/PDD/CAN_PDD.h</PathName>
+      <PathName>/home/alejandro/workspace.kds.k70/control_panel/Static_Code/PDD/CMP_PDD.h</PathName>
+      <PathName>/home/alejandro/workspace.kds.k70/control_panel/Static_Code/PDD/CMT_PDD.h</PathName>
+      <PathName>/home/alejandro/workspace.kds.k70/control_panel/Static_Code/PDD/CRC_PDD.h</PathName>
+      <PathName>/home/alejandro/workspace.kds.k70/control_panel/Static_Code/PDD/DAC_PDD.h</PathName>
+      <PathName>/home/alejandro/workspace.kds.k70/control_panel/Static_Code/PDD/DMAMUX_PDD.h</PathName>
+      <PathName>/home/alejandro/workspace.kds.k70/control_panel/Static_Code/PDD/DMA_PDD.h</PathName>
+      <PathName>/home/alejandro/workspace.kds.k70/control_panel/Static_Code/PDD/ENET_PDD.h</PathName>
+      <PathName>/home/alejandro/workspace.kds.k70/control_panel/Static_Code/PDD/EWM_PDD.h</PathName>
+      <PathName>/home/alejandro/workspace.kds.k70/control_panel/Static_Code/PDD/FMC_PDD.h</PathName>
+      <PathName>/home/alejandro/workspace.kds.k70/control_panel/Static_Code/PDD/FTFE_PDD.h</PathName>
+      <PathName>/home/alejandro/workspace.kds.k70/control_panel/Static_Code/PDD/FTM_PDD.h</PathName>
+      <PathName>/home/alejandro/workspace.kds.k70/control_panel/Static_Code/PDD/GPIO_PDD.h</PathName>
+      <PathName>/home/alejandro/workspace.kds.k70/control_panel/Static_Code/PDD/I2C_PDD.h</PathName>
+      <PathName>/home/alejandro/workspace.kds.k70/control_panel/Static_Code/PDD/LCDC_PDD.h</PathName>
+      <PathName>/home/alejandro/workspace.kds.k70/control_panel/Static_Code/PDD/LPTMR_PDD.h</PathName>
+      <PathName>/home/alejandro/workspace.kds.k70/control_panel/Static_Code/PDD/MCG_PDD.h</PathName>
+      <PathName>/home/alejandro/workspace.kds.k70/control_panel/Static_Code/PDD/MCM_PDD.h</PathName>
+      <PathName>/home/alejandro/workspace.kds.k70/control_panel/Static_Code/PDD/NFC_PDD.h</PathName>
+      <PathName>/home/alejandro/workspace.kds.k70/control_panel/Static_Code/PDD/OSC_PDD.h</PathName>
+      <PathName>/home/alejandro/workspace.kds.k70/control_panel/Static_Code/PDD/PDB_PDD.h</PathName>
+      <PathName>/home/alejandro/workspace.kds.k70/control_panel/Static_Code/PDD/PDD_Types.h</PathName>
+      <PathName>/home/alejandro/workspace.kds.k70/control_panel/Static_Code/PDD/PIT_PDD.h</PathName>
+      <PathName>/home/alejandro/workspace.kds.k70/control_panel/Static_Code/PDD/PORT_PDD.h</PathName>
+      <PathName>/home/alejandro/workspace.kds.k70/control_panel/Static_Code/PDD/RNGA_PDD.h</PathName>
+      <PathName>/home/alejandro/workspace.kds.k70/control_panel/Static_Code/PDD/RTC_PDD.h</PathName>
+      <PathName>/home/alejandro/workspace.kds.k70/control_panel/Static_Code/PDD/SAI_PDD.h</PathName>
+      <PathName>/home/alejandro/workspace.kds.k70/control_panel/Static_Code/PDD/SDHC_PDD.h</PathName>
+      <PathName>/home/alejandro/workspace.kds.k70/control_panel/Static_Code/PDD/SIM_PDD.h</PathName>
+      <PathName>/home/alejandro/workspace.kds.k70/control_panel/Static_Code/PDD/SPI_PDD.h</PathName>
+      <PathName>/home/alejandro/workspace.kds.k70/control_panel/Static_Code/PDD/SysTick_PDD.h</PathName>
+      <PathName>/home/alejandro/workspace.kds.k70/control_panel/Static_Code/PDD/UART_PDD.h</PathName>
+      <PathName>/home/alejandro/workspace.kds.k70/control_panel/Static_Code/PDD/USBDCD_PDD.h</PathName>
+      <PathName>/home/alejandro/workspace.kds.k70/control_panel/Static_Code/PDD/USBHS_PDD.h</PathName>
+      <PathName>/home/alejandro/workspace.kds.k70/control_panel/Static_Code/PDD/USB_PDD.h</PathName>
+      <PathName>/home/alejandro/workspace.kds.k70/control_panel/Static_Code/PDD/VREF_PDD.h</PathName>
+      <PathName>/home/alejandro/workspace.kds.k70/control_panel/Static_Code/PDD/WDOG_PDD.h</PathName>
+    </GeneratedHs>
+    <Libraries>
+      <PathName>"TSS_KXX_M4_FPU"</PathName>
+    </Libraries>
+  </FILES>
+  <OPTIONS>
+  </OPTIONS>
+</export>
