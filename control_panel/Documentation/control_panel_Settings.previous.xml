@@ -298,10 +298,10 @@ PE_DEBUGHALT();
     <Properties>
       <Component_name v="GREENLED" />
       <Pin_for_I_O v="ADC2_SE12/PTA29/ULPI_DATA7/MII0_COL/FBa_A24" />
-      <Direction v="Input/Output" />
+      <Direction v="Output" />
       <group name="Initialization">
         <Init__direction v="Output" />
-        <Init__value v="0" />
+        <Init__value v="1" />
         <Auto_initialization v="yes" />
       </group>
       <Safe_mode v="no" />
@@ -310,8 +310,8 @@ PE_DEBUGHALT();
       <Init v="generate code" />
       <Deinit v="don&amp;apos;t generate code" />
       <GetDir v="don&amp;apos;t generate code" />
-      <SetDir v="generate code" />
-      <SetInput v="generate code" />
+      <SetDir v="don&amp;apos;t generate code" />
+      <SetInput v="don&amp;apos;t generate code" />
       <SetOutput v="don&amp;apos;t generate code" />
       <GetVal v="generate code" />
       <PutVal v="generate code" />
@@ -671,7 +671,7 @@ PE_DEBUGHALT();
       <Direction v="Output" />
       <group name="Initialization">
         <Init__direction v="Output" />
-        <Init__value v="0" />
+        <Init__value v="1" />
         <Auto_initialization v="yes" />
       </group>
       <Safe_mode v="no" />
@@ -703,7 +703,7 @@ PE_DEBUGHALT();
       <Direction v="Output" />
       <group name="Initialization">
         <Init__direction v="Output" />
-        <Init__value v="0" />
+        <Init__value v="1" />
         <Auto_initialization v="yes" />
       </group>
       <Safe_mode v="no" />
@@ -735,7 +735,7 @@ PE_DEBUGHALT();
       <Direction v="Output" />
       <group name="Initialization">
         <Init__direction v="Output" />
-        <Init__value v="0" />
+        <Init__value v="1" />
         <Auto_initialization v="yes" />
       </group>
       <Safe_mode v="no" />

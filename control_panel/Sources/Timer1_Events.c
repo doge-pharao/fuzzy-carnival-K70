@@ -32,6 +32,7 @@
 #include "UART2_Events.h"
 #include "CAN1_Events.h"
 #include "TSS_Events.h"
+#include "ADC_Events.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -39,7 +40,7 @@ extern "C" {
 
 
 /* User includes (#include below this line is not maintained by Processor Expert) */
-
+#include "Application.h"
 /*
 ** ===================================================================
 **     Event       :  TU1_OnCounterRestart (module Timer1_Events)
@@ -61,6 +62,8 @@ extern "C" {
 /* ===================================================================*/
 void TU1_OnCounterRestart(LDD_TUserData *UserDataPtr)
 {
+	ADC_Desc *ptr = (ADC_Desc*)UserDataPtr;
+	AD1_StartSingleMeasurement(ptr->handle);
 }
 
 /* END Timer1_Events */

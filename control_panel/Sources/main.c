@@ -34,6 +34,7 @@
 #include "UART2_Events.h"
 #include "CAN1_Events.h"
 #include "TSS_Events.h"
+#include "ADC_Events.h"
 #include "TU1.h"
 #include "GREENLED.h"
 #include "AS1.h"
@@ -47,6 +48,7 @@
 #include "BLUELED.h"
 #include "YELLOWLED.h"
 #include "TSS1.h"
+#include "AD1.h"
 /* Including shared modules, which are used for whole project */
 #include "PE_Types.h"
 #include "PE_Error.h"

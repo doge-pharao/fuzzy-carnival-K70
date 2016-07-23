@@ -949,7 +949,7 @@ registers of the peripheral(s) configured by the component.
 **          Channel list                                   : 0
 **          Initialization                                 : 
 **            Enabled in init. code                        : yes
-**            Auto initialization                          : yes
+**            Auto initialization                          : no
 **            Event mask                                   : 
 **              OnCounterRestart                           : Enabled
 **              OnChannel0                                 : Disabled

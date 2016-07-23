@@ -1,30 +1,30 @@
 /* ###################################################################
-**     Filename    : Events.c
-**     Project     : sender_can_uart
+**     Filename    : ADC_Events.c
+**     Project     : control_panel
 **     Processor   : MK70FN1M0VMJ12
 **     Component   : Events
 **     Version     : Driver 01.00
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2016-07-16, 00:11, # CodeGen: 6
+**     Date/Time   : 2016-07-23, 00:24, # CodeGen: 3
 **     Abstract    :
 **         This is user's event module.
 **         Put your event handler code here.
 **     Contents    :
-**         Cpu_OnNMIINT - void Cpu_OnNMIINT(void);
+**         AD1_OnMeasurementComplete - void AD1_OnMeasurementComplete(LDD_TUserData *UserDataPtr);
 **
 ** ###################################################################*/
 /*!
-** @file Events.c
+** @file ADC_Events.c
 ** @version 01.00
 ** @brief
 **         This is user's event module.
 **         Put your event handler code here.
 */         
 /*!
-**  @addtogroup Events_module Events module documentation
+**  @addtogroup ADC_Events_module ADC_Events module documentation
 **  @{
 */         
-/* MODULE Events */
+/* MODULE ADC_Events */
 
 #include "Cpu.h"
 #include "Events.h"
@@ -40,26 +40,38 @@ extern "C" {
 
 
 /* User includes (#include below this line is not maintained by Processor Expert) */
-
+#include "Application.h"
 /*
 ** ===================================================================
-**     Event       :  Cpu_OnNMIINT (module Events)
+**     Event       :  AD1_OnMeasurementComplete (module ADC_Events)
 **
-**     Component   :  Cpu [MK70FN1M0MJ15]
+**     Component   :  AD1 [ADC_LDD]
 */
 /*!
 **     @brief
-**         This event is called when the Non maskable interrupt had
-**         occurred. This event is automatically enabled when the [NMI
-**         interrupt] property is set to 'Enabled'.
+**         Called after measurement is done, [Interrupt service/event]
+**         is enabled, OnMeasurementComplete event is enabled and ADC
+**         device is enabled. See [SetEventMask()] method or [Event
+**         mask] property group to enable this event and [Enable]
+**         method or [Enabled in init. code] property to enable ADC
+**         device. If DMA is enabled , this event is called after the
+**         configured number of measurements and DMA transfer is done.
+**     @param
+**         UserDataPtr     - Pointer to the user or
+**                           RTOS specific data. The pointer is passed
+**                           as the parameter of Init method. 
 */
 /* ===================================================================*/
-void Cpu_OnNMIINT(void)
+void AD1_OnMeasurementComplete(LDD_TUserData *UserDataPtr)
 {
-  /* Write your code here ... */
+	uint16_t buffer;
+	ADC_Desc *ptr = (ADC_Desc*)UserDataPtr;
+	AD1_GetMeasuredValues(ptr->handle, &buffer);
+
+	updateConversionValue(buffer);
 }
 
-/* END Events */
+/* END ADC_Events */
 
 #ifdef __cplusplus
 }  /* extern "C" */

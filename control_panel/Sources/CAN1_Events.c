@@ -37,6 +37,7 @@
 #include "UART2_Events.h"
 #include "CAN1_Events.h"
 #include "TSS_Events.h"
+#include "ADC_Events.h"
 
 #ifdef __cplusplus
 extern "C" {

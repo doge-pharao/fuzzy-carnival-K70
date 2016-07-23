@@ -1,33 +1,33 @@
 /* ###################################################################
-**     Filename    : Timer1_Events.h
-**     Project     : sender_can_uart
+**     Filename    : ADC_Events.h
+**     Project     : control_panel
 **     Processor   : MK70FN1M0VMJ12
 **     Component   : Events
 **     Version     : Driver 01.00
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2016-07-16, 00:46, # CodeGen: 8
+**     Date/Time   : 2016-07-23, 00:24, # CodeGen: 3
 **     Abstract    :
 **         This is user's event module.
 **         Put your event handler code here.
 **     Contents    :
-**         TU1_OnCounterRestart - void TU1_OnCounterRestart(LDD_TUserData *UserDataPtr);
+**         AD1_OnMeasurementComplete - void AD1_OnMeasurementComplete(LDD_TUserData *UserDataPtr);
 **
 ** ###################################################################*/
 /*!
-** @file Timer1_Events.h
+** @file ADC_Events.h
 ** @version 01.00
 ** @brief
 **         This is user's event module.
 **         Put your event handler code here.
 */         
 /*!
-**  @addtogroup Timer1_Events_module Timer1_Events module documentation
+**  @addtogroup ADC_Events_module ADC_Events module documentation
 **  @{
 */         
 
-#ifndef __Timer1_Events_H
-#define __Timer1_Events_H
-/* MODULE Timer1_Events */
+#ifndef __ADC_Events_H
+#define __ADC_Events_H
+/* MODULE ADC_Events */
 
 #include "PE_Types.h"
 #include "PE_Error.h"
@@ -54,34 +54,36 @@ extern "C" {
 
 /*
 ** ===================================================================
-**     Event       :  TU1_OnCounterRestart (module Timer1_Events)
+**     Event       :  AD1_OnMeasurementComplete (module ADC_Events)
 **
-**     Component   :  TU1 [TimerUnit_LDD]
+**     Component   :  AD1 [ADC_LDD]
 */
 /*!
 **     @brief
-**         Called if counter overflow/underflow or counter is
-**         reinitialized by modulo or compare register matching.
-**         OnCounterRestart event and Timer unit must be enabled. See
-**         [SetEventMask] and [GetEventMask] methods. This event is
-**         available only if a [Interrupt] is enabled.
+**         Called after measurement is done, [Interrupt service/event]
+**         is enabled, OnMeasurementComplete event is enabled and ADC
+**         device is enabled. See [SetEventMask()] method or [Event
+**         mask] property group to enable this event and [Enable]
+**         method or [Enabled in init. code] property to enable ADC
+**         device. If DMA is enabled , this event is called after the
+**         configured number of measurements and DMA transfer is done.
 **     @param
 **         UserDataPtr     - Pointer to the user or
-**                           RTOS specific data. The pointer passed as
-**                           the parameter of Init method.
+**                           RTOS specific data. The pointer is passed
+**                           as the parameter of Init method. 
 */
 /* ===================================================================*/
-void TU1_OnCounterRestart(LDD_TUserData *UserDataPtr);
+void AD1_OnMeasurementComplete(LDD_TUserData *UserDataPtr);
 
 
-/* END Timer1_Events */
+/* END ADC_Events */
 
 #ifdef __cplusplus
 }  /* extern "C" */
 #endif 
 
 #endif 
-/* ifndef __Timer1_Events_H*/
+/* ifndef __ADC_Events_H*/
 /*!
 ** @}
 */

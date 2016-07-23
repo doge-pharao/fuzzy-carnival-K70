@@ -48,6 +48,7 @@
 #include "BLUELED.h"
 #include "YELLOWLED.h"
 #include "TSS1.h"
+#include "AD1.h"
 
 #ifdef __cplusplus
 extern "C" {
