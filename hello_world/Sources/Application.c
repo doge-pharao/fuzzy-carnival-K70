@@ -54,23 +54,28 @@ static void Init(void) {
 
 void APP_Run(void) {
 	Init();
-	SendString((unsigned char*) "Hello World\r\n", &uartData);
+	SendString((unsigned char*) "Hello World!\r\n", &uartData);
 
 	for (;;) {
 		if (UART_RxBuff_NofElements() != 0) {
-			uint8_t txbuffer;
+
 			while (UART_RxBuff_NofElements() != 0) {
 				unsigned char ch;
+				uint8_t length = 0;
+				unsigned char txbuffer[8];
 
 				// Rx Receives a character from the console.
-				(void) UART_RxBuff_Get(&ch);
-				txbuffer = ch;
+				while (UART_RxBuff_NofElements() != 0 && length < 8) {
+					(void) UART_RxBuff_Get(&ch);
+					txbuffer[length] = ch;
+					length++;
+				}
 
 				// Prepare frame
 				Frame.MessageID = 0x70U; 				/* Set Tx ID value - standard */
 				Frame.FrameType = LDD_CAN_DATA_FRAME; 	/* Specyfying type of Tx frame - Data frame */
-				Frame.Length = sizeof(txbuffer); 		/* Set number of bytes in data frame - 4B */
-				Frame.Data = &txbuffer; 				/* Set pointer to OutData buffer */
+				Frame.Length = length; 		/* Set number of bytes in data frame - 4B */
+				Frame.Data = (uint8_t *) &txbuffer; 				/* Set pointer to OutData buffer */
 
 				canData.isSent = FALSE;
 				Error = CAN1_SendFrame(canData.handle, 1U, &Frame); /* Sends the data frame over buffer 0 */
@@ -81,20 +86,23 @@ void APP_Run(void) {
 				// Wait the completion of the transmission.
 				while (!canData.isSent);
 			}
-
-
-			while (CAN_RxBuff_NofElements()) {
-				unsigned char ch;
-
-				//receive frame (buffer 0)
-				CAN_RxBuff_Get(&ch);
-
-				// Send the echo to the console.
-				SendString((unsigned char*) "echo: ", &uartData);
-				SendChar(ch, &uartData);
-				SendString((unsigned char*) "\r\n", &uartData);
-			}
 		}
 
+		if (CAN_RxBuff_NofElements()) {
+			while (CAN_RxBuff_NofElements()) {
+					unsigned char ch;
+
+					//receive frame (buffer 0)
+					CAN_RxBuff_Get(&ch);
+
+					if (ch == '\r') {
+						SendChar(ch, &uartData);
+						SendChar('\n', &uartData);
+					}
+					else
+						// Send the echo to the console.
+						SendChar(ch, &uartData);
+				}
+		}
 	}
 }
