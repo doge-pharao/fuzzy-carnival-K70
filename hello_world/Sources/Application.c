@@ -39,7 +39,6 @@ static void Init(void) {
 	// CAN Initialization
 	canData.handle = CAN1_Init(&canData);
 	canData.isSent = FALSE;
-	canData.rxChar = '\0';
 	canData.rxPutFct = CAN_RxBuff_Put;
 
 	/* set up to receive RX into input buffer */
