@@ -32,6 +32,7 @@ static void Init(void) {
 
 	canData.handle = CAN1_Init(&canData);
 	canData.isSent = FALSE;
+	canData.errorMask = CAN_NO_ERROR;
 
 	/* set up to receive RX into input buffer */
 	UART_RxBuff_Init(); /* initialize RX buffer */
@@ -45,42 +46,80 @@ static void Init(void) {
 void APP_Run(void) {
 	Init();
 	SendString((unsigned char*) "Press the keys to send.\r\n", &uartData);
-	char serialMessage[50];
+	char serialMessage[100];
 
 	for (;;) {
-		if (UART_RxBuff_NofElements() != 0) {
-			// Rx --Recibe un caracter desde consola--
-			// prepare frame
-			Frame.MessageID = 0x70U; /* Set Tx ID value - standard */
-			Frame.FrameType = LDD_CAN_DATA_FRAME; /* Specyfying type of Tx frame - Data frame */
+		if (canData.errorMask != CAN_NO_ERROR) {
+			sprintf(serialMessage,"-------- BEGIN ERROR --------\r\n");
 
-			unsigned char ch;
+			if (canData.errorMask && LDD_CAN_BIT0_ERROR)
+				sprintf(serialMessage, "%s Bit0 error detect error mask\r\n", serialMessage);
 
-			while (UART_RxBuff_NofElements() != 0) {
-				int i = 0;
+			if (canData.errorMask && LDD_CAN_BIT1_ERROR)
+				sprintf(serialMessage,
+						"%s Bit1 error detect error mask\r\n", serialMessage);
 
-				while (UART_RxBuff_NofElements() != 0 && i < 8) {
-					(void) UART_RxBuff_Get(&ch);
-					txbuffer[i] = ch;
+			if (canData.errorMask && LDD_CAN_ACK_ERROR)
+				sprintf(serialMessage,
+						"%s Acknowledge error detect error mask\r\n", serialMessage);
+
+			if (canData.errorMask && LDD_CAN_CRC_ERROR)
+				sprintf(serialMessage,
+						"%s- Cyclic redundancy check error detect error mask\r\n", serialMessage);
+
+			if (canData.errorMask && LDD_CAN_FORM_ERROR)
+				sprintf(serialMessage,
+						"%s Message form error detect error mask\r\n", serialMessage);
+
+			if (canData.errorMask && LDD_CAN_STUFFING_ERROR)
+				sprintf(serialMessage,
+						"%s Bit stuff error detect error mask\r\n", serialMessage);
+
+			sprintf(serialMessage, "%s --------- END ERROR ---------\r\n", serialMessage);
+			SendString(serialMessage, &uartData);
+			canData.errorMask = CAN_NO_ERROR;
+		} else {
+			if (UART_RxBuff_NofElements() != 0) {
+				// Rx --Recibe un caracter desde consola--
+				// prepare frame
+				Frame.MessageID = 0x70U; /* Set Tx ID value - standard */
+				Frame.FrameType = LDD_CAN_DATA_FRAME; /* Specyfying type of Tx frame - Data frame */
+
+				unsigned char ch;
+
+				while (UART_RxBuff_NofElements() != 0) {
+					int i = 0;
+
+					while (UART_RxBuff_NofElements() != 0 && i < 8) {
+						(void) UART_RxBuff_Get(&ch);
+						txbuffer[i] = ch;
+					}
+					txbuffer[8] = '\0';
+
+					Frame.Length = i + 1; /* Set number of bytes in data frame - 4B */
+					Frame.Data = txbuffer; /* Set pointer to OutData buffer */
+
+					canData.isSent = FALSE;
+					Error = CAN1_SendFrame(canData.handle, 1U, &Frame); /* Sends the data frame over buffer 0 */
+					if (Error != ERR_OK) {
+						sprintf(serialMessage,
+								"-ERROR- Message ID: %x, couldn't be transmitted \r\n",
+								Frame.MessageID);
+						break;   // break to error state
+					} else {
+						while (!canData.isSent && canData.errorMask==CAN_NO_ERROR);
+
+						if (canData.errorMask==CAN_NO_ERROR) {
+							sprintf(serialMessage,
+									"Message ID: %x, Data: <%s> Transmitted \r\n",
+									Frame.MessageID, (char *) Frame.Data);
+						}
+					}
+
+					SendString(serialMessage, &uartData);
 				}
-				txbuffer[8] = '\0';
 
-				Frame.Length = i + 1; /* Set number of bytes in data frame - 4B */
-				Frame.Data = txbuffer; /* Set pointer to OutData buffer */
-
-				canData.isSent = FALSE;
-				Error = CAN1_SendFrame(canData.handle, 1U, &Frame); /* Sends the data frame over buffer 0 */
-				if (Error != ERR_OK) {
-					break;   // break to error state
-				}
-
-				while (!canData.isSent);
-
-
-				sprintf(serialMessage, "Message ID: %x, Data: <%s> Transmitted \r\n", Frame.MessageID, Frame.Data);
-				SendString(serialMessage, &uartData);
 			}
-
 		}
 
 	}

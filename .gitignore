@@ -31,7 +31,7 @@
 #################
 ## Eclipse
 #################
-
+output/
 *.pydevproject
 RemoteSystemsTempFiles/
 **/Generated_Code/

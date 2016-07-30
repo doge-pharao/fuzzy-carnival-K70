@@ -7,7 +7,7 @@
 **     Version     : Component 01.112, Driver 01.07, CPU db: 3.00.000
 **     Repository  : Kinetis
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2016-07-15, 23:20, # CodeGen: 4
+**     Date/Time   : 2016-07-30, 00:24, # CodeGen: 10
 **     Abstract    :
 **         This component "CAN_LDD" implements a CAN serial channel.
 **     Settings    :
@@ -86,10 +86,12 @@
 **            Clock configuration 6                        : This component disabled
 **            Clock configuration 7                        : This component disabled
 **     Contents    :
-**         Init          - LDD_TDeviceData* CAN1_Init(LDD_TUserData *UserDataPtr);
-**         SetRxBufferID - LDD_TError CAN1_SetRxBufferID(LDD_TDeviceData *DeviceDataPtr,...
-**         SendFrame     - LDD_TError CAN1_SendFrame(LDD_TDeviceData *DeviceDataPtr, LDD_CAN_TMBIndex...
-**         ReadFrame     - LDD_TError CAN1_ReadFrame(LDD_TDeviceData *DeviceDataPtr, LDD_CAN_TMBIndex...
+**         Init                   - LDD_TDeviceData* CAN1_Init(LDD_TUserData *UserDataPtr);
+**         SetRxBufferID          - LDD_TError CAN1_SetRxBufferID(LDD_TDeviceData *DeviceDataPtr,...
+**         SendFrame              - LDD_TError CAN1_SendFrame(LDD_TDeviceData *DeviceDataPtr, LDD_CAN_TMBIndex...
+**         ReadFrame              - LDD_TError CAN1_ReadFrame(LDD_TDeviceData *DeviceDataPtr, LDD_CAN_TMBIndex...
+**         GetReceiveErrorCounter - LDD_CAN_TErrorCounter CAN1_GetReceiveErrorCounter(LDD_TDeviceData...
+**         GetError               - LDD_TError CAN1_GetError(LDD_TDeviceData *DeviceDataPtr, LDD_CAN_TErrorMask...
 **
 **     Copyright : 1997 - 2015 Freescale Semiconductor, Inc. 
 **     All Rights Reserved.
@@ -152,6 +154,7 @@ typedef struct {
   LDD_CAN_TMBIndex BuffersNumber;      /* Number of message buffers */
   LDD_CAN_TBufferMask RxBufferMask;    /* Bit mask for message buffers configured as receive */
   LDD_CAN_TBufferMask TxBufferMask;    /* Bit mask for message buffers configured as transmit */
+  LDD_CAN_TErrorMask ErrorMask;        /* Variable for errors mask value */
   LDD_TUserData *UserData;             /* RTOS device data structure */
 } CAN1_TDeviceData;
 
@@ -211,6 +214,22 @@ LDD_TDeviceData* CAN1_Init(LDD_TUserData *UserDataPtr);
 */
 /* ===================================================================*/
 LDD_TError CAN1_SetRxBufferID(LDD_TDeviceData *DeviceDataPtr, LDD_CAN_TMBIndex BufferIdx, LDD_CAN_TMessageID MessageID);
+
+/*
+** ===================================================================
+**     Method      :  CAN1_GetReceiveErrorCounter (component CAN_LDD)
+*/
+/*!
+**     @brief
+**         Returns a value of the reception error counter.
+**     @param
+**         DeviceDataPtr   - Device data structure
+**                           pointer returned by [Init] method.
+**     @return
+**                         - The value of the reception error counter.
+*/
+/* ===================================================================*/
+LDD_CAN_TErrorCounter CAN1_GetReceiveErrorCounter(LDD_TDeviceData *DeviceDataPtr);
 
 /*
 ** ===================================================================
@@ -370,6 +389,29 @@ PE_ISR(CAN1_InterruptWakeUp);
 ** ===================================================================
 */
 void CAN1_SetClockConfiguration(LDD_TDeviceData *DeviceDataPtr, LDD_TClockConfiguration ClockConfiguration);
+
+/*
+** ===================================================================
+**     Method      :  CAN1_GetError (component CAN_LDD)
+*/
+/*!
+**     @brief
+**         Returns value of error mask, e.g. LDD_CAN_BIT0_ERROR
+**     @param
+**         DeviceDataPtr   - Device data structure
+**                           pointer returned by [Init] method.
+**     @param
+**         ErrorMaskPtr    - Pointer to a variable
+**                           where errors value mask will be stored.
+**     @return
+**                         - Error code, possible codes:
+**                           ERR_OK - OK
+**                           ERR_DISABLED -  Device is disabled
+**                           ERR_SPEED - This device does not work in
+**                           the active clock configuration
+*/
+/* ===================================================================*/
+LDD_TError CAN1_GetError(LDD_TDeviceData *DeviceDataPtr, LDD_CAN_TErrorMask *ErrorMaskPtr);
 
 
 /* END CAN1. */

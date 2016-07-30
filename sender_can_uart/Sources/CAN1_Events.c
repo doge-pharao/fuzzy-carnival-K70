@@ -166,7 +166,11 @@ void CAN1_OnReceiveWarning(LDD_TUserData *UserDataPtr)
 /* ===================================================================*/
 void CAN1_OnBusOff(LDD_TUserData *UserDataPtr)
 {
-  /* Write your code here ... */
+	LDD_CAN_TErrorMask errorMask;
+	CAN_Desc * ptr = (CAN_Desc *) UserDataPtr;
+
+	CAN1_GetError(ptr->handle, &errorMask);
+	ptr->errorMask = errorMask;
 }
 
 /*
@@ -187,7 +191,11 @@ void CAN1_OnBusOff(LDD_TUserData *UserDataPtr)
 /* ===================================================================*/
 void CAN1_OnError(LDD_TUserData *UserDataPtr)
 {
-  /* Write your code here ... */
+	LDD_CAN_TErrorMask errorMask;
+	CAN_Desc * ptr = (CAN_Desc *) UserDataPtr;
+
+	CAN1_GetError(ptr->handle, &errorMask);
+	ptr->errorMask = errorMask;
 }
 
 /* END CAN1_Events */

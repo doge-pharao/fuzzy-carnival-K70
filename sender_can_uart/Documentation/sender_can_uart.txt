@@ -83,6 +83,8 @@ Module "CAN1"      (component CAN_LDD)
                 sent, frame type and whether the message will be sent after the request comes.
    - CAN1_ReadFrame -Reads a frame from the CAN device. The user is informed about CAN reception through OnFullRxBuffer event 
                 or GetStateRX method.
+   - CAN1_GetReceiveErrorCounter -Returns a value of the reception error counter.
+   - CAN1_GetError -Returns value of error mask, e.g. LDD_CAN_BIT0_ERROR
 
 Module "CAN_RxBuff" (component RingBuffer)
    - CAN_RxBuff_Clear -Clear (empty) the ring buffer.

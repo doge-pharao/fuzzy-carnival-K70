@@ -7,7 +7,7 @@
 **     Version     : Component 01.112, Driver 01.07, CPU db: 3.00.000
 **     Repository  : Kinetis
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2016-07-15, 23:20, # CodeGen: 4
+**     Date/Time   : 2016-07-30, 00:24, # CodeGen: 10
 **     Abstract    :
 **         This component "CAN_LDD" implements a CAN serial channel.
 **     Settings    :
@@ -86,10 +86,12 @@
 **            Clock configuration 6                        : This component disabled
 **            Clock configuration 7                        : This component disabled
 **     Contents    :
-**         Init          - LDD_TDeviceData* CAN1_Init(LDD_TUserData *UserDataPtr);
-**         SetRxBufferID - LDD_TError CAN1_SetRxBufferID(LDD_TDeviceData *DeviceDataPtr,...
-**         SendFrame     - LDD_TError CAN1_SendFrame(LDD_TDeviceData *DeviceDataPtr, LDD_CAN_TMBIndex...
-**         ReadFrame     - LDD_TError CAN1_ReadFrame(LDD_TDeviceData *DeviceDataPtr, LDD_CAN_TMBIndex...
+**         Init                   - LDD_TDeviceData* CAN1_Init(LDD_TUserData *UserDataPtr);
+**         SetRxBufferID          - LDD_TError CAN1_SetRxBufferID(LDD_TDeviceData *DeviceDataPtr,...
+**         SendFrame              - LDD_TError CAN1_SendFrame(LDD_TDeviceData *DeviceDataPtr, LDD_CAN_TMBIndex...
+**         ReadFrame              - LDD_TError CAN1_ReadFrame(LDD_TDeviceData *DeviceDataPtr, LDD_CAN_TMBIndex...
+**         GetReceiveErrorCounter - LDD_CAN_TErrorCounter CAN1_GetReceiveErrorCounter(LDD_TDeviceData...
+**         GetError               - LDD_TError CAN1_GetError(LDD_TDeviceData *DeviceDataPtr, LDD_CAN_TErrorMask...
 **
 **     Copyright : 1997 - 2015 Freescale Semiconductor, Inc. 
 **     All Rights Reserved.
@@ -561,6 +563,61 @@ LDD_TError CAN1_ReadFrame(LDD_TDeviceData *DeviceDataPtr, LDD_CAN_TMBIndex Buffe
   return ERR_OK;
 }
 
+/*
+** ===================================================================
+**     Method      :  CAN1_GetReceiveErrorCounter (component CAN_LDD)
+*/
+/*!
+**     @brief
+**         Returns a value of the reception error counter.
+**     @param
+**         DeviceDataPtr   - Device data structure
+**                           pointer returned by [Init] method.
+**     @return
+**                         - The value of the reception error counter.
+*/
+/* ===================================================================*/
+LDD_CAN_TErrorCounter CAN1_GetReceiveErrorCounter(LDD_TDeviceData *DeviceDataPtr)
+{
+  (void)DeviceDataPtr;                 /* Parameter is not used, suppress unused argument warning */
+
+  return ((LDD_CAN_TErrorCounter)(CAN_PDD_GetRxErrorCounter(CAN1_BASE_PTR)));
+}
+
+/*
+** ===================================================================
+**     Method      :  CAN1_GetError (component CAN_LDD)
+*/
+/*!
+**     @brief
+**         Returns value of error mask, e.g. LDD_CAN_BIT0_ERROR
+**     @param
+**         DeviceDataPtr   - Device data structure
+**                           pointer returned by [Init] method.
+**     @param
+**         ErrorMaskPtr    - Pointer to a variable
+**                           where errors value mask will be stored.
+**     @return
+**                         - Error code, possible codes:
+**                           ERR_OK - OK
+**                           ERR_DISABLED -  Device is disabled
+**                           ERR_SPEED - This device does not work in
+**                           the active clock configuration
+*/
+/* ===================================================================*/
+LDD_TError CAN1_GetError(LDD_TDeviceData *DeviceDataPtr, LDD_CAN_TErrorMask *ErrorMaskPtr)
+{
+  CAN1_TDeviceData *DeviceDataPrv = (CAN1_TDeviceData *)DeviceDataPtr;
+
+  /* {Default RTOS Adapter} Critical section begin, general PE function is used */
+  EnterCritical();
+  *ErrorMaskPtr = DeviceDataPrv->ErrorMask; /* Return last value of error mask */
+  DeviceDataPrv->ErrorMask = 0x00U;
+  /* {Default RTOS Adapter} Critical section end, general PE function is used */
+  ExitCritical();
+  return ERR_OK;
+}
+
 
 /*
 ** ===================================================================
@@ -579,6 +636,7 @@ PE_ISR(CAN1_InterruptError)
 
   ErrorFlags = CAN_PDD_GetStatusInterruptFlags1(CAN1_BASE_PTR); /* Read the status register */
   CAN_PDD_ClearStatusInterruptFlags1(CAN1_BASE_PTR, CAN_PDD_ERROR_INT); /* Clear interrupt pending flag */
+  DeviceDataPrv->ErrorMask |= ErrorFlags;
   CAN1_OnError(DeviceDataPrv->UserData); /* If yes then invoke user event */
 }
 
