@@ -550,7 +550,7 @@ PE_DEBUGHALT();
       <ReadFrame v="generate code" />
       <GetTxFrameState v="don&amp;apos;t generate code" />
       <GetRxFrameState v="don&amp;apos;t generate code" />
-      <GetTransmitErrorCounter v="don&amp;apos;t generate code" />
+      <GetTransmitErrorCounter v="generate code" />
       <GetReceiveErrorCounter v="generate code" />
       <GetError v="generate code" />
       <Main v="don&amp;apos;t generate code" />

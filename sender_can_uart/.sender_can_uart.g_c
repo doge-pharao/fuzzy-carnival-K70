@@ -476,7 +476,7 @@
     </GenFiles>
     <SignalListFile>Documentation\sender_can_uart_SIGNALS.txt</SignalListFile>
     <DestinationCompiler>GNUC</DestinationCompiler>
-    <ProjectModificationStamp>8</ProjectModificationStamp>
+    <ProjectModificationStamp>9</ProjectModificationStamp>
   </Options>
   <CpuID_2>
     <Generated>false</Generated>
@@ -1295,8 +1295,8 @@
     <GenComponentVersion>01.112</GenComponentVersion>
     <GenDriverVersion>01.07</GenDriverVersion>
     <GenEventModule>CAN1_Events</GenEventModule>
-    <HeaderAge>1224606485</HeaderAge>
-    <CodeAge>1224606485</CodeAge>
+    <HeaderAge>1224649190</HeaderAge>
+    <CodeAge>1224649190</CodeAge>
     <AsemblAge>-1</AsemblAge>
     <GenNumMethods>29</GenNumMethods>
     <Init>true</Init>
@@ -1315,7 +1315,7 @@
     <ReadFrame>true</ReadFrame>
     <GetTxFrameState>false</GetTxFrameState>
     <GetRxFrameState>false</GetRxFrameState>
-    <GetTransmitErrorCounter>false</GetTransmitErrorCounter>
+    <GetTransmitErrorCounter>true</GetTransmitErrorCounter>
     <GetReceiveErrorCounter>true</GetReceiveErrorCounter>
     <GetError>true</GetError>
     <Main>false</Main>
@@ -1361,181 +1361,195 @@
     <GenSmartUserChangesDetected_Header>false</GenSmartUserChangesDetected_Header>
     <GenSmartUserChangesDetected_Code>false</GenSmartUserChangesDetected_Code>
     <GenSmartUserChangesDetected_Asembl>false</GenSmartUserChangesDetected_Asembl>
-    <GenMethodPos>25</GenMethodPos>
+    <GenMethodPos>27</GenMethodPos>
     <MethodPos>
       <MethodPos0>Init</MethodPos0>
       <MethodType>method</MethodType>
       <ModuleType>Header</ModuleType>
-      <LineBeg>162</LineBeg>
-      <LineEnd>184</LineEnd>
+      <LineBeg>163</LineBeg>
+      <LineEnd>185</LineEnd>
     </MethodPos>
     <MethodPos>
       <MethodPos1>SetRxBufferID</MethodPos1>
       <MethodType>method</MethodType>
       <ModuleType>Header</ModuleType>
-      <LineBeg>185</LineBeg>
-      <LineEnd>216</LineEnd>
+      <LineBeg>186</LineBeg>
+      <LineEnd>217</LineEnd>
     </MethodPos>
     <MethodPos>
-      <MethodPos2>GetReceiveErrorCounter</MethodPos2>
+      <MethodPos2>GetTransmitErrorCounter</MethodPos2>
       <MethodType>method</MethodType>
       <ModuleType>Header</ModuleType>
-      <LineBeg>217</LineBeg>
-      <LineEnd>232</LineEnd>
+      <LineBeg>218</LineBeg>
+      <LineEnd>234</LineEnd>
     </MethodPos>
     <MethodPos>
-      <MethodPos3>ReadFrame</MethodPos3>
+      <MethodPos3>GetReceiveErrorCounter</MethodPos3>
       <MethodType>method</MethodType>
       <ModuleType>Header</ModuleType>
-      <LineBeg>233</LineBeg>
-      <LineEnd>266</LineEnd>
+      <LineBeg>235</LineBeg>
+      <LineEnd>250</LineEnd>
     </MethodPos>
     <MethodPos>
-      <MethodPos4>SendFrame</MethodPos4>
+      <MethodPos4>ReadFrame</MethodPos4>
       <MethodType>method</MethodType>
       <ModuleType>Header</ModuleType>
-      <LineBeg>267</LineBeg>
-      <LineEnd>305</LineEnd>
+      <LineBeg>251</LineBeg>
+      <LineEnd>284</LineEnd>
     </MethodPos>
     <MethodPos>
-      <MethodPos5>InterruptRxTx</MethodPos5>
-      <MethodType>internal_method</MethodType>
-      <ModuleType>Header</ModuleType>
-      <LineBeg>306</LineBeg>
-      <LineEnd>317</LineEnd>
-    </MethodPos>
-    <MethodPos>
-      <MethodPos6>InterruptTxWarn</MethodPos6>
-      <MethodType>internal_method</MethodType>
-      <ModuleType>Header</ModuleType>
-      <LineBeg>318</LineBeg>
-      <LineEnd>329</LineEnd>
-    </MethodPos>
-    <MethodPos>
-      <MethodPos7>InterruptRxWarn</MethodPos7>
-      <MethodType>internal_method</MethodType>
-      <ModuleType>Header</ModuleType>
-      <LineBeg>330</LineBeg>
-      <LineEnd>341</LineEnd>
-    </MethodPos>
-    <MethodPos>
-      <MethodPos8>InterruptBusOff</MethodPos8>
-      <MethodType>internal_method</MethodType>
-      <ModuleType>Header</ModuleType>
-      <LineBeg>342</LineBeg>
-      <LineEnd>353</LineEnd>
-    </MethodPos>
-    <MethodPos>
-      <MethodPos9>InterruptError</MethodPos9>
-      <MethodType>internal_method</MethodType>
-      <ModuleType>Header</ModuleType>
-      <LineBeg>354</LineBeg>
-      <LineEnd>365</LineEnd>
-    </MethodPos>
-    <MethodPos>
-      <MethodPos10>InterruptWakeUp</MethodPos10>
-      <MethodType>internal_method</MethodType>
-      <ModuleType>Header</ModuleType>
-      <LineBeg>366</LineBeg>
-      <LineEnd>377</LineEnd>
-    </MethodPos>
-    <MethodPos>
-      <MethodPos11>SetClockConfiguration</MethodPos11>
-      <MethodType>internal_method</MethodType>
-      <ModuleType>Header</ModuleType>
-      <LineBeg>379</LineBeg>
-      <LineEnd>391</LineEnd>
-    </MethodPos>
-    <MethodPos>
-      <MethodPos12>GetError</MethodPos12>
+      <MethodPos5>SendFrame</MethodPos5>
       <MethodType>method</MethodType>
       <ModuleType>Header</ModuleType>
-      <LineBeg>392</LineBeg>
-      <LineEnd>414</LineEnd>
+      <LineBeg>285</LineBeg>
+      <LineEnd>323</LineEnd>
     </MethodPos>
     <MethodPos>
-      <MethodPos13>Init</MethodPos13>
+      <MethodPos6>InterruptRxTx</MethodPos6>
+      <MethodType>internal_method</MethodType>
+      <ModuleType>Header</ModuleType>
+      <LineBeg>324</LineBeg>
+      <LineEnd>335</LineEnd>
+    </MethodPos>
+    <MethodPos>
+      <MethodPos7>InterruptTxWarn</MethodPos7>
+      <MethodType>internal_method</MethodType>
+      <ModuleType>Header</ModuleType>
+      <LineBeg>336</LineBeg>
+      <LineEnd>347</LineEnd>
+    </MethodPos>
+    <MethodPos>
+      <MethodPos8>InterruptRxWarn</MethodPos8>
+      <MethodType>internal_method</MethodType>
+      <ModuleType>Header</ModuleType>
+      <LineBeg>348</LineBeg>
+      <LineEnd>359</LineEnd>
+    </MethodPos>
+    <MethodPos>
+      <MethodPos9>InterruptBusOff</MethodPos9>
+      <MethodType>internal_method</MethodType>
+      <ModuleType>Header</ModuleType>
+      <LineBeg>360</LineBeg>
+      <LineEnd>371</LineEnd>
+    </MethodPos>
+    <MethodPos>
+      <MethodPos10>InterruptError</MethodPos10>
+      <MethodType>internal_method</MethodType>
+      <ModuleType>Header</ModuleType>
+      <LineBeg>372</LineBeg>
+      <LineEnd>383</LineEnd>
+    </MethodPos>
+    <MethodPos>
+      <MethodPos11>InterruptWakeUp</MethodPos11>
+      <MethodType>internal_method</MethodType>
+      <ModuleType>Header</ModuleType>
+      <LineBeg>384</LineBeg>
+      <LineEnd>395</LineEnd>
+    </MethodPos>
+    <MethodPos>
+      <MethodPos12>SetClockConfiguration</MethodPos12>
+      <MethodType>internal_method</MethodType>
+      <ModuleType>Header</ModuleType>
+      <LineBeg>397</LineBeg>
+      <LineEnd>409</LineEnd>
+    </MethodPos>
+    <MethodPos>
+      <MethodPos13>GetError</MethodPos13>
+      <MethodType>method</MethodType>
+      <ModuleType>Header</ModuleType>
+      <LineBeg>410</LineBeg>
+      <LineEnd>432</LineEnd>
+    </MethodPos>
+    <MethodPos>
+      <MethodPos14>Init</MethodPos14>
       <MethodType>method</MethodType>
       <ModuleType>Code</ModuleType>
-      <LineBeg>152</LineBeg>
-      <LineEnd>329</LineEnd>
+      <LineBeg>153</LineBeg>
+      <LineEnd>330</LineEnd>
     </MethodPos>
     <MethodPos>
-      <MethodPos14>SetRxBufferID</MethodPos14>
+      <MethodPos15>SetRxBufferID</MethodPos15>
       <MethodType>method</MethodType>
       <ModuleType>Code</ModuleType>
-      <LineBeg>330</LineBeg>
-      <LineEnd>381</LineEnd>
+      <LineBeg>331</LineBeg>
+      <LineEnd>382</LineEnd>
     </MethodPos>
     <MethodPos>
-      <MethodPos15>SendFrame</MethodPos15>
+      <MethodPos16>SendFrame</MethodPos16>
       <MethodType>method</MethodType>
       <ModuleType>Code</ModuleType>
-      <LineBeg>382</LineBeg>
-      <LineEnd>480</LineEnd>
+      <LineBeg>383</LineBeg>
+      <LineEnd>481</LineEnd>
     </MethodPos>
     <MethodPos>
-      <MethodPos16>ReadFrame</MethodPos16>
+      <MethodPos17>ReadFrame</MethodPos17>
       <MethodType>method</MethodType>
       <ModuleType>Code</ModuleType>
-      <LineBeg>481</LineBeg>
-      <LineEnd>564</LineEnd>
+      <LineBeg>482</LineBeg>
+      <LineEnd>565</LineEnd>
     </MethodPos>
     <MethodPos>
-      <MethodPos17>GetReceiveErrorCounter</MethodPos17>
+      <MethodPos18>GetTransmitErrorCounter</MethodPos18>
       <MethodType>method</MethodType>
       <ModuleType>Code</ModuleType>
-      <LineBeg>565</LineBeg>
-      <LineEnd>585</LineEnd>
+      <LineBeg>566</LineBeg>
+      <LineEnd>587</LineEnd>
     </MethodPos>
     <MethodPos>
-      <MethodPos18>GetError</MethodPos18>
+      <MethodPos19>GetReceiveErrorCounter</MethodPos19>
       <MethodType>method</MethodType>
       <ModuleType>Code</ModuleType>
-      <LineBeg>586</LineBeg>
-      <LineEnd>619</LineEnd>
+      <LineBeg>588</LineBeg>
+      <LineEnd>608</LineEnd>
     </MethodPos>
     <MethodPos>
-      <MethodPos19>InterruptError</MethodPos19>
-      <MethodType>internal_method</MethodType>
+      <MethodPos20>GetError</MethodPos20>
+      <MethodType>method</MethodType>
       <ModuleType>Code</ModuleType>
-      <LineBeg>621</LineBeg>
-      <LineEnd>641</LineEnd>
+      <LineBeg>609</LineBeg>
+      <LineEnd>642</LineEnd>
     </MethodPos>
     <MethodPos>
-      <MethodPos20>InterruptBusOff</MethodPos20>
+      <MethodPos21>InterruptError</MethodPos21>
       <MethodType>internal_method</MethodType>
       <ModuleType>Code</ModuleType>
-      <LineBeg>642</LineBeg>
-      <LineEnd>658</LineEnd>
+      <LineBeg>644</LineBeg>
+      <LineEnd>664</LineEnd>
     </MethodPos>
     <MethodPos>
-      <MethodPos21>InterruptRxTx</MethodPos21>
+      <MethodPos22>InterruptBusOff</MethodPos22>
       <MethodType>internal_method</MethodType>
       <ModuleType>Code</ModuleType>
-      <LineBeg>659</LineBeg>
-      <LineEnd>699</LineEnd>
+      <LineBeg>665</LineBeg>
+      <LineEnd>681</LineEnd>
     </MethodPos>
     <MethodPos>
-      <MethodPos22>InterruptTxWarn</MethodPos22>
+      <MethodPos23>InterruptRxTx</MethodPos23>
       <MethodType>internal_method</MethodType>
       <ModuleType>Code</ModuleType>
-      <LineBeg>700</LineBeg>
-      <LineEnd>717</LineEnd>
+      <LineBeg>682</LineBeg>
+      <LineEnd>722</LineEnd>
     </MethodPos>
     <MethodPos>
-      <MethodPos23>InterruptRxWarn</MethodPos23>
+      <MethodPos24>InterruptTxWarn</MethodPos24>
       <MethodType>internal_method</MethodType>
       <ModuleType>Code</ModuleType>
-      <LineBeg>718</LineBeg>
-      <LineEnd>735</LineEnd>
+      <LineBeg>723</LineBeg>
+      <LineEnd>740</LineEnd>
     </MethodPos>
     <MethodPos>
-      <MethodPos24>InterruptWakeUp</MethodPos24>
+      <MethodPos25>InterruptRxWarn</MethodPos25>
       <MethodType>internal_method</MethodType>
       <ModuleType>Code</ModuleType>
-      <LineBeg>736</LineBeg>
-      <LineEnd>753</LineEnd>
+      <LineBeg>741</LineBeg>
+      <LineEnd>758</LineEnd>
+    </MethodPos>
+    <MethodPos>
+      <MethodPos26>InterruptWakeUp</MethodPos26>
+      <MethodType>internal_method</MethodType>
+      <ModuleType>Code</ModuleType>
+      <LineBeg>759</LineBeg>
+      <LineEnd>776</LineEnd>
     </MethodPos>
     <GenExtraFilesCount>1</GenExtraFilesCount>
     <ExtraFile0>Documentation\doxygen\CAN1_component.txt</ExtraFile0>
@@ -2086,8 +2100,8 @@
     <SrcFile204>Drivers\Common\SetReg16.prg=1183486427</SrcFile204>
     <SrcFile205>Drivers\Common\BitIO_LDDNegVal.inc=-1</SrcFile205>
     <SrcFile206>Drivers\Common\CheckRegBits32_Rst.prg=1183486427</SrcFile206>
-    <SrcFile207>Drivers\Common\Header.doxy=1214542121</SrcFile207>
-    <SrcFile208>Drivers\Kinetis\IsSupported_CRC_PDD.prg=1183486054</SrcFile208>
+    <SrcFile207>Drivers\Kinetis\IsSupported_CRC_PDD.prg=1183486054</SrcFile207>
+    <SrcFile208>Drivers\Common\Header.doxy=1214542121</SrcFile208>
     <SrcFile209>Drivers\Common\RingBufferNofFreeElements.Inc=1220123810</SrcFile209>
     <SrcFile210>Drivers\Kinetis\PE_Error.drv=1183486437</SrcFile210>
     <SrcFile211>Drivers\Kinetis\IsSupported_KBI_PDD.prg=1183486097</SrcFile211>
@@ -2101,37 +2115,38 @@
     <SrcFile219>Drivers\Kinetis\IsSupported_FMC_PDD.prg=1183486051</SrcFile219>
     <SrcFile220>Drivers\Common\PE_MisraRuleToDocumentation_Kinetis.prg=1183486427</SrcFile220>
     <SrcFile221>Drivers\Kinetis\InitClockGate.prg=1183486068</SrcFile221>
-    <SrcFile222>Drivers\Kinetis\IsSupported_USBHS_PDD.prg=1183486084</SrcFile222>
-    <SrcFile223>Drivers\Common\CommonRegInitialization_NotRst.prg=1183486427</SrcFile223>
-    <SrcFile224>Drivers\Common\Serial_LDDOnBlockSent.inc=1183486050</SrcFile224>
-    <SrcFile225>Drivers\Kinetis\IsSupported_I2S_PDD.prg=1183486068</SrcFile225>
-    <SrcFile226>Drivers\Common\CAN_LDDOnFreeTxBuffer.inc=1183486050</SrcFile226>
-    <SrcFile227>Drivers\Common\InitReg32Block.prg=1183486427</SrcFile227>
-    <SrcFile228>Drivers\Kinetis\IsSupported_IRQ_PDD.prg=1183486082</SrcFile228>
-    <SrcFile229>Drivers\Common\KinetisAbstract.inc=1183486427</SrcFile229>
-    <SrcFile230>Drivers\Kinetis\TimerUnit_LDD.drv=-1</SrcFile230>
-    <SrcFile231>Drivers\Kinetis\Init_SystemControl_KINETIS.prg=1183486081</SrcFile231>
-    <SrcFile232>Drivers\Kinetis\IsSupported_SIM_PDD.prg=1183486066</SrcFile232>
-    <SrcFile233>Drivers\KSDK.prg=1220123808</SrcFile233>
-    <SrcFile234>Drivers\Kinetis\IsSupported_COP_PDD.prg=1183486071</SrcFile234>
-    <SrcFile235>Drivers\Kinetis\IsSupported_NVIC_PDD.prg=1183486071</SrcFile235>
-    <SrcFile236>Drivers\Common\RingBufferPut.Inc=1220123810</SrcFile236>
-    <SrcFile237>Drivers\Kinetis\InitInterrupt.prg=1183486436</SrcFile237>
-    <SrcFile238>Drivers\Common\CommonEnabling.prg=1183486427</SrcFile238>
-    <SrcFile239>Drivers\Common\CreateIntSection.prg=1183486427</SrcFile239>
-    <SrcFile240>Drivers\Common\Doxy_CollectRegInitInfo.prg=1183486427</SrcFile240>
-    <SrcFile241>Drivers\Common\SetRegBits8.prg=1183486427</SrcFile241>
-    <SrcFile242>Drivers\Kinetis\IsSupported_OSC_PDD.prg=1183486053</SrcFile242>
-    <SrcFile243>Drivers\Common\CriticalSectionCriticalVariable.Inc=1220123808</SrcFile243>
-    <SrcFile244>Drivers\Common\DeclareISR.prg=1183486427</SrcFile244>
-    <SrcFile245>Drivers\Common\Serial_LDDOnBlockReceived.inc=1183486050</SrcFile245>
-    <SrcFile246>Drivers\Kinetis\IsSupported_FTMRE_PDD.prg=1183486086</SrcFile246>
-    <SrcFile247>Drivers\Common\RingBufferClear.Inc=1220123810</SrcFile247>
-    <SrcFile248>Drivers\Common\BitIO_LDDSetInput.inc=-1</SrcFile248>
-    <SrcFile249>Drivers\VAR\InitIntRequest.prg=1183486427</SrcFile249>
-    <SrcFile250>Drivers\Common\GeneralReturnNothing.inc=1183486427</SrcFile250>
-    <SrcFile251>Drivers\Serial_LDD.src=1183486050</SrcFile251>
-    <SrcFile252>Drivers\Common\CommonInitialization_FLASH.prg=1183486427</SrcFile252>
+    <SrcFile222>Drivers\Common\CAN_LDDGetTransmitErrorCounter.inc=1183486050</SrcFile222>
+    <SrcFile223>Drivers\Kinetis\IsSupported_USBHS_PDD.prg=1183486084</SrcFile223>
+    <SrcFile224>Drivers\Common\CommonRegInitialization_NotRst.prg=1183486427</SrcFile224>
+    <SrcFile225>Drivers\Common\Serial_LDDOnBlockSent.inc=1183486050</SrcFile225>
+    <SrcFile226>Drivers\Kinetis\IsSupported_I2S_PDD.prg=1183486068</SrcFile226>
+    <SrcFile227>Drivers\Common\CAN_LDDOnFreeTxBuffer.inc=1183486050</SrcFile227>
+    <SrcFile228>Drivers\Common\InitReg32Block.prg=1183486427</SrcFile228>
+    <SrcFile229>Drivers\Kinetis\IsSupported_IRQ_PDD.prg=1183486082</SrcFile229>
+    <SrcFile230>Drivers\Common\KinetisAbstract.inc=1183486427</SrcFile230>
+    <SrcFile231>Drivers\Kinetis\TimerUnit_LDD.drv=-1</SrcFile231>
+    <SrcFile232>Drivers\Kinetis\Init_SystemControl_KINETIS.prg=1183486081</SrcFile232>
+    <SrcFile233>Drivers\Kinetis\IsSupported_SIM_PDD.prg=1183486066</SrcFile233>
+    <SrcFile234>Drivers\KSDK.prg=1220123808</SrcFile234>
+    <SrcFile235>Drivers\Kinetis\IsSupported_COP_PDD.prg=1183486071</SrcFile235>
+    <SrcFile236>Drivers\Kinetis\IsSupported_NVIC_PDD.prg=1183486071</SrcFile236>
+    <SrcFile237>Drivers\Common\RingBufferPut.Inc=1220123810</SrcFile237>
+    <SrcFile238>Drivers\Kinetis\InitInterrupt.prg=1183486436</SrcFile238>
+    <SrcFile239>Drivers\Common\CommonEnabling.prg=1183486427</SrcFile239>
+    <SrcFile240>Drivers\Common\CreateIntSection.prg=1183486427</SrcFile240>
+    <SrcFile241>Drivers\Common\Doxy_CollectRegInitInfo.prg=1183486427</SrcFile241>
+    <SrcFile242>Drivers\Common\SetRegBits8.prg=1183486427</SrcFile242>
+    <SrcFile243>Drivers\Kinetis\IsSupported_OSC_PDD.prg=1183486053</SrcFile243>
+    <SrcFile244>Drivers\Common\CriticalSectionCriticalVariable.Inc=1220123808</SrcFile244>
+    <SrcFile245>Drivers\Common\DeclareISR.prg=1183486427</SrcFile245>
+    <SrcFile246>Drivers\Common\Serial_LDDOnBlockReceived.inc=1183486050</SrcFile246>
+    <SrcFile247>Drivers\Kinetis\IsSupported_FTMRE_PDD.prg=1183486086</SrcFile247>
+    <SrcFile248>Drivers\Common\RingBufferClear.Inc=1220123810</SrcFile248>
+    <SrcFile249>Drivers\Common\BitIO_LDDSetInput.inc=-1</SrcFile249>
+    <SrcFile250>Drivers\VAR\InitIntRequest.prg=1183486427</SrcFile250>
+    <SrcFile251>Drivers\Common\GeneralReturnNothing.inc=1183486427</SrcFile251>
+    <SrcFile252>Drivers\Serial_LDD.src=1183486050</SrcFile252>
+    <SrcFile253>Drivers\Common\CommonInitialization_FLASH.prg=1183486427</SrcFile253>
   </UsedSrcFiles>
 </GenerationInfo_G_C>
 

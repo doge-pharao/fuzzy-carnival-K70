@@ -6,7 +6,6 @@ static CAN_Desc canData;
 
 uint8_t rxbuffer; /* Initialization of output data buffer */
 uint8_t txbuffer[9];
-LDD_TError Error;
 LDD_CAN_TFrame Frame;
 
 static void SendChar(unsigned char ch, UART_Desc *desc) {
@@ -46,38 +45,63 @@ static void Init(void) {
 void APP_Run(void) {
 	Init();
 	SendString((unsigned char*) "Press the keys to send.\r\n", &uartData);
-	char serialMessage[100];
+	char serialMessage[50];
+	LDD_CAN_TErrorCounter errorCounterRX, oldErrCounterRX;
+	LDD_CAN_TErrorCounter errorCounterTX, oldErrCounterTX;
+	LDD_TError Error;
 
 	for (;;) {
 		if (canData.errorMask != CAN_NO_ERROR) {
-			sprintf(serialMessage,"-------- BEGIN ERROR --------\r\n");
-
-			if (canData.errorMask && LDD_CAN_BIT0_ERROR)
-				sprintf(serialMessage, "%s Bit0 error detect error mask\r\n", serialMessage);
-
-			if (canData.errorMask && LDD_CAN_BIT1_ERROR)
-				sprintf(serialMessage,
-						"%s Bit1 error detect error mask\r\n", serialMessage);
-
-			if (canData.errorMask && LDD_CAN_ACK_ERROR)
-				sprintf(serialMessage,
-						"%s Acknowledge error detect error mask\r\n", serialMessage);
-
-			if (canData.errorMask && LDD_CAN_CRC_ERROR)
-				sprintf(serialMessage,
-						"%s- Cyclic redundancy check error detect error mask\r\n", serialMessage);
-
-			if (canData.errorMask && LDD_CAN_FORM_ERROR)
-				sprintf(serialMessage,
-						"%s Message form error detect error mask\r\n", serialMessage);
-
-			if (canData.errorMask && LDD_CAN_STUFFING_ERROR)
-				sprintf(serialMessage,
-						"%s Bit stuff error detect error mask\r\n", serialMessage);
-
-			sprintf(serialMessage, "%s --------- END ERROR ---------\r\n", serialMessage);
+			sprintf(serialMessage, "-------- ERROR BEGIN --------\r\n");
 			SendString(serialMessage, &uartData);
+
+			errorCounterRX = CAN1_GetReceiveErrorCounter(canData.handle);
+			errorCounterTX = CAN1_GetTransmitErrorCounter(canData.handle);
+			if (errorCounterRX != oldErrCounterRX
+					|| errorCounterTX != oldErrCounterTX) {
+				oldErrCounterRX = errorCounterRX;
+				oldErrCounterTX = errorCounterTX;
+
+				sprintf(serialMessage, "Error counters. RX:%u TX:%u\r\n",
+						errorCounterRX, errorCounterTX);
+				SendString(serialMessage, &uartData);
+			}
+
+			if (canData.errorMask && LDD_CAN_BIT0_ERROR) {
+				sprintf(serialMessage, "Bit0 error detect error mask\r\n");
+				SendString(serialMessage, &uartData);
+			}
+
+			if (canData.errorMask && LDD_CAN_BIT1_ERROR) {
+				sprintf(serialMessage, "Bit1 error detect error mask\r\n");
+				SendString(serialMessage, &uartData);
+			}
+
+			if (canData.errorMask && LDD_CAN_ACK_ERROR) {
+				sprintf(serialMessage, "knowledge error detect error mask\r\n");
+				SendString(serialMessage, &uartData);
+			}
+
+			if (canData.errorMask && LDD_CAN_CRC_ERROR) {
+				sprintf(serialMessage, "Cyclic redundancy check error detect error mask\r\n");
+				SendString(serialMessage, &uartData);
+			}
+
+			if (canData.errorMask && LDD_CAN_FORM_ERROR) {
+				sprintf(serialMessage, "Message form error detect error mask\r\n");
+				SendString(serialMessage, &uartData);
+			}
+
+			if (canData.errorMask && LDD_CAN_STUFFING_ERROR) {
+				sprintf(serialMessage, "Bit stuff error detect error mask\r\n");
+				SendString(serialMessage, &uartData);
+			}
+
+			sprintf(serialMessage, " --------- ERROR END ---------\r\n");
+			SendString(serialMessage, &uartData);
+
 			canData.errorMask = CAN_NO_ERROR;
+
 		} else {
 			if (UART_RxBuff_NofElements() != 0) {
 				// Rx --Recibe un caracter desde consola--
@@ -107,9 +131,11 @@ void APP_Run(void) {
 								Frame.MessageID);
 						break;   // break to error state
 					} else {
-						while (!canData.isSent && canData.errorMask==CAN_NO_ERROR);
+						while (!canData.isSent
+								&& canData.errorMask == CAN_NO_ERROR)
+							;
 
-						if (canData.errorMask==CAN_NO_ERROR) {
+						if (canData.errorMask == CAN_NO_ERROR) {
 							sprintf(serialMessage,
 									"Message ID: %x, Data: <%s> Transmitted \r\n",
 									Frame.MessageID, (char *) Frame.Data);

@@ -24,6 +24,7 @@ static void Init(void) {
 
 	canData.handle = CAN1_Init(&canData);
 	canData.isSent = FALSE;
+	canData.errorMask = CAN_NO_ERROR;
 
 	adcData.handle = AD1_Init(&adcData);
 	adcData.conversionDoneFunction = updateConversionValue;
@@ -39,6 +40,7 @@ static void Init(void) {
 	while (AS1_ReceiveBlock(uartData.handle, (LDD_TData *) &uartData.rxChar,
 			sizeof(uartData.rxChar)) != ERR_OK) {
 	} /* initial kick off for receiving data */
+
 }
 
 
@@ -48,10 +50,66 @@ uint8_t led_status = 0x00;
 
 void APP_Run(void) {
 	Init();
-	//SendString((unsigned char*) "Press the keys to send.\r\n", &uartData);
+	sendLedStatusByCAN(&canData, led_status);
+	SendString((unsigned char*) "Press the keys to send.\r\n", &uartData);
+
 	char serialMessage[50];
+	LDD_CAN_TErrorCounter errorCounterRX, oldErrCounterRX;
+	LDD_CAN_TErrorCounter errorCounterTX, oldErrCounterTX;
 
 	for (;;) {
+		if (canData.errorMask != CAN_NO_ERROR) {
+			sprintf(serialMessage, "-------- ERROR BEGIN --------\r\n");
+			SendString(serialMessage, &uartData);
+
+			errorCounterRX = CAN1_GetReceiveErrorCounter(canData.handle);
+			errorCounterTX = CAN1_GetTransmitErrorCounter(canData.handle);
+			if (errorCounterRX != oldErrCounterRX
+					|| errorCounterTX != oldErrCounterTX) {
+				oldErrCounterRX = errorCounterRX;
+				oldErrCounterTX = errorCounterTX;
+
+				sprintf(serialMessage, "Error counters. RX:%u TX:%u\r\n",
+						errorCounterRX, errorCounterTX);
+				SendString(serialMessage, &uartData);
+			}
+
+			if (canData.errorMask && LDD_CAN_BIT0_ERROR) {
+				sprintf(serialMessage, "Bit0 error detect error mask\r\n");
+				SendString(serialMessage, &uartData);
+			}
+
+			if (canData.errorMask && LDD_CAN_BIT1_ERROR) {
+				sprintf(serialMessage, "Bit1 error detect error mask\r\n");
+				SendString(serialMessage, &uartData);
+			}
+
+			if (canData.errorMask && LDD_CAN_ACK_ERROR) {
+				sprintf(serialMessage, "knowledge error detect error mask\r\n");
+				SendString(serialMessage, &uartData);
+			}
+
+			if (canData.errorMask && LDD_CAN_CRC_ERROR) {
+				sprintf(serialMessage, "Cyclic redundancy check error detect error mask\r\n");
+				SendString(serialMessage, &uartData);
+			}
+
+			if (canData.errorMask && LDD_CAN_FORM_ERROR) {
+				sprintf(serialMessage, "Message form error detect error mask\r\n");
+				SendString(serialMessage, &uartData);
+			}
+
+			if (canData.errorMask && LDD_CAN_STUFFING_ERROR) {
+				sprintf(serialMessage, "Bit stuff error detect error mask\r\n");
+				SendString(serialMessage, &uartData);
+			}
+
+			sprintf(serialMessage, " --------- ERROR END ---------\r\n");
+			SendString(serialMessage, &uartData);
+
+			canData.errorMask = CAN_NO_ERROR;
+
+		} else {
 		switch(PANEL_EVENT) {
 			case ADC_VALUE_UPDATED:
 				sendConversionByUART(&uartData, adcValue);
@@ -68,6 +126,7 @@ void APP_Run(void) {
 			default:
 				TSS_Task();
 				break;
+		}
 		}
 	}
 

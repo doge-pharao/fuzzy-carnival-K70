@@ -7,7 +7,7 @@
 **     Version     : Component 01.112, Driver 01.07, CPU db: 3.00.000
 **     Repository  : Kinetis
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2016-07-30, 00:24, # CodeGen: 10
+**     Date/Time   : 2016-07-30, 21:14, # CodeGen: 12
 **     Abstract    :
 **         This component "CAN_LDD" implements a CAN serial channel.
 **     Settings    :
@@ -86,12 +86,13 @@
 **            Clock configuration 6                        : This component disabled
 **            Clock configuration 7                        : This component disabled
 **     Contents    :
-**         Init                   - LDD_TDeviceData* CAN1_Init(LDD_TUserData *UserDataPtr);
-**         SetRxBufferID          - LDD_TError CAN1_SetRxBufferID(LDD_TDeviceData *DeviceDataPtr,...
-**         SendFrame              - LDD_TError CAN1_SendFrame(LDD_TDeviceData *DeviceDataPtr, LDD_CAN_TMBIndex...
-**         ReadFrame              - LDD_TError CAN1_ReadFrame(LDD_TDeviceData *DeviceDataPtr, LDD_CAN_TMBIndex...
-**         GetReceiveErrorCounter - LDD_CAN_TErrorCounter CAN1_GetReceiveErrorCounter(LDD_TDeviceData...
-**         GetError               - LDD_TError CAN1_GetError(LDD_TDeviceData *DeviceDataPtr, LDD_CAN_TErrorMask...
+**         Init                    - LDD_TDeviceData* CAN1_Init(LDD_TUserData *UserDataPtr);
+**         SetRxBufferID           - LDD_TError CAN1_SetRxBufferID(LDD_TDeviceData *DeviceDataPtr,...
+**         SendFrame               - LDD_TError CAN1_SendFrame(LDD_TDeviceData *DeviceDataPtr, LDD_CAN_TMBIndex...
+**         ReadFrame               - LDD_TError CAN1_ReadFrame(LDD_TDeviceData *DeviceDataPtr, LDD_CAN_TMBIndex...
+**         GetTransmitErrorCounter - LDD_CAN_TErrorCounter CAN1_GetTransmitErrorCounter(LDD_TDeviceData...
+**         GetReceiveErrorCounter  - LDD_CAN_TErrorCounter CAN1_GetReceiveErrorCounter(LDD_TDeviceData...
+**         GetError                - LDD_TError CAN1_GetError(LDD_TDeviceData *DeviceDataPtr, LDD_CAN_TErrorMask...
 **
 **     Copyright : 1997 - 2015 Freescale Semiconductor, Inc. 
 **     All Rights Reserved.
@@ -561,6 +562,28 @@ LDD_TError CAN1_ReadFrame(LDD_TDeviceData *DeviceDataPtr, LDD_CAN_TMBIndex Buffe
     return ERR_OVERRUN;                /* Return error */
   }
   return ERR_OK;
+}
+
+/*
+** ===================================================================
+**     Method      :  CAN1_GetTransmitErrorCounter (component CAN_LDD)
+*/
+/*!
+**     @brief
+**         Returns a value of the transmission error counter. This
+**         method is available only if method SendFrame is enabled.
+**     @param
+**         DeviceDataPtr   - Device data structure
+**                           pointer returned by [Init] method.
+**     @return
+**                         - The value of the transmission error counter.
+*/
+/* ===================================================================*/
+LDD_CAN_TErrorCounter CAN1_GetTransmitErrorCounter(LDD_TDeviceData *DeviceDataPtr)
+{
+  (void)DeviceDataPtr;                 /* Parameter is not used, suppress unused argument warning */
+
+  return ((LDD_CAN_TErrorCounter)(CAN_PDD_GetTxErrorCounter(CAN1_BASE_PTR)));
 }
 
 /*

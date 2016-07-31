@@ -20,6 +20,8 @@
 #define ADC_VALUE_UPDATED 0x1
 #define LED_VALUE_UPDATED 0x2
 
+#define CAN_NO_ERROR 0x00
+
 typedef struct {
   LDD_TDeviceData *handle;  /* LDD device handle */
   volatile uint8_t isSent;  /* this will be set to 1 once the block has been sent */
@@ -30,6 +32,7 @@ typedef struct {
 typedef struct {
   LDD_TDeviceData *handle;  /* LDD device handle */
   volatile uint8_t isSent;  /* this will be set to 1 once the block has been sent */
+  volatile LDD_CAN_TErrorMask errorMask;
   uint8_t rxChar; 			/* single character buffer for receiving chars */
   uint8_t (*rxPutFct)(uint8_t); /* callback to put received character into buffer */
 } CAN_Desc;

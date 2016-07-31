@@ -551,8 +551,8 @@ PE_DEBUGHALT();
       <GetTxFrameState v="don&amp;apos;t generate code" />
       <GetRxFrameState v="don&amp;apos;t generate code" />
       <GetTransmitErrorCounter v="don&amp;apos;t generate code" />
-      <GetReceiveErrorCounter v="don&amp;apos;t generate code" />
-      <GetError v="don&amp;apos;t generate code" />
+      <GetReceiveErrorCounter v="generate code" />
+      <GetError v="generate code" />
       <Main v="don&amp;apos;t generate code" />
       <RequestBusOffRecovery v="don&amp;apos;t generate code" />
       <GetStats v="don&amp;apos;t generate code" />

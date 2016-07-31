@@ -542,7 +542,7 @@ PE_DEBUGHALT();
       <GetEventMask v="don&amp;apos;t generate code" />
       <SetAcceptanceMask v="don&amp;apos;t generate code" />
       <GetAcceptanceMask v="don&amp;apos;t generate code" />
-      <SetRxBufferID v="generate code" />
+      <SetRxBufferID v="don&amp;apos;t generate code" />
       <GetRxBufferID v="don&amp;apos;t generate code" />
       <SetRxBufferState v="don&amp;apos;t generate code" />
       <GetRxBufferState v="don&amp;apos;t generate code" />
@@ -550,8 +550,8 @@ PE_DEBUGHALT();
       <ReadFrame v="generate code" />
       <GetTxFrameState v="don&amp;apos;t generate code" />
       <GetRxFrameState v="don&amp;apos;t generate code" />
-      <GetTransmitErrorCounter v="don&amp;apos;t generate code" />
-      <GetReceiveErrorCounter v="don&amp;apos;t generate code" />
+      <GetTransmitErrorCounter v="generate code" />
+      <GetReceiveErrorCounter v="generate code" />
       <GetError v="don&amp;apos;t generate code" />
       <Main v="don&amp;apos;t generate code" />
       <RequestBusOffRecovery v="don&amp;apos;t generate code" />
@@ -982,6 +982,97 @@ PE_DEBUGHALT();
       <event name="fCallBack13" v="don&amp;apos;t generate code" />
       <event name="fCallBack14" v="don&amp;apos;t generate code" />
       <event name="fCallBack15" v="don&amp;apos;t generate code" />
+    </Events>
+  </Bean>
+  <Bean name="AD1" type="ADC_LDD">
+    <Enabled v="Y" />
+    <Properties>
+      <Component_name v="AD1" />
+      <A_D_converter v="ADC1" />
+      <Discontinuous_mode v="no" />
+      <boolgroup name="Interrupt service/event" v="Enabled">
+        <A_D_interrupt v="INT_ADC1" />
+        <A_D_interrupt_priority v="medium priority" />
+      </boolgroup>
+      <boolgroup name="DMA" v="Disabled" />
+      <list name="A/D channel list" v="1">
+        <group name="Channel 0">
+          <enumgroup name="Channel mode" v="Single Ended">
+            <group name="Input">
+              <A_D_channel__pin_ v="PGA3_DM/ADC3_DM0/ADC2_DM3/ADC1_DM1" />
+            </group>
+          </enumgroup>
+        </group>
+      </list>
+      <boolgroup name="Static sample groups" v="Disabled" />
+      <A_D_resolution sel_value="16 bits">
+        
+Autoselect
+
+        <EmptySection_DummyValue />
+      </A_D_resolution>
+      <Low_power_mode v="Disabled" />
+      <High_speed_conversion_mode v="Disabled" />
+      <Asynchro_clock_output v="Disabled" />
+      <Sample_time v="4 clock periods" />
+      <Number_of_conversions v="1" />
+      <Conversion_time v="9.536743 &amp;#181;s" />
+      <ADC_clock v="2.621 MHz (381.47 ns)" />
+      <Single_conversion_time___Single_ended v="11.682 us" />
+      <Single_conversion_time___Differential v="15.115 us" />
+      <Additional_conversion_time___Single_ended v="9.536 us" />
+      <Additional_conversion_time___Differential v="12.969 us" />
+      <Result_type v="unsigned 16 bits, right justified" />
+      <boolgroup name="Trigger" v="Disabled" />
+      <group name="Voltage reference">
+        <group name="High voltage reference">
+          <Volt__ref__pin v="VREFH" />
+        </group>
+        <group name="Low voltage reference">
+          <Volt__ref__pin v="VREFL" />
+        </group>
+      </group>
+      <group name="Initialization">
+        <Enabled_in_init__code v="yes" />
+        <group name="Event mask">
+          <OnMeasurementComplete v="Enabled" />
+          <OnError v="Disabled" />
+        </group>
+      </group>
+    </Properties>
+    <Methods>
+      <Init v="generate code" />
+      <Deinit v="don&amp;apos;t generate code" />
+      <Enable v="don&amp;apos;t generate code" />
+      <Disable v="don&amp;apos;t generate code" />
+      <GetEventMask v="don&amp;apos;t generate code" />
+      <SetEventMask v="don&amp;apos;t generate code" />
+      <StartSingleMeasurement v="generate code" />
+      <StartLoopMeasurement v="don&amp;apos;t generate code" />
+      <StartSingleTriggeredMeasurement v="don&amp;apos;t generate code" />
+      <StartLoopTriggeredMeasurement v="don&amp;apos;t generate code" />
+      <CancelMeasurement v="don&amp;apos;t generate code" />
+      <GetMeasuredValues v="generate code" />
+      <SelectSampleGroup v="don&amp;apos;t generate code" />
+      <CreateSampleGroup v="generate code" />
+      <GetMeasurementCompleteStatus v="don&amp;apos;t generate code" />
+      <EnableAutoCompare v="don&amp;apos;t generate code" />
+      <DisableAutoCompare v="don&amp;apos;t generate code" />
+      <StartCalibration v="don&amp;apos;t generate code" />
+      <GetCalibrationResultStatus v="don&amp;apos;t generate code" />
+      <SetOperationMode v="don&amp;apos;t generate code" />
+      <GetDriverState v="don&amp;apos;t generate code" />
+      <ConnectPin v="don&amp;apos;t generate code" />
+      <SetBuffer v="don&amp;apos;t generate code" />
+      <GetError v="don&amp;apos;t generate code" />
+      <GetMeasuredSamplesCount v="don&amp;apos;t generate code" />
+    </Methods>
+    <Events>
+      <Event_module_name v="ADC_Events" />
+      <event name="OnMeasurementComplete" v="generate code">
+        <Event_procedure_name v="AD1_OnMeasurementComplete" />
+      </event>
+      <event name="OnError" v="don&amp;apos;t generate code" />
     </Events>
   </Bean>
 </PE_PROJECT_SETTINGS_DOCUMENTATION>

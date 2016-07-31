@@ -542,7 +542,7 @@ PE_DEBUGHALT();
       <GetEventMask v="don&amp;apos;t generate code" />
       <SetAcceptanceMask v="don&amp;apos;t generate code" />
       <GetAcceptanceMask v="don&amp;apos;t generate code" />
-      <SetRxBufferID v="generate code" />
+      <SetRxBufferID v="don&amp;apos;t generate code" />
       <GetRxBufferID v="don&amp;apos;t generate code" />
       <SetRxBufferState v="don&amp;apos;t generate code" />
       <GetRxBufferState v="don&amp;apos;t generate code" />
@@ -550,9 +550,9 @@ PE_DEBUGHALT();
       <ReadFrame v="generate code" />
       <GetTxFrameState v="don&amp;apos;t generate code" />
       <GetRxFrameState v="don&amp;apos;t generate code" />
-      <GetTransmitErrorCounter v="don&amp;apos;t generate code" />
-      <GetReceiveErrorCounter v="don&amp;apos;t generate code" />
-      <GetError v="don&amp;apos;t generate code" />
+      <GetTransmitErrorCounter v="generate code" />
+      <GetReceiveErrorCounter v="generate code" />
+      <GetError v="generate code" />
       <Main v="don&amp;apos;t generate code" />
       <RequestBusOffRecovery v="don&amp;apos;t generate code" />
       <GetStats v="don&amp;apos;t generate code" />
