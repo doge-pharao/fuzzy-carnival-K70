@@ -6,7 +6,7 @@
 **     Version     : Component 01.028, Driver 01.04, CPU db: 3.00.000
 **     Repository  : Kinetis
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2016-07-16, 00:08, # CodeGen: 5
+**     Date/Time   : 2016-08-06, 01:12, # CodeGen: 16
 **     Abstract    :
 **
 **     Settings    :
@@ -66,7 +66,6 @@
 #include "AS1.h"
 #include "UART_RxBuff.h"
 #include "CAN1.h"
-#include "CAN_RxBuff.h"
 #include "CS1.h"
 #include "KSDK1.h"
 #include "CS2.h"

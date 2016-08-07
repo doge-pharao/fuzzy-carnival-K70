@@ -3,6 +3,7 @@
 
 #include "PE_Types.h"
 #include "PE_LDD.h"
+#include <stdio.h>
 
 #define CAN_NO_ERROR 0x00
 #define CAN_ERROR 0x10

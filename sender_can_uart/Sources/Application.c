@@ -46,6 +46,8 @@ void APP_Run(void) {
 	Init();
 	SendString((unsigned char*) "Press the keys to send.\r\n", &uartData);
 	char serialMessage[50];
+	char buffMsg[17];
+
 	LDD_CAN_TErrorCounter errorCounterRX, oldErrCounterRX;
 	LDD_CAN_TErrorCounter errorCounterTX, oldErrCounterTX;
 	LDD_TError Error;
@@ -83,12 +85,14 @@ void APP_Run(void) {
 			}
 
 			if (canData.errorMask && LDD_CAN_CRC_ERROR) {
-				sprintf(serialMessage, "Cyclic redundancy check error detect error mask\r\n");
+				sprintf(serialMessage,
+						"Cyclic redundancy check error detect error mask\r\n");
 				SendString(serialMessage, &uartData);
 			}
 
 			if (canData.errorMask && LDD_CAN_FORM_ERROR) {
-				sprintf(serialMessage, "Message form error detect error mask\r\n");
+				sprintf(serialMessage,
+						"Message form error detect error mask\r\n");
 				SendString(serialMessage, &uartData);
 			}
 
@@ -136,9 +140,30 @@ void APP_Run(void) {
 							;
 
 						if (canData.errorMask == CAN_NO_ERROR) {
+							buffMsg[0] = '\0';
+							char i = 0, offset = 0;
+							for (; i < Frame.Length; i++) {
+								switch (Frame.Data[i]) {
+								case '\r':
+									buffMsg[i + offset] = '\\';
+									buffMsg[i + offset + 1] = 'r';
+									offset++;
+									break;
+								case '\n':
+									buffMsg[i + offset] = '\\';
+									buffMsg[i + offset + 1] = 'n';
+									offset++;
+									break;
+								default:
+									buffMsg[i + offset] = Frame.Data[i];
+									break;
+								}
+							}
+							buffMsg[i + offset] = '\0';
+
 							sprintf(serialMessage,
 									"Message ID: %x, Data: <%s> Transmitted \r\n",
-									Frame.MessageID, (char *) Frame.Data);
+									Frame.MessageID, (char *) buffMsg);
 						}
 					}
 

@@ -34,40 +34,17 @@
 #include "PE_Error.h"
 #include "PE_Const.h"
 #include "IO_Map.h"
-#include "CS1.h"
 #include "KSDK1.h"
 #include "CS2.h"
 #include "TU1.h"
 #include "GREENLED.h"
 #include "AS1.h"
-#include "UART_RxBuff.h"
 #include "CAN1.h"
 #include "CAN_RxBuff.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif 
-
-/*
-** ===================================================================
-**     Event       :  CAN1_OnFreeTxBuffer (module CAN1_Events)
-**
-**     Component   :  CAN1 [CAN_LDD]
-*/
-/*!
-**     @brief
-**         This event is called when the buffer is empty after a
-**         successful transmit of a message. This event is available
-**         only if method SendFrame is enabled.
-**     @param
-**         UserDataPtr     - Pointer to the user or
-**                           RTOS specific data. This pointer is passed
-**                           as the parameter of Init method.
-**     @param
-**         BufferIdx       - Receive message buffer index.
-*/
-/* ===================================================================*/
-void CAN1_OnFreeTxBuffer(LDD_TUserData *UserDataPtr, LDD_CAN_TMBIndex BufferIdx);
 
 /*
 ** ===================================================================

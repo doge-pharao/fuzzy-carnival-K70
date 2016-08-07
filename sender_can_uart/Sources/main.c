@@ -40,7 +40,6 @@
 #include "CS1.h"
 #include "KSDK1.h"
 #include "CAN1.h"
-#include "CAN_RxBuff.h"
 #include "CS2.h"
 /* Including shared modules, which are used for whole project */
 #include "PE_Types.h"

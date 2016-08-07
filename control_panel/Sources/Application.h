@@ -3,6 +3,7 @@
 
 #include "PE_Types.h"
 #include "PE_LDD.h"
+#include <stdio.h>
 
 #define ORANGE_TOUCH 0x0
 #define ORANGE_VALUE 0x1

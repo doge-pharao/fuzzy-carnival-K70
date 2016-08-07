@@ -33,13 +33,11 @@
 #include "Timer_Events.h"
 #include "USART2_Events.h"
 #include "CAN1_Events.h"
-#include "CS1.h"
 #include "KSDK1.h"
 #include "CS2.h"
 #include "TU1.h"
 #include "GREENLED.h"
 #include "AS1.h"
-#include "UART_RxBuff.h"
 #include "CAN1.h"
 #include "CAN_RxBuff.h"
 /* Including shared modules, which are used for whole project */

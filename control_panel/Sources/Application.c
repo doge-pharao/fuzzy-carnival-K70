@@ -6,13 +6,11 @@ static UART_Desc uartData;
 static CAN_Desc canData;
 static ADC_Desc adcData;
 
-static void SendString(const unsigned char *str, UART_Desc *desc);
+static void SendString(const char *str, UART_Desc *desc);
 void sendLedStatusByCAN(CAN_Desc* canData, uint8_t status);
 void sendLedStatusByUART(UART_Desc* uartDesc, uint8_t status);
 void sendConversionByUART(UART_Desc* uartDesc, uint16_t value);
 void sendConversionByCAN(CAN_Desc* canDesc, uint16_t value);
-
-
 
 
 static void Init(void) {
@@ -51,7 +49,7 @@ uint8_t led_status = 0x00;
 void APP_Run(void) {
 	Init();
 	sendLedStatusByCAN(&canData, led_status);
-	SendString((unsigned char*) "Press the keys to send.\r\n", &uartData);
+	SendString((char *) "Press the keys to send.\r\n", &uartData);
 
 	char serialMessage[50];
 	LDD_CAN_TErrorCounter errorCounterRX, oldErrCounterRX;
@@ -59,8 +57,7 @@ void APP_Run(void) {
 
 	for (;;) {
 		if (canData.errorMask != CAN_NO_ERROR) {
-			sprintf(serialMessage, "-------- ERROR BEGIN --------\r\n");
-			SendString(serialMessage, &uartData);
+			SendString("-------- ERROR BEGIN --------\r\n", &uartData);
 
 			errorCounterRX = CAN1_GetReceiveErrorCounter(canData.handle);
 			errorCounterTX = CAN1_GetTransmitErrorCounter(canData.handle);
@@ -69,43 +66,43 @@ void APP_Run(void) {
 				oldErrCounterRX = errorCounterRX;
 				oldErrCounterTX = errorCounterTX;
 
-				sprintf(serialMessage, "Error counters. RX:%u TX:%u\r\n",
+				sprintf((char *)serialMessage, "Error counters. RX:%u TX:%u\r\n",
 						errorCounterRX, errorCounterTX);
-				SendString(serialMessage, &uartData);
+				SendString((char *)serialMessage, &uartData);
 			}
 
 			if (canData.errorMask && LDD_CAN_BIT0_ERROR) {
-				sprintf(serialMessage, "Bit0 error detect error mask\r\n");
-				SendString(serialMessage, &uartData);
+				sprintf((char *)serialMessage, "Bit0 error detect error mask\r\n");
+				SendString((char *)serialMessage, &uartData);
 			}
 
 			if (canData.errorMask && LDD_CAN_BIT1_ERROR) {
-				sprintf(serialMessage, "Bit1 error detect error mask\r\n");
-				SendString(serialMessage, &uartData);
+				sprintf((char *)serialMessage, "Bit1 error detect error mask\r\n");
+				SendString((char *)serialMessage, &uartData);
 			}
 
 			if (canData.errorMask && LDD_CAN_ACK_ERROR) {
-				sprintf(serialMessage, "knowledge error detect error mask\r\n");
-				SendString(serialMessage, &uartData);
+				sprintf((char *)serialMessage, "knowledge error detect error mask\r\n");
+				SendString((char *)serialMessage, &uartData);
 			}
 
 			if (canData.errorMask && LDD_CAN_CRC_ERROR) {
-				sprintf(serialMessage, "Cyclic redundancy check error detect error mask\r\n");
-				SendString(serialMessage, &uartData);
+				sprintf((char *)serialMessage, "Cyclic redundancy check error detect error mask\r\n");
+				SendString((char *)serialMessage, &uartData);
 			}
 
 			if (canData.errorMask && LDD_CAN_FORM_ERROR) {
-				sprintf(serialMessage, "Message form error detect error mask\r\n");
-				SendString(serialMessage, &uartData);
+				sprintf((char *)serialMessage, "Message form error detect error mask\r\n");
+				SendString((char *)serialMessage, &uartData);
 			}
 
 			if (canData.errorMask && LDD_CAN_STUFFING_ERROR) {
-				sprintf(serialMessage, "Bit stuff error detect error mask\r\n");
-				SendString(serialMessage, &uartData);
+				sprintf((char *)serialMessage, "Bit stuff error detect error mask\r\n");
+				SendString((char *)serialMessage, &uartData);
 			}
 
-			sprintf(serialMessage, " --------- ERROR END ---------\r\n");
-			SendString(serialMessage, &uartData);
+			sprintf((char *)serialMessage, " --------- ERROR END ---------\r\n");
+			SendString((char *)serialMessage, &uartData);
 
 			canData.errorMask = CAN_NO_ERROR;
 
@@ -179,17 +176,17 @@ void sendLedStatusByCAN(CAN_Desc* canData, uint8_t status){
 
 	canData->isSent = FALSE;
 	Error = CAN1_SendFrame(canData->handle, 1U, &Frame); /* Sends the data frame over buffer 0 */
-	while(!canData->isSent);
+	while(!canData->isSent && canData->errorMask == CAN_NO_ERROR);
 }
 
 void sendLedStatusByUART(UART_Desc* uartDesc, uint8_t status){
-	unsigned char message[50];
+	char message[50];
 	char *orangeStatus=(status & ORANGE_VALUE)?"ON":"OFF";
 	char *yellowStatus=(status & YELLOW_VALUE)?"ON":"OFF";
 	char *greenStatus=(status & GREEN_VALUE)?"ON":"OFF";
 	char *blueStatus=(status & BLUE_VALUE)?"ON":"OFF";
 
-	sprintf(message, "Led status: ORANGE:%s YELLOW:%s GREEN:%s BLUE:%s\r\n",
+	sprintf((char *)message, "Led status: ORANGE:%s YELLOW:%s GREEN:%s BLUE:%s\r\n",
 			orangeStatus, yellowStatus, greenStatus, blueStatus);
 	SendString((unsigned char*) message, uartDesc);
 }
@@ -199,8 +196,8 @@ void sendLedStatusByUART(UART_Desc* uartDesc, uint8_t status){
 void sendConversionByUART(UART_Desc* uartDesc, uint16_t value){
 	unsigned char message[50];
 
-	sprintf(message, "Current ADC value:%x\r\n", value);
-	SendString((unsigned char*) message, uartDesc);
+	sprintf((char *)message, "Current ADC value:%x\r\n", value);
+	SendString((char *) message, uartDesc);
 }
 
 void sendConversionByCAN(CAN_Desc* canDesc, uint16_t value){
@@ -213,17 +210,17 @@ void sendConversionByCAN(CAN_Desc* canDesc, uint16_t value){
 
 	canDesc->isSent = FALSE;
 	Error = CAN1_SendFrame(canDesc->handle, 1U, &Frame); /* Sends the data frame over buffer 0 */
-	while(!canDesc->isSent);
+	while(!canDesc->isSent && canDesc->errorMask == CAN_NO_ERROR);
 }
 
-static void SendChar(unsigned char ch, UART_Desc *desc) {
+static void SendChar(char ch, UART_Desc *desc) {
 	desc->isSent = FALSE;
 	while (AS1_SendBlock(desc->handle, (LDD_TData*) &ch, 1) != ERR_OK) {
 	} /* Send char */
 	while(!desc->isSent);
 }
 
-static void SendString(const unsigned char *str, UART_Desc *desc) {
+static void SendString(const char *str, UART_Desc *desc) {
 	while (*str != '\0') {
 		SendChar(*str++, desc);
 	}

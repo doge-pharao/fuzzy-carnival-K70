@@ -7,7 +7,7 @@
 **     Version     : Component 01.188, Driver 01.12, CPU db: 3.00.000
 **     Repository  : Kinetis
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2016-07-16, 21:01, # CodeGen: 1
+**     Date/Time   : 2016-08-07, 17:53, # CodeGen: 4
 **     Abstract    :
 **         This component "Serial_LDD" implements an asynchronous serial
 **         communication. The component supports different settings of
@@ -49,7 +49,7 @@
 **            Auto initialization                          : no
 **            Event mask                                   : 
 **              OnBlockSent                                : Enabled
-**              OnBlockReceived                            : Enabled
+**              OnBlockReceived                            : Disabled
 **              OnTxComplete                               : Disabled
 **              OnError                                    : Disabled
 **              OnBreak                                    : Disabled
@@ -63,9 +63,8 @@
 **            Clock configuration 6                        : This component disabled
 **            Clock configuration 7                        : This component disabled
 **     Contents    :
-**         Init         - LDD_TDeviceData* AS1_Init(LDD_TUserData *UserDataPtr);
-**         SendBlock    - LDD_TError AS1_SendBlock(LDD_TDeviceData *DeviceDataPtr, LDD_TData...
-**         ReceiveBlock - LDD_TError AS1_ReceiveBlock(LDD_TDeviceData *DeviceDataPtr, LDD_TData...
+**         Init      - LDD_TDeviceData* AS1_Init(LDD_TUserData *UserDataPtr);
+**         SendBlock - LDD_TError AS1_SendBlock(LDD_TDeviceData *DeviceDataPtr, LDD_TData...
 **
 **     Copyright : 1997 - 2015 Freescale Semiconductor, Inc. 
 **     All Rights Reserved.
@@ -128,7 +127,7 @@ extern "C" {
 #endif
 
 /*! The mask of available events used to enable/disable events during runtime. */
-#define AVAILABLE_EVENTS_MASK (LDD_SERIAL_ON_BLOCK_RECEIVED | LDD_SERIAL_ON_BLOCK_SENT)
+#define AVAILABLE_EVENTS_MASK (LDD_SERIAL_ON_BLOCK_SENT)
 
 /* {Default RTOS Adapter} Static object used for simulation of dynamic driver memory allocation */
 static AS1_TDeviceData DeviceDataPrv__DEFAULT_RTOS_ALLOC;
@@ -230,70 +229,6 @@ LDD_TDeviceData* AS1_Init(LDD_TUserData *UserDataPtr)
 
 /*
 ** ===================================================================
-**     Method      :  AS1_ReceiveBlock (component Serial_LDD)
-*/
-/*!
-**     @brief
-**         Specifies the number of data to receive. The method returns
-**         ERR_BUSY until the specified number of characters is
-**         received. Method [CancelBlockReception] can be used to
-**         cancel a running receive operation. If a receive operation
-**         is not in progress (the method was not called or a previous
-**         operation has already finished) all received characters will
-**         be lost without any notification. To prevent the loss of
-**         data call the method immediately after the last receive
-**         operation has finished (e.g. from the [OnBlockReceived]
-**         event). This method finishes immediately after calling it -
-**         it doesn't wait the end of data reception. Use event
-**         [OnBlockReceived] to check the end of data reception or
-**         method GetReceivedDataNum to check the state of receiving.
-**     @param
-**         DeviceDataPtr   - Device data structure
-**                           pointer returned by [Init] method.
-**     @param
-**         BufferPtr       - Pointer to a buffer where
-**                           received characters will be stored. In case
-**                           of 8bit character width each character in
-**                           buffer occupies 1 byte. In case of 9 and
-**                           more bit long character width each
-**                           character in buffer occupies 2 bytes.
-**     @param
-**         Size            - Number of characters to receive
-**     @return
-**                         - Error code, possible codes:
-**                           ERR_OK - OK
-**                           ERR_SPEED - The component does not work in
-**                           the active clock configuration.
-**                           ERR_PARAM_SIZE - Parameter Size is out of
-**                           expected range.
-**                           ERR_DISABLED - The component or device is
-**                           disabled.
-**                           ERR_BUSY - The previous receive request is
-**                           pending.
-*/
-/* ===================================================================*/
-LDD_TError AS1_ReceiveBlock(LDD_TDeviceData *DeviceDataPtr, LDD_TData *BufferPtr, uint16_t Size)
-{
-  AS1_TDeviceDataPtr DeviceDataPrv = (AS1_TDeviceDataPtr)DeviceDataPtr;
-
-  if (Size == 0U) {                    /* Is the parameter Size within an expected range? */
-    return ERR_PARAM_SIZE;             /* If no then error */
-  }
-  if (DeviceDataPrv->InpDataNumReq != 0x00U) { /* Is the previous receive operation pending? */
-    return ERR_BUSY;                   /* If yes then error */
-  }
-  /* {Default RTOS Adapter} Critical section begin, general PE function is used */
-  EnterCritical();
-  DeviceDataPrv->InpDataPtr = (uint8_t*)BufferPtr; /* Store a pointer to the input data. */
-  DeviceDataPrv->InpDataNumReq = Size; /* Store a number of characters to be received. */
-  DeviceDataPrv->InpRecvDataNum = 0x00U; /* Set number of received characters to zero. */
-  /* {Default RTOS Adapter} Critical section end, general PE function is used */
-  ExitCritical();
-  return ERR_OK;                       /* OK */
-}
-
-/*
-** ===================================================================
 **     Method      :  AS1_SendBlock (component Serial_LDD)
 */
 /*!
@@ -374,7 +309,6 @@ static void InterruptRx(AS1_TDeviceDataPtr DeviceDataPrv)
     DeviceDataPrv->InpRecvDataNum++;   /* Increment received char. counter */
     if (DeviceDataPrv->InpRecvDataNum == DeviceDataPrv->InpDataNumReq) { /* Is the requested number of characters received? */
       DeviceDataPrv->InpDataNumReq = 0x00U; /* If yes then clear number of requested characters to be received. */
-      AS1_OnBlockReceived(DeviceDataPrv->UserDataPtr);
     }
   }
 }

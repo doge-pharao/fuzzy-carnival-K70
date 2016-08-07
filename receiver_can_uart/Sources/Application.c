@@ -31,8 +31,6 @@ static void Init(void) {
 	// Inicializacion UART
 	uartData.handle = AS1_Init(&uartData);
 	uartData.isSent = FALSE;
-	uartData.rxChar = '\0';
-	uartData.rxPutFct = UART_RxBuff_Put;
 
 	canData.handle = CAN1_Init(&canData);
 	canData.isSent = FALSE;
@@ -40,13 +38,8 @@ static void Init(void) {
 	canData.rxPutFct = CAN_RxBuff_Put;
 
 	/* set up to receive RX into input buffer */
-	UART_RxBuff_Init(); /* initialize RX buffer */
 	CAN_RxBuff_Init(); /* initialize RX buffer */
 
-	/* Set up ReceiveBlock() with a single byte buffer. We will be called in OnBlockReceived() event. */
-	while (AS1_ReceiveBlock(uartData.handle, (LDD_TData *) &uartData.rxChar,
-			sizeof(uartData.rxChar)) != ERR_OK) {
-	} /* initial kick off for receiving data */
 }
 
 void APP_Run(void) {
@@ -62,9 +55,19 @@ void APP_Run(void) {
 			//receive frame (buffer 0)
 			CAN_RxBuff_Get(&ch);
 
-			SendString((unsigned char*) "echo: ", &uartData);
-			SendChar(ch, &uartData);
-			SendString((unsigned char*) "\r\n", &uartData);
+			SendString((unsigned char*) "Message ID: 0x70, Data: <", &uartData);
+			switch(ch) {
+				case '\r':
+					SendString((unsigned char*) "\\r", &uartData);
+					break;
+				case '\n':
+					SendString((unsigned char*) "\\n", &uartData);
+					break;
+				default:
+					// Send the echo to the console.
+					SendChar(ch, &uartData);
+			}
+			SendString((unsigned char*) "> received\r\n", &uartData);
 		}
 
 	}

@@ -8,7 +8,7 @@
 **     Repository  : Kinetis
 **     Datasheet   : K70P256M150SF3RM, Rev. 2, Dec 2011
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2016-07-16, 21:01, # CodeGen: 1
+**     Date/Time   : 2016-08-07, 17:46, # CodeGen: 3
 **     Abstract    :
 **
 **     Settings    :
@@ -332,13 +332,11 @@
 /* MODULE Cpu. */
 
 /* {Default RTOS Adapter} No RTOS includes */
-#include "CS1.h"
 #include "KSDK1.h"
 #include "CS2.h"
 #include "TU1.h"
 #include "GREENLED.h"
 #include "AS1.h"
-#include "UART_RxBuff.h"
 #include "CAN1.h"
 #include "CAN_RxBuff.h"
 #include "PE_Types.h"
@@ -575,14 +573,11 @@ void PE_low_level_init(void)
   NVICIP20 = NVIC_IP_PRI20(0x00);
   /* ### KinetisSDK "KSDK1" init code ... */
   /* Write code here ... */
-  /* ### CriticalSection "CS1" init code ... */
   /* ### CriticalSection "CS2" init code ... */
   /* ### TimerUnit_LDD "TU1" component auto initialization. Auto initialization feature can be disabled by component property "Auto initialization". */
   (void)TU1_Init(NULL);
   /* ### BitIO_LDD "GREENLED" component auto initialization. Auto initialization feature can be disabled by component property "Auto initialization". */
   (void)GREENLED_Init(NULL);
-  /* ### RingBuffer "UART_RxBuff" init code ... */
-  UART_RxBuff_Init();
   /* ### RingBuffer "CAN_RxBuff" init code ... */
   CAN_RxBuff_Init();
   /* Enable interrupts of the given priority level */

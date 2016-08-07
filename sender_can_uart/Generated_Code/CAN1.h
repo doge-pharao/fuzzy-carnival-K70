@@ -7,7 +7,7 @@
 **     Version     : Component 01.112, Driver 01.07, CPU db: 3.00.000
 **     Repository  : Kinetis
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2016-07-30, 21:14, # CodeGen: 12
+**     Date/Time   : 2016-08-05, 23:59, # CodeGen: 15
 **     Abstract    :
 **         This component "CAN_LDD" implements a CAN serial channel.
 **     Settings    :
@@ -70,9 +70,9 @@
 **            Auto initialization                          : no
 **            Event mask                                   : 
 **              OnFreeTxBuffer                             : Enabled
-**              OnFullRxBuffer                             : Enabled
+**              OnFullRxBuffer                             : Disabled
 **              OnTransmitWarning                          : Enabled
-**              OnReceiveWarning                           : Enabled
+**              OnReceiveWarning                           : Disabled
 **              OnBusOff                                   : Enabled
 **              OnWakeUp                                   : Disabled
 **              OnError                                    : Enabled

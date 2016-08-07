@@ -51,30 +51,6 @@
     <Compiler v="GNU C Compiler" />
     <CompilerProperties>
       <Compiler v="GNU C Compiler" />
-      <enumgroup name="Unhandled vectors" v="One handler for all">
-        <Unhandled_int_code>
-          <StrgList><![CDATA[/* This code can be changed using the CPU component property "Build Options / Unhandled int code" */
-PE_DEBUGHALT();
-]]></StrgList>
-        </Unhandled_int_code>
-      </enumgroup>
-      <group name="User initialization">
-        <User_data_declarations>
-          <StrgList></StrgList>
-        </User_data_declarations>
-        <User_code_before_PE_initialization>
-          <StrgList></StrgList>
-        </User_code_before_PE_initialization>
-        <User_code_after_PE_initialization>
-          <StrgList></StrgList>
-        </User_code_after_PE_initialization>
-      </group>
-      <boolgroup name="Generate debugger files" v="yes">
-        <Generate_mem_file v="yes" />
-      </boolgroup>
-      <group name="Startup">
-        <Add_startup_file v="yes" />
-      </group>
       <boolgroup name="Generate linker file" v="yes">
         <Stack_size v="1024" />
         <Heap_size v="0" />
@@ -240,23 +216,6 @@ PE_DEBUGHALT();
       </boolgroup>
     </CompilerProperties>
   </CPU_Bean>
-  <Bean name="CS1" type="CriticalSection">
-    <Enabled v="Y" />
-    <Properties>
-      <Component_name v="CS1" />
-      <SDK v="KSDK1" />
-      <Use_Processor_Expert_Default v="no" />
-      <Use_FreeRTOS v="no" />
-    </Properties>
-    <Methods>
-      <CriticalVariable v="generate code" />
-      <EnterCritical v="generate code" />
-      <ExitCritical v="generate code" />
-    </Methods>
-    <Events>
-      <EmptySection_DummyValue />
-    </Events>
-  </Bean>
   <Bean name="KSDK1" type="KinetisSDK">
     <Enabled v="Y" />
     <Properties>
@@ -435,7 +394,7 @@ PE_DEBUGHALT();
         <Enabled_in_init__code v="yes" />
         <group name="Event mask">
           <OnBlockSent v="Enabled" />
-          <OnBlockReceived v="Enabled" />
+          <OnBlockReceived v="Disabled" />
           <OnTxComplete v="Disabled" />
           <OnError v="Disabled" />
           <OnBreak v="Disabled" />
@@ -448,7 +407,7 @@ PE_DEBUGHALT();
       <Enable v="don&amp;apos;t generate code" />
       <Disable v="don&amp;apos;t generate code" />
       <SendBlock v="generate code" />
-      <ReceiveBlock v="generate code" />
+      <ReceiveBlock v="don&amp;apos;t generate code" />
       <CancelBlockTransmission v="don&amp;apos;t generate code" />
       <CancelBlockReception v="don&amp;apos;t generate code" />
       <GetError v="don&amp;apos;t generate code" />
@@ -482,47 +441,13 @@ PE_DEBUGHALT();
     </Methods>
     <Events>
       <Event_module_name v="USART2_Events" />
-      <event name="OnBlockReceived" v="generate code">
-        <Event_procedure_name v="AS1_OnBlockReceived" />
-      </event>
+      <event name="OnBlockReceived" v="don&amp;apos;t generate code" />
       <event name="OnBlockSent" v="generate code">
         <Event_procedure_name v="AS1_OnBlockSent" />
       </event>
       <event name="OnBreak" v="don&amp;apos;t generate code" />
       <event name="OnError" v="don&amp;apos;t generate code" />
       <event name="OnTxComplete" v="don&amp;apos;t generate code" />
-    </Events>
-  </Bean>
-  <Bean name="UART_RxBuff" type="RingBuffer">
-    <Enabled v="Y" />
-    <Properties>
-      <Component_name v="UART_RxBuff" />
-      <SDK v="KSDK1" />
-      <Reentrant v="yes" />
-      <Critical_Section v="CS1" />
-      <Buffer_Size v="64" />
-      <Element_Size v="1 Byte" />
-    </Properties>
-    <Methods>
-      <Clear v="generate code" />
-      <Put v="generate code" />
-      <Putn v="generate code" />
-      <Get v="generate code" />
-      <Peek v="generate code" />
-      <Compare v="generate code" />
-      <Delete v="generate code" />
-      <NofElements v="generate code" />
-      <NofFreeElements v="generate code" />
-      <Deinit v="generate code" />
-      <Init v="generate code" />
-    </Methods>
-    <Events>
-      <Event_module_name v="Events" />
-      <event name="OnBufferFull" v="don&amp;apos;t generate code" />
-      <event name="OnBufferEmpty" v="don&amp;apos;t generate code" />
-      <event name="OnItemPut" v="don&amp;apos;t generate code" />
-      <event name="OnItemGet" v="don&amp;apos;t generate code" />
-      <event name="OnClear" v="don&amp;apos;t generate code" />
     </Events>
   </Bean>
   <Bean name="CAN1" type="CAN_LDD">
@@ -559,7 +484,7 @@ PE_DEBUGHALT();
           <group name="Buffer0">
             <boolgroup name="Buffer type" v="Receive">
               <Accept_frames v="Standard" />
-              <Message_ID v="2047" />
+              <Message_ID v="112" />
               <boolgroup name="Invidual Acceptance Mask" v="Enabled">
                 <Acceptance_Mask v="536870911" />
               </boolgroup>

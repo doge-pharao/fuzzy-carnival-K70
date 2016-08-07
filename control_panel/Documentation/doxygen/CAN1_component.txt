@@ -47,7 +47,7 @@ by the component.
 <td class="regNotResetVal">0xDAB30001</td>
  <td>CAN1_MCR register, peripheral CAN1.</td></tr>
 <tr><td>0x400A4004</td><td>CAN1_CTRL1</td>
-<td class="regNotResetVal">0x0919CC12</td>
+<td class="regNotResetVal">0x0912CC12</td>
  <td>CAN1_CTRL1 register, peripheral CAN1.</td></tr>
 <tr><td>0x400A4034</td><td>CAN1_CTRL2</td>
 <td class="regNotResetVal">0x00B20000</td>
@@ -542,7 +542,7 @@ registers of the peripheral(s) configured by the component.
         
 </div>
 <table class="regtbl2"><tr><td class="trowtit" colspan="2">Address</td><td colspan="2">0x400A4004</td></tr>
-<tr class="trowtit"><td  class="trowtit" colspan="2">Initial value</td><td colspan="2">0x0919CC12</td></tr>
+<tr class="trowtit"><td  class="trowtit" colspan="2">Initial value</td><td colspan="2">0x0912CC12</td></tr>
 <tr class="trowtit"><td  class="trowtit" colspan="2">After-reset value</td><td colspan="2">0x00000000</td></tr>
 <tr><td class="ttitle2">Bit</td><td class="ttitle2">Field</td><td class="ttitle2">Value</td><td class="ttitle2">Description</td></tr>
 <tr><td>24 - 31</td><td>PRESDIV</td><td>0x00</td><td>Prescaler Division Factor</td>
@@ -752,8 +752,8 @@ registers of the peripheral(s) configured by the component.
 **          Timing                                         : 
 **            CAN timing calculator                        : click to run ->
 **            Propagation segment                          : 3
-**            Time segment 1                               : 4
-**            Time segment 2                               : 2
+**            Time segment 1                               : 3
+**            Time segment 2                               : 3
 **            Resync jump width                            : 1
 **            Time quanta per bit                          : 10
 **            Samples per bit                              : One sample
@@ -830,7 +830,7 @@ by the component.
 <td class="regNotResetVal">0xDAB30001</td>
  <td>CAN1_MCR register, peripheral CAN1.</td></tr>
 <tr><td>0x400A4004</td><td>CAN1_CTRL1</td>
-<td class="regNotResetVal">0x0919CC12</td>
+<td class="regNotResetVal">0x0912CC12</td>
  <td>CAN1_CTRL1 register, peripheral CAN1.</td></tr>
 <tr><td>0x400A4034</td><td>CAN1_CTRL2</td>
 <td class="regNotResetVal">0x00B20000</td>
@@ -1325,7 +1325,7 @@ registers of the peripheral(s) configured by the component.
         
 </div>
 <table class="regtbl2"><tr><td class="trowtit" colspan="2">Address</td><td colspan="2">0x400A4004</td></tr>
-<tr class="trowtit"><td  class="trowtit" colspan="2">Initial value</td><td colspan="2">0x0919CC12</td></tr>
+<tr class="trowtit"><td  class="trowtit" colspan="2">Initial value</td><td colspan="2">0x0912CC12</td></tr>
 <tr class="trowtit"><td  class="trowtit" colspan="2">After-reset value</td><td colspan="2">0x00000000</td></tr>
 <tr><td class="ttitle2">Bit</td><td class="ttitle2">Field</td><td class="ttitle2">Value</td><td class="ttitle2">Description</td></tr>
 <tr><td>24 - 31</td><td>PRESDIV</td><td>0x00</td><td>Prescaler Division Factor</td>
@@ -1535,8 +1535,8 @@ registers of the peripheral(s) configured by the component.
 **          Timing                                         : 
 **            CAN timing calculator                        : click to run ->
 **            Propagation segment                          : 3
-**            Time segment 1                               : 4
-**            Time segment 2                               : 2
+**            Time segment 1                               : 3
+**            Time segment 2                               : 3
 **            Resync jump width                            : 1
 **            Time quanta per bit                          : 10
 **            Samples per bit                              : One sample

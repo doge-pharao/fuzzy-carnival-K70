@@ -7,7 +7,7 @@
 **     Version     : Component 01.112, Driver 01.07, CPU db: 3.00.000
 **     Repository  : Kinetis
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2016-07-16, 21:16, # CodeGen: 2
+**     Date/Time   : 2016-08-07, 19:27, # CodeGen: 7
 **     Abstract    :
 **         This component "CAN_LDD" implements a CAN serial channel.
 **     Settings    :
@@ -40,7 +40,7 @@
 **              Buffer0                                    : 
 **                Buffer type                              : Receive
 **                  Accept frames                          : Standard
-**                  Message ID                             : 0x100
+**                  Message ID                             : 0x70
 **                  Invidual Acceptance Mask               : Enabled
 **                    Acceptance Mask                      : 0x1FFFFFFF
 **              Buffer1                                    : 
@@ -69,7 +69,7 @@
 **            Enabled in init. code                        : yes
 **            Auto initialization                          : no
 **            Event mask                                   : 
-**              OnFreeTxBuffer                             : Enabled
+**              OnFreeTxBuffer                             : Disabled
 **              OnFullRxBuffer                             : Enabled
 **              OnTransmitWarning                          : Disabled
 **              OnReceiveWarning                           : Disabled
@@ -88,7 +88,6 @@
 **     Contents    :
 **         Init          - LDD_TDeviceData* CAN1_Init(LDD_TUserData *UserDataPtr);
 **         SetRxBufferID - LDD_TError CAN1_SetRxBufferID(LDD_TDeviceData *DeviceDataPtr,...
-**         SendFrame     - LDD_TError CAN1_SendFrame(LDD_TDeviceData *DeviceDataPtr, LDD_CAN_TMBIndex...
 **         ReadFrame     - LDD_TError CAN1_ReadFrame(LDD_TDeviceData *DeviceDataPtr, LDD_CAN_TMBIndex...
 **
 **     Copyright : 1997 - 2015 Freescale Semiconductor, Inc. 
@@ -157,7 +156,7 @@ static CAN1_TDeviceDataPtr INT_CAN1_Rx_Warning__DEFAULT_RTOS_ISRPARAM;
 /* {Default RTOS Adapter} Global variable used for passing a parameter into ISR */
 static CAN1_TDeviceDataPtr INT_CAN1_Wake_Up__DEFAULT_RTOS_ISRPARAM;
 
-#define AVAILABLE_EVENTS_MASK (LDD_CAN_ON_FULL_RXBUFFER | LDD_CAN_ON_FREE_TXBUFFER)
+#define AVAILABLE_EVENTS_MASK (LDD_CAN_ON_FULL_RXBUFFER)
 #define CAN1_CAN_MBUFFERS 0x02U        /* Number of message buffers */
 
 
@@ -299,7 +298,7 @@ LDD_TDeviceData* CAN1_Init(LDD_TUserData *UserDataPtr)
   CAN1_RXIMR0 = CAN_RXIMR_MI(0x1FFFFFFF);
   CAN_PDD_SetMessageBufferCode(CAN1_BASE_PTR, 0U, CAN_PDD_MB_RX_NOT_ACTIVE);
   CAN_PDD_EnableMessageBufferIDExt(CAN1_BASE_PTR, 0U, PDD_DISABLE); /* Extended Frame bit IDE clear*/
-  CAN_PDD_SetMessageBufferID(CAN1_BASE_PTR, 0U, CAN_PDD_BUFFER_ID_STD, 0x0100U); /* Set standard buffer ID */
+  CAN_PDD_SetMessageBufferID(CAN1_BASE_PTR, 0U, CAN_PDD_BUFFER_ID_STD, 0x70U); /* Set standard buffer ID */
   CAN_PDD_SetMessageBufferCode(CAN1_BASE_PTR, 0U, CAN_PDD_MB_RX_EMPTY); /* Empty Frame*/
   CAN_PDD_EnableMessageBufferSRR(CAN1_BASE_PTR, 0U, PDD_DISABLE); /* SRR set to 0 */
   CAN_PDD_EnableMessageBufferRTR(CAN1_BASE_PTR, 0U, PDD_DISABLE); /* RTR set to 0*/
@@ -371,105 +370,6 @@ LDD_TError CAN1_SetRxBufferID(LDD_TDeviceData *DeviceDataPtr, LDD_CAN_TMBIndex B
     CAN_PDD_SetMessageBufferID(CAN1_BASE_PTR, BufferIdx, CAN_PDD_BUFFER_ID_STD, TempMessageID); /*Assign Standard ID to buffer */
     CAN_PDD_EnableMessageBufferIDExt(CAN1_BASE_PTR, BufferIdx, PDD_DISABLE);
   }
-  return ERR_OK;
-}
-
-/*
-** ===================================================================
-**     Method      :  CAN1_SendFrame (component CAN_LDD)
-*/
-/*!
-**     @brief
-**         Sends a frame via the CAN device. This method allow to
-**         specify CAN buffer number, message ID, data to be sent,
-**         frame type and whether the message will be sent after the
-**         request comes. 
-**     @param
-**         DeviceDataPtr   - Device data structure
-**                           pointer returned by [Init] method.
-**     @param
-**         BufferIdx       - Index of the Tx message buffer.
-**     @param
-**         Frame           - Pointer to the CAN frame to send.
-**     @return
-**                         - Error code, possible codes:
-**                           ERR_OK - OK
-**                           ERR_DISABLED - This component is disabled
-**                           by user
-**                           ERR_SPEED - This device does not work in
-**                           the active clock configuration
-**                           ERR_PARAM_RANGE - Value of buffer index is
-**                           out of range.
-**                           ERR_PARAM_INDEX - Index of message buffer
-**                           is not for transmit.
-**                           ERR_PARAM_LENGTH - Number of data in the
-**                           frame is greater than MaxDataLength.
-**                           ERR_PARAM_ATTRIBUTE_SET - Frame type isn't
-**                           supported.
-**                           ERR_PARAM_VALUE - Value of Tx priority is
-**                           fail.
-**                           ERR_BUSY - CAN module is busy.
-*/
-/* ===================================================================*/
-LDD_TError CAN1_SendFrame(LDD_TDeviceData *DeviceDataPtr, LDD_CAN_TMBIndex BufferIdx, LDD_CAN_TFrame *Frame)
-{
-  CAN1_TDeviceData *DeviceDataPrv = (CAN1_TDeviceData *)DeviceDataPtr;
-  LDD_CAN_TBufferMask BufferMask;      /* Bitmask of the requested message buffer */
-  uint8_t TxMBCode = 0x00U;            /* Temporary value of MB code */
-  uint8_t DataIndex;
-
-  if (BufferIdx > DeviceDataPrv->MaxBufferIndex) { /* Is BufferIdx greater than MaxBuffers? */
-    return ERR_PARAM_RANGE;            /* If yes then error */
-  }
-  BufferMask = (LDD_CAN_TBufferMask)(0x01UL << BufferIdx);
-  if ((BufferMask & DeviceDataPrv->TxBufferMask) == 0x00U) { /* Is used buffer defined of BufferIdx for transmit? */
-    return ERR_PARAM_INDEX;            /* If no then error */
-  }
-  if (Frame->Length > DeviceDataPrv->MaxDataLen) { /* Is number of data greater than MaxDataLen? */
-    return ERR_PARAM_LENGTH;           /* If yes then error */
-  }
-  if (Frame->FrameType > LDD_CAN_RESPONSE_FRAME) { /* Is FrameType other than LDD_CAN_DATA_FRAME_STD, LDD_CAN_DATA_FRAME_EXT or LDD_CAN_REMOTE_FRAME? */
-    return ERR_PARAM_ATTRIBUTE_SET;    /* If yes then error */
-  }
-  /* {Default RTOS Adapter} Critical section begin, general PE function is used */
-  EnterCritical();
-  if (CAN_PDD_GetMessageBufferCode(CAN1_BASE_PTR, BufferIdx) != CAN_PDD_MB_TX_NOT_ACTIVE) { /* Is Tx buffer inactive */
-    /* {Default RTOS Adapter} Critical section end, general PE function is used */
-    ExitCritical();
-    return ERR_BUSY;                   /* If no then error */
-  }         
-  if ((Frame->MessageID & LDD_CAN_MESSAGE_ID_EXT) != 0x00U) { /* Is the frame configured as Extended ID? */
-    CAN_PDD_SetMessageBufferID(CAN1_BASE_PTR, BufferIdx, CAN_PDD_BUFFER_ID_EXT, (Frame->MessageID)&~(LDD_CAN_MESSAGE_ID_EXT)); /*Assign extended ID to buffer */
-    CAN_PDD_EnableMessageBufferIDExt(CAN1_BASE_PTR, BufferIdx, PDD_ENABLE); /*Set ID extended */
-  } else {
-    CAN_PDD_SetMessageBufferID(CAN1_BASE_PTR, BufferIdx, CAN_PDD_BUFFER_ID_STD, Frame->MessageID); /*Assign Standard ID to buffer */
-    CAN_PDD_EnableMessageBufferIDExt(CAN1_BASE_PTR, BufferIdx, PDD_DISABLE); /*Set ID standard */
-  }
-  if ((Frame->FrameType == LDD_CAN_DATA_FRAME)||(Frame->FrameType == LDD_CAN_RESPONSE_FRAME)) { /* Is it a data or WaitOnRemote frame? */
-    for (DataIndex = 0x00U; DataIndex < Frame->Length; DataIndex++) { /* Fill message buffer data array */
-      CAN_PDD_SetMessageBufferData(CAN1_BASE_PTR, BufferIdx, DataIndex, Frame->Data[DataIndex]);
-    }
-    CAN_PDD_SetMessageBufferDataLength(CAN1_BASE_PTR, BufferIdx, Frame->Length); /* Set the length of the message */
-    CAN_PDD_EnableMessageBufferRTR(CAN1_BASE_PTR, BufferIdx, PDD_DISABLE); /* Clear RTR bit */
-    CAN_PDD_EnableMessageBufferSRR(CAN1_BASE_PTR, BufferIdx, PDD_DISABLE); /* Clear SRR bit */
-    if (Frame->FrameType == LDD_CAN_DATA_FRAME) {
-      TxMBCode = CAN_PDD_MB_TX_DATA_FRAME; /* Set buffer as a transmit buffer */
-    } else {
-      TxMBCode = CAN_PDD_MB_TX_RESPONSE_FRAME; /* Set buffer as a response transmit buffer for remote frames */
-    }
-  } else {                             /* Remote frame */
-    TxMBCode = CAN_PDD_MB_TX_REMOTE_FRAME; /* Set Tx buffer for remote frames */
-    CAN_PDD_SetMessageBufferDataLength(CAN1_BASE_PTR, BufferIdx, 0x00U); /* Set the length of the message */
-    CAN_PDD_EnableMessageBufferRTR(CAN1_BASE_PTR, BufferIdx, PDD_ENABLE); /* Set the message as a remote frame */
-    if ((Frame->MessageID & LDD_CAN_MESSAGE_ID_EXT) != 0x00U) { /* Extended frame */
-      CAN_PDD_EnableMessageBufferSRR(CAN1_BASE_PTR, BufferIdx, PDD_ENABLE); /* Set SRR bit */
-    } else {                           /* Standard frame */
-      CAN_PDD_EnableMessageBufferSRR(CAN1_BASE_PTR, BufferIdx, PDD_DISABLE); /* Clear SRR bit */
-    }
-  }
-  CAN_PDD_SetMessageBufferCode(CAN1_BASE_PTR, BufferIdx, TxMBCode); /* Set code for Tx buffer of the message */
-  /* {Default RTOS Adapter} Critical section end, general PE function is used */
-  ExitCritical();
   return ERR_OK;
 }
 
@@ -608,22 +508,11 @@ PE_ISR(CAN1_InterruptRxTx)
 {
   /* {Default RTOS Adapter} ISR parameter is passed through the global variable */
   CAN1_TDeviceDataPtr DeviceDataPrv = INT_CAN1_ORed_Message_buffer__DEFAULT_RTOS_ISRPARAM;
-  LDD_CAN_TBufferMask TxBufferMask;
   LDD_CAN_TBufferMask RxBufferMask;
   LDD_CAN_TBufferMask BufferMask;
   LDD_CAN_TMBIndex MBIndex,MBIndexMax = (LDD_CAN_TMBIndex)DeviceDataPrv->BuffersNumber;
   uint32_t StatusReg = CAN_PDD_GetMessageBufferInterruptFlag1(CAN1_BASE_PTR); /* Read content of the interrupt flags */
   CAN_PDD_ClearMessageBufferInterruptFlagMask1(CAN1_BASE_PTR, StatusReg); /* Clear pending interrupt flags */
-  TxBufferMask = (LDD_CAN_TBufferMask)(DeviceDataPrv->TxBufferMask & StatusReg);
-  if (TxBufferMask != 0x00U) {         /* Is Tx Buffer? */
-    BufferMask = 0x01U;
-    for (MBIndex=0x00U; MBIndex<MBIndexMax; MBIndex++) {
-      if ((TxBufferMask & BufferMask) != 0x00U) {
-        CAN1_OnFreeTxBuffer(DeviceDataPrv->UserData, MBIndex); /* Invoke user event */
-      }
-      BufferMask = (LDD_CAN_TBufferMask)(BufferMask << 0x01U);
-    }
-  }
   RxBufferMask = (LDD_CAN_TBufferMask)(DeviceDataPrv->RxBufferMask & StatusReg);
   if (RxBufferMask != 0x00U) {         /* Is Rx Buffer? */
     BufferMask = 0x01U;

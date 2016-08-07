@@ -524,9 +524,9 @@ PE_DEBUGHALT();
         <Enabled_in_init__code v="yes" />
         <group name="Event mask">
           <OnFreeTxBuffer v="Enabled" />
-          <OnFullRxBuffer v="Enabled" />
+          <OnFullRxBuffer v="Disabled" />
           <OnTransmitWarning v="Enabled" />
-          <OnReceiveWarning v="Enabled" />
+          <OnReceiveWarning v="Disabled" />
           <OnBusOff v="Enabled" />
           <OnWakeUp v="Disabled" />
           <OnError v="Enabled" />
@@ -550,7 +550,7 @@ PE_DEBUGHALT();
       <ReadFrame v="generate code" />
       <GetTxFrameState v="don&amp;apos;t generate code" />
       <GetRxFrameState v="don&amp;apos;t generate code" />
-      <GetTransmitErrorCounter v="don&amp;apos;t generate code" />
+      <GetTransmitErrorCounter v="generate code" />
       <GetReceiveErrorCounter v="generate code" />
       <GetError v="generate code" />
       <Main v="don&amp;apos;t generate code" />
@@ -566,15 +566,11 @@ PE_DEBUGHALT();
       <event name="OnFreeTxBuffer" v="generate code">
         <Event_procedure_name v="CAN1_OnFreeTxBuffer" />
       </event>
-      <event name="OnFullRxBuffer" v="generate code">
-        <Event_procedure_name v="CAN1_OnFullRxBuffer" />
-      </event>
+      <event name="OnFullRxBuffer" v="don&amp;apos;t generate code" />
       <event name="OnTransmitWarning" v="generate code">
         <Event_procedure_name v="CAN1_OnTransmitWarning" />
       </event>
-      <event name="OnReceiveWarning" v="generate code">
-        <Event_procedure_name v="CAN1_OnReceiveWarning" />
-      </event>
+      <event name="OnReceiveWarning" v="don&amp;apos;t generate code" />
       <event name="OnBusOff" v="generate code">
         <Event_procedure_name v="CAN1_OnBusOff" />
       </event>

@@ -53,14 +53,12 @@
       <PathName>/home/alejandro/workspace.kds.k70/receiver_can_uart/Generated_Code/AS1.c</PathName>
       <PathName>/home/alejandro/workspace.kds.k70/receiver_can_uart/Generated_Code/CAN1.c</PathName>
       <PathName>/home/alejandro/workspace.kds.k70/receiver_can_uart/Generated_Code/CAN_RxBuff.c</PathName>
-      <PathName>/home/alejandro/workspace.kds.k70/receiver_can_uart/Generated_Code/CS1.c</PathName>
       <PathName>/home/alejandro/workspace.kds.k70/receiver_can_uart/Generated_Code/CS2.c</PathName>
       <PathName>/home/alejandro/workspace.kds.k70/receiver_can_uart/Generated_Code/Cpu.c</PathName>
       <PathName>/home/alejandro/workspace.kds.k70/receiver_can_uart/Generated_Code/GREENLED.c</PathName>
       <PathName>/home/alejandro/workspace.kds.k70/receiver_can_uart/Generated_Code/KSDK1.c</PathName>
       <PathName>/home/alejandro/workspace.kds.k70/receiver_can_uart/Generated_Code/PE_LDD.c</PathName>
       <PathName>/home/alejandro/workspace.kds.k70/receiver_can_uart/Generated_Code/TU1.c</PathName>
-      <PathName>/home/alejandro/workspace.kds.k70/receiver_can_uart/Generated_Code/UART_RxBuff.c</PathName>
       <PathName>/home/alejandro/workspace.kds.k70/receiver_can_uart/Generated_Code/Vectors.c</PathName>
       <PathName>/home/alejandro/workspace.kds.k70/receiver_can_uart/Project_Settings/Startup_Code/startup.c</PathName>
       <PathName>/home/alejandro/workspace.kds.k70/receiver_can_uart/Sources/Application.c</PathName>
@@ -74,7 +72,6 @@
       <PathName>/home/alejandro/workspace.kds.k70/receiver_can_uart/Generated_Code/AS1.h</PathName>
       <PathName>/home/alejandro/workspace.kds.k70/receiver_can_uart/Generated_Code/CAN1.h</PathName>
       <PathName>/home/alejandro/workspace.kds.k70/receiver_can_uart/Generated_Code/CAN_RxBuff.h</PathName>
-      <PathName>/home/alejandro/workspace.kds.k70/receiver_can_uart/Generated_Code/CS1.h</PathName>
       <PathName>/home/alejandro/workspace.kds.k70/receiver_can_uart/Generated_Code/CS2.h</PathName>
       <PathName>/home/alejandro/workspace.kds.k70/receiver_can_uart/Generated_Code/Cpu.h</PathName>
       <PathName>/home/alejandro/workspace.kds.k70/receiver_can_uart/Generated_Code/GREENLED.h</PathName>
@@ -85,7 +82,6 @@
       <PathName>/home/alejandro/workspace.kds.k70/receiver_can_uart/Generated_Code/PE_LDD.h</PathName>
       <PathName>/home/alejandro/workspace.kds.k70/receiver_can_uart/Generated_Code/PE_Types.h</PathName>
       <PathName>/home/alejandro/workspace.kds.k70/receiver_can_uart/Generated_Code/TU1.h</PathName>
-      <PathName>/home/alejandro/workspace.kds.k70/receiver_can_uart/Generated_Code/UART_RxBuff.h</PathName>
       <PathName>/home/alejandro/workspace.kds.k70/receiver_can_uart/Sources/Application.h</PathName>
       <PathName>/home/alejandro/workspace.kds.k70/receiver_can_uart/Sources/CAN1_Events.h</PathName>
       <PathName>/home/alejandro/workspace.kds.k70/receiver_can_uart/Sources/Events.h</PathName>

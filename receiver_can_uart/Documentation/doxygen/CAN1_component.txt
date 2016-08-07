@@ -733,7 +733,7 @@ registers of the peripheral(s) configured by the component.
 **              Buffer0                                    : 
 **                Buffer type                              : Receive
 **                  Accept frames                          : Standard
-**                  Message ID                             : 0x100
+**                  Message ID                             : 0x70
 **                  Invidual Acceptance Mask               : Enabled
 **                    Acceptance Mask                      : 0x1FFFFFFF
 **              Buffer1                                    : 
@@ -762,7 +762,7 @@ registers of the peripheral(s) configured by the component.
 **            Enabled in init. code                        : yes
 **            Auto initialization                          : no
 **            Event mask                                   : 
-**              OnFreeTxBuffer                             : Enabled
+**              OnFreeTxBuffer                             : Disabled
 **              OnFullRxBuffer                             : Enabled
 **              OnTransmitWarning                          : Disabled
 **              OnReceiveWarning                           : Disabled
@@ -1516,7 +1516,7 @@ registers of the peripheral(s) configured by the component.
 **              Buffer0                                    : 
 **                Buffer type                              : Receive
 **                  Accept frames                          : Standard
-**                  Message ID                             : 0x100
+**                  Message ID                             : 0x70
 **                  Invidual Acceptance Mask               : Enabled
 **                    Acceptance Mask                      : 0x1FFFFFFF
 **              Buffer1                                    : 
@@ -1545,7 +1545,7 @@ registers of the peripheral(s) configured by the component.
 **            Enabled in init. code                        : yes
 **            Auto initialization                          : no
 **            Event mask                                   : 
-**              OnFreeTxBuffer                             : Enabled
+**              OnFreeTxBuffer                             : Disabled
 **              OnFullRxBuffer                             : Enabled
 **              OnTransmitWarning                          : Disabled
 **              OnReceiveWarning                           : Disabled

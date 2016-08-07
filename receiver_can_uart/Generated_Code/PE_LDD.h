@@ -6,7 +6,7 @@
 **     Version     : Component 01.028, Driver 01.04, CPU db: 3.00.000
 **     Repository  : Kinetis
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2016-07-16, 21:01, # CodeGen: 1
+**     Date/Time   : 2016-08-07, 17:46, # CodeGen: 3
 **     Abstract    :
 **
 **     Settings    :
@@ -61,13 +61,11 @@
 #include "PE_Types.h"
 #include "PE_Error.h"
 #include "PE_Const.h"
-#include "CS1.h"
 #include "KSDK1.h"
 #include "CS2.h"
 #include "TU1.h"
 #include "GREENLED.h"
 #include "AS1.h"
-#include "UART_RxBuff.h"
 #include "CAN1.h"
 #include "CAN_RxBuff.h"
 

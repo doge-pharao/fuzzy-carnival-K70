@@ -40,29 +40,6 @@ extern "C" {
 
 /* User includes (#include below this line is not maintained by Processor Expert) */
 #include "Application.h"
-/*
-** ===================================================================
-**     Event       :  CAN1_OnFreeTxBuffer (module CAN1_Events)
-**
-**     Component   :  CAN1 [CAN_LDD]
-*/
-/*!
-**     @brief
-**         This event is called when the buffer is empty after a
-**         successful transmit of a message. This event is available
-**         only if method SendFrame is enabled.
-**     @param
-**         UserDataPtr     - Pointer to the user or
-**                           RTOS specific data. This pointer is passed
-**                           as the parameter of Init method.
-**     @param
-**         BufferIdx       - Receive message buffer index.
-*/
-/* ===================================================================*/
-void CAN1_OnFreeTxBuffer(LDD_TUserData *UserDataPtr, LDD_CAN_TMBIndex BufferIdx)
-{
-  /* Write your code here ... */
-}
 
 /*
 ** ===================================================================

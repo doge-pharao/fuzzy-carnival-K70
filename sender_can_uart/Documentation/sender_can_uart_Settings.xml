@@ -524,9 +524,9 @@ PE_DEBUGHALT();
         <Enabled_in_init__code v="yes" />
         <group name="Event mask">
           <OnFreeTxBuffer v="Enabled" />
-          <OnFullRxBuffer v="Enabled" />
+          <OnFullRxBuffer v="Disabled" />
           <OnTransmitWarning v="Enabled" />
-          <OnReceiveWarning v="Enabled" />
+          <OnReceiveWarning v="Disabled" />
           <OnBusOff v="Enabled" />
           <OnWakeUp v="Disabled" />
           <OnError v="Enabled" />
@@ -566,15 +566,11 @@ PE_DEBUGHALT();
       <event name="OnFreeTxBuffer" v="generate code">
         <Event_procedure_name v="CAN1_OnFreeTxBuffer" />
       </event>
-      <event name="OnFullRxBuffer" v="generate code">
-        <Event_procedure_name v="CAN1_OnFullRxBuffer" />
-      </event>
+      <event name="OnFullRxBuffer" v="don&amp;apos;t generate code" />
       <event name="OnTransmitWarning" v="generate code">
         <Event_procedure_name v="CAN1_OnTransmitWarning" />
       </event>
-      <event name="OnReceiveWarning" v="generate code">
-        <Event_procedure_name v="CAN1_OnReceiveWarning" />
-      </event>
+      <event name="OnReceiveWarning" v="don&amp;apos;t generate code" />
       <event name="OnBusOff" v="generate code">
         <Event_procedure_name v="CAN1_OnBusOff" />
       </event>
@@ -582,38 +578,6 @@ PE_DEBUGHALT();
       <event name="OnError" v="generate code">
         <Event_procedure_name v="CAN1_OnError" />
       </event>
-    </Events>
-  </Bean>
-  <Bean name="CAN_RxBuff" type="RingBuffer">
-    <Enabled v="Y" />
-    <Properties>
-      <Component_name v="CAN_RxBuff" />
-      <SDK v="KSDK1" />
-      <Reentrant v="yes" />
-      <Critical_Section v="CS2" />
-      <Buffer_Size v="64" />
-      <Element_Size v="1 Byte" />
-    </Properties>
-    <Methods>
-      <Clear v="generate code" />
-      <Put v="generate code" />
-      <Putn v="generate code" />
-      <Get v="generate code" />
-      <Peek v="generate code" />
-      <Compare v="generate code" />
-      <Delete v="generate code" />
-      <NofElements v="generate code" />
-      <NofFreeElements v="generate code" />
-      <Deinit v="generate code" />
-      <Init v="generate code" />
-    </Methods>
-    <Events>
-      <Event_module_name v="Events" />
-      <event name="OnBufferFull" v="don&amp;apos;t generate code" />
-      <event name="OnBufferEmpty" v="don&amp;apos;t generate code" />
-      <event name="OnItemPut" v="don&amp;apos;t generate code" />
-      <event name="OnItemGet" v="don&amp;apos;t generate code" />
-      <event name="OnClear" v="don&amp;apos;t generate code" />
     </Events>
   </Bean>
   <Bean name="CS1" type="CriticalSection">

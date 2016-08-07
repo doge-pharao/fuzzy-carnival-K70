@@ -125,30 +125,6 @@ void CAN1_OnTransmitWarning(LDD_TUserData *UserDataPtr)
 
 /*
 ** ===================================================================
-**     Event       :  CAN1_OnReceiveWarning (module CAN1_Events)
-**
-**     Component   :  CAN1 [CAN_LDD]
-*/
-/*!
-**     @brief
-**         This event is called when the CAN controller goes into a
-**         warning status due to the receive error counter exceeding 96
-**         and neither an error status nor a BusOff status are present.
-**         The event is available only if Interrupt service/event is
-**         enabled.
-**     @param
-**         UserDataPtr     - Pointer to the user or
-**                           RTOS specific data. This pointer is passed
-**                           as the parameter of Init method.
-*/
-/* ===================================================================*/
-void CAN1_OnReceiveWarning(LDD_TUserData *UserDataPtr)
-{
-  /* Write your code here ... */
-}
-
-/*
-** ===================================================================
 **     Event       :  CAN1_OnBusOff (module CAN1_Events)
 **
 **     Component   :  CAN1 [CAN_LDD]

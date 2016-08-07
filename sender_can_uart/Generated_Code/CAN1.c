@@ -7,7 +7,7 @@
 **     Version     : Component 01.112, Driver 01.07, CPU db: 3.00.000
 **     Repository  : Kinetis
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2016-07-30, 21:14, # CodeGen: 12
+**     Date/Time   : 2016-08-05, 23:59, # CodeGen: 15
 **     Abstract    :
 **         This component "CAN_LDD" implements a CAN serial channel.
 **     Settings    :
@@ -70,9 +70,9 @@
 **            Auto initialization                          : no
 **            Event mask                                   : 
 **              OnFreeTxBuffer                             : Enabled
-**              OnFullRxBuffer                             : Enabled
+**              OnFullRxBuffer                             : Disabled
 **              OnTransmitWarning                          : Enabled
-**              OnReceiveWarning                           : Enabled
+**              OnReceiveWarning                           : Disabled
 **              OnBusOff                                   : Enabled
 **              OnWakeUp                                   : Disabled
 **              OnError                                    : Enabled
@@ -160,7 +160,7 @@ static CAN1_TDeviceDataPtr INT_CAN1_Rx_Warning__DEFAULT_RTOS_ISRPARAM;
 /* {Default RTOS Adapter} Global variable used for passing a parameter into ISR */
 static CAN1_TDeviceDataPtr INT_CAN1_Wake_Up__DEFAULT_RTOS_ISRPARAM;
 
-#define AVAILABLE_EVENTS_MASK (LDD_CAN_ON_FULL_RXBUFFER | LDD_CAN_ON_FREE_TXBUFFER | LDD_CAN_ON_BUSOFF | LDD_CAN_ON_TXWARNING | LDD_CAN_ON_RXWARNING | LDD_CAN_ON_ERROR)
+#define AVAILABLE_EVENTS_MASK (LDD_CAN_ON_FREE_TXBUFFER | LDD_CAN_ON_BUSOFF | LDD_CAN_ON_TXWARNING | LDD_CAN_ON_ERROR)
 #define CAN1_CAN_MBUFFERS 0x02U        /* Number of message buffers */
 
 
@@ -289,14 +289,13 @@ LDD_TDeviceData* CAN1_Init(LDD_TUserData *UserDataPtr)
               CAN_MCR_IRMQ_MASK |
               CAN_MCR_MAXMB(0x01)
              ));                       /* MCR reg. Settings */
-  /* CAN1_CTRL1: PRESDIV|=9,PSEG1|=3,PSEG2|=1,BOFFMSK=1,ERRMSK=1,TWRNMSK=1,RWRNMSK=1,LBUF=1,PROPSEG|=2 */
+  /* CAN1_CTRL1: PRESDIV|=9,PSEG1|=3,PSEG2|=1,BOFFMSK=1,ERRMSK=1,TWRNMSK=1,LBUF=1,PROPSEG|=2 */
   CAN1_CTRL1 |= CAN_CTRL1_PRESDIV(0x09) |
                 CAN_CTRL1_PSEG1(0x03) |
                 CAN_CTRL1_PSEG2(0x01) |
                 CAN_CTRL1_BOFFMSK_MASK |
                 CAN_CTRL1_ERRMSK_MASK |
                 CAN_CTRL1_TWRNMSK_MASK |
-                CAN_CTRL1_RWRNMSK_MASK |
                 CAN_CTRL1_LBUF_MASK |
                 CAN_CTRL1_PROPSEG(0x02); /* Setting CTRL1 register */
   /* CAN1_CTRL2: RRS=1 */
@@ -694,7 +693,6 @@ PE_ISR(CAN1_InterruptRxTx)
   /* {Default RTOS Adapter} ISR parameter is passed through the global variable */
   CAN1_TDeviceDataPtr DeviceDataPrv = INT_CAN1_ORed_Message_buffer__DEFAULT_RTOS_ISRPARAM;
   LDD_CAN_TBufferMask TxBufferMask;
-  LDD_CAN_TBufferMask RxBufferMask;
   LDD_CAN_TBufferMask BufferMask;
   LDD_CAN_TMBIndex MBIndex,MBIndexMax = (LDD_CAN_TMBIndex)DeviceDataPrv->BuffersNumber;
   uint32_t StatusReg = CAN_PDD_GetMessageBufferInterruptFlag1(CAN1_BASE_PTR); /* Read content of the interrupt flags */
@@ -705,16 +703,6 @@ PE_ISR(CAN1_InterruptRxTx)
     for (MBIndex=0x00U; MBIndex<MBIndexMax; MBIndex++) {
       if ((TxBufferMask & BufferMask) != 0x00U) {
         CAN1_OnFreeTxBuffer(DeviceDataPrv->UserData, MBIndex); /* Invoke user event */
-      }
-      BufferMask = (LDD_CAN_TBufferMask)(BufferMask << 0x01U);
-    }
-  }
-  RxBufferMask = (LDD_CAN_TBufferMask)(DeviceDataPrv->RxBufferMask & StatusReg);
-  if (RxBufferMask != 0x00U) {         /* Is Rx Buffer? */
-    BufferMask = 0x01U;
-    for (MBIndex=0x00U; MBIndex<MBIndexMax; MBIndex++) {
-      if ((RxBufferMask & BufferMask) != 0x00U) {
-        CAN1_OnFullRxBuffer(DeviceDataPrv->UserData, MBIndex); /* Invoke user event */
       }
       BufferMask = (LDD_CAN_TBufferMask)(BufferMask << 0x01U);
     }
@@ -752,9 +740,9 @@ PE_ISR(CAN1_InterruptRxWarn)
 {
   /* {Default RTOS Adapter} ISR parameter is passed through the global variable */
   CAN1_TDeviceDataPtr DeviceDataPrv = INT_CAN1_Rx_Warning__DEFAULT_RTOS_ISRPARAM;
+  (void)DeviceDataPrv;                 /* Parameter is not used, suppress unused argument warning */
 
   CAN_PDD_ClearStatusInterruptFlags1(CAN1_BASE_PTR, CAN_PDD_RX_WARNING_INT); /* Clear interrupt pending flag */
-  CAN1_OnReceiveWarning(DeviceDataPrv->UserData); /* Invoke user event */
 }
 
 /*

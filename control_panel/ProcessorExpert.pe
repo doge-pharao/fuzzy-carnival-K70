@@ -3,7 +3,7 @@
   <Header>
     <Name>control_panel</Name>
     <SavedBy>alejandro</SavedBy>
-    <ModificationStamp>14</ModificationStamp>
+    <ModificationStamp>16</ModificationStamp>
     <Date>2016-07-15</Date>
     <IDE>Eclipse IDE</IDE>
     <PEversion>1.12.2.RT7_b1550-0615</PEversion>
@@ -43335,16 +43335,16 @@
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
         <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
-        <Index>3</Index>
-        <EnumSymbVal>4</EnumSymbVal>
+        <Index>2</Index>
+        <EnumSymbVal>3</EnumSymbVal>
       </ItemState>
       <ItemState>
         <ItemSymbol>TimeSegment2</ItemSymbol>
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
         <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
-        <Index>1</Index>
-        <EnumSymbVal>2</EnumSymbVal>
+        <Index>2</Index>
+        <EnumSymbVal>3</EnumSymbVal>
       </ItemState>
       <ItemState>
         <ItemSymbol>ResyncJumpWidth</ItemSymbol>
@@ -43440,7 +43440,7 @@
         <ReqExtCompPrescSpeedMode5>-1</ReqExtCompPrescSpeedMode5>
         <ReqExtCompPrescSpeedMode6>-1</ReqExtCompPrescSpeedMode6>
         <ReqExtCompPrescSpeedMode7>-1</ReqExtCompPrescSpeedMode7>
-        <ReqSrcClkPrescHigh>10</ReqSrcClkPrescHigh>
+        <ReqSrcClkPrescHigh>-1</ReqSrcClkPrescHigh>
         <ReqSrcClkPrescLow>-1</ReqSrcClkPrescLow>
         <ReqSrcClkPrescSlow>-1</ReqSrcClkPrescSlow>
         <ReqSrcClkPrescSpeedMode3>-1</ReqSrcClkPrescSpeedMode3>

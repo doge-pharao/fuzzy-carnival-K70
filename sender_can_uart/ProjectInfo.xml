@@ -52,7 +52,6 @@
     <GeneratedCs>
       <PathName>/home/alejandro/workspace.kds.k70/sender_can_uart/Generated_Code/AS1.c</PathName>
       <PathName>/home/alejandro/workspace.kds.k70/sender_can_uart/Generated_Code/CAN1.c</PathName>
-      <PathName>/home/alejandro/workspace.kds.k70/sender_can_uart/Generated_Code/CAN_RxBuff.c</PathName>
       <PathName>/home/alejandro/workspace.kds.k70/sender_can_uart/Generated_Code/CS1.c</PathName>
       <PathName>/home/alejandro/workspace.kds.k70/sender_can_uart/Generated_Code/CS2.c</PathName>
       <PathName>/home/alejandro/workspace.kds.k70/sender_can_uart/Generated_Code/Cpu.c</PathName>
@@ -73,7 +72,6 @@
     <GeneratedHs>
       <PathName>/home/alejandro/workspace.kds.k70/sender_can_uart/Generated_Code/AS1.h</PathName>
       <PathName>/home/alejandro/workspace.kds.k70/sender_can_uart/Generated_Code/CAN1.h</PathName>
-      <PathName>/home/alejandro/workspace.kds.k70/sender_can_uart/Generated_Code/CAN_RxBuff.h</PathName>
       <PathName>/home/alejandro/workspace.kds.k70/sender_can_uart/Generated_Code/CS1.h</PathName>
       <PathName>/home/alejandro/workspace.kds.k70/sender_can_uart/Generated_Code/CS2.h</PathName>
       <PathName>/home/alejandro/workspace.kds.k70/sender_can_uart/Generated_Code/Cpu.h</PathName>

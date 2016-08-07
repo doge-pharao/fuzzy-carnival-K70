@@ -7,7 +7,7 @@
 **     Version     : Component 01.188, Driver 01.12, CPU db: 3.00.000
 **     Repository  : Kinetis
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2016-07-16, 21:01, # CodeGen: 1
+**     Date/Time   : 2016-08-07, 17:53, # CodeGen: 4
 **     Abstract    :
 **         This component "Serial_LDD" implements an asynchronous serial
 **         communication. The component supports different settings of
@@ -49,7 +49,7 @@
 **            Auto initialization                          : no
 **            Event mask                                   : 
 **              OnBlockSent                                : Enabled
-**              OnBlockReceived                            : Enabled
+**              OnBlockReceived                            : Disabled
 **              OnTxComplete                               : Disabled
 **              OnError                                    : Disabled
 **              OnBreak                                    : Disabled
@@ -63,9 +63,8 @@
 **            Clock configuration 6                        : This component disabled
 **            Clock configuration 7                        : This component disabled
 **     Contents    :
-**         Init         - LDD_TDeviceData* AS1_Init(LDD_TUserData *UserDataPtr);
-**         SendBlock    - LDD_TError AS1_SendBlock(LDD_TDeviceData *DeviceDataPtr, LDD_TData...
-**         ReceiveBlock - LDD_TError AS1_ReceiveBlock(LDD_TDeviceData *DeviceDataPtr, LDD_TData...
+**         Init      - LDD_TDeviceData* AS1_Init(LDD_TUserData *UserDataPtr);
+**         SendBlock - LDD_TError AS1_SendBlock(LDD_TDeviceData *DeviceDataPtr, LDD_TData...
 **
 **     Copyright : 1997 - 2015 Freescale Semiconductor, Inc. 
 **     All Rights Reserved.
@@ -133,10 +132,8 @@ extern "C" {
 /* Methods configuration constants - generated for all enabled component's methods */
 #define AS1_Init_METHOD_ENABLED        /*!< Init method of the component AS1 is enabled (generated) */
 #define AS1_SendBlock_METHOD_ENABLED   /*!< SendBlock method of the component AS1 is enabled (generated) */
-#define AS1_ReceiveBlock_METHOD_ENABLED /*!< ReceiveBlock method of the component AS1 is enabled (generated) */
 
 /* Events configuration constants - generated for all enabled component's events */
-#define AS1_OnBlockReceived_EVENT_ENABLED /*!< OnBlockReceived event of the component AS1 is enabled (generated) */
 #define AS1_OnBlockSent_EVENT_ENABLED  /*!< OnBlockSent event of the component AS1 is enabled (generated) */
 
 #define ENABLED_TX_INT        0x01U    /*!< TX interrupt enabled      */
@@ -180,52 +177,6 @@ typedef AS1_TDeviceData *AS1_TDeviceDataPtr ; /*!< Pointer to the device data st
 */
 /* ===================================================================*/
 LDD_TDeviceData* AS1_Init(LDD_TUserData *UserDataPtr);
-
-/*
-** ===================================================================
-**     Method      :  AS1_ReceiveBlock (component Serial_LDD)
-*/
-/*!
-**     @brief
-**         Specifies the number of data to receive. The method returns
-**         ERR_BUSY until the specified number of characters is
-**         received. Method [CancelBlockReception] can be used to
-**         cancel a running receive operation. If a receive operation
-**         is not in progress (the method was not called or a previous
-**         operation has already finished) all received characters will
-**         be lost without any notification. To prevent the loss of
-**         data call the method immediately after the last receive
-**         operation has finished (e.g. from the [OnBlockReceived]
-**         event). This method finishes immediately after calling it -
-**         it doesn't wait the end of data reception. Use event
-**         [OnBlockReceived] to check the end of data reception or
-**         method GetReceivedDataNum to check the state of receiving.
-**     @param
-**         DeviceDataPtr   - Device data structure
-**                           pointer returned by [Init] method.
-**     @param
-**         BufferPtr       - Pointer to a buffer where
-**                           received characters will be stored. In case
-**                           of 8bit character width each character in
-**                           buffer occupies 1 byte. In case of 9 and
-**                           more bit long character width each
-**                           character in buffer occupies 2 bytes.
-**     @param
-**         Size            - Number of characters to receive
-**     @return
-**                         - Error code, possible codes:
-**                           ERR_OK - OK
-**                           ERR_SPEED - The component does not work in
-**                           the active clock configuration.
-**                           ERR_PARAM_SIZE - Parameter Size is out of
-**                           expected range.
-**                           ERR_DISABLED - The component or device is
-**                           disabled.
-**                           ERR_BUSY - The previous receive request is
-**                           pending.
-*/
-/* ===================================================================*/
-LDD_TError AS1_ReceiveBlock(LDD_TDeviceData *DeviceDataPtr, LDD_TData *BufferPtr, uint16_t Size);
 
 /*
 ** ===================================================================

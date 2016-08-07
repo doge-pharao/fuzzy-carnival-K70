@@ -56,12 +56,12 @@
       <File Name="Static_Code/PDD/NFC_PDD.h" FileDate="2016-07-15, 21:22:38" FileAge="1468628558000" FileType="1048576" />
       <File Name="Static_Code/PDD/ADC_PDD.h" FileDate="2016-07-15, 21:22:38" FileAge="1468628558000" FileType="1048576" />
       <File Name="Static_Code/PDD/DAC_PDD.h" FileDate="2016-07-15, 21:22:38" FileAge="1468628558000" FileType="1048576" />
-      <File Name="Generated_Code/CAN1.h" FileDate="2016-07-31, 00:04:12" FileAge="1469934252000" FileType="45637" CompNumb="10" />
+      <File Name="Generated_Code/CAN1.h" FileDate="2016-08-05, 20:41:38" FileAge="1470440498000" FileType="45637" CompNumb="10" />
       <File Name="Static_Code/PDD/FTM_PDD.h" FileDate="2016-07-15, 21:22:38" FileAge="1468628558000" FileType="1048576" />
       <File Name="Documentation/doxygen/GREENLED_component.txt" FileDate="2016-07-22, 22:34:08" FileAge="1469237648000" FileType="45637" CompNumb="7" />
       <File Name="Sources/TSS_SystemSetup.h" FileDate="2016-07-22, 20:40:39" FileAge="1469230839000" FileType="45637" CompNumb="21" />
       <File Name="Documentation/doxygen/RoutingReport_component.txt" FileDate="2016-07-15, 21:22:38" FileAge="1468628558000" FileType="45637" CompNumb="4" />
-      <File Name="Generated_Code/CAN1.c" FileDate="2016-07-31, 00:04:12" FileAge="1469934252000" FileType="45637" CompNumb="10" />
+      <File Name="Generated_Code/CAN1.c" FileDate="2016-08-05, 20:41:38" FileAge="1470440498000" FileType="45637" CompNumb="10" />
       <File Name="Documentation/doxygen/pex.css" FileDate="2016-07-15, 21:22:38" FileAge="1468628558000" FileType="16384" CompNumb="4" />
       <File Name="Sources/TSS_Events.h" FileDate="2016-07-23, 00:24:29" FileAge="1469244269000" FileType="131328" />
       <File Name="Documentation/doxygen/pex.doxyfile" FileDate="2016-07-22, 20:40:39" FileAge="1469230839000" FileType="45637" CompNumb="4" />
@@ -95,7 +95,7 @@
       <File Name="Static_Code/PDD/UART_PDD.h" FileDate="2016-07-15, 21:22:38" FileAge="1468628558000" FileType="1048576" />
       <File Name="Documentation/control_panel.txt" FileDate="2016-07-31, 00:04:13" FileAge="1469934253000" FileType="3072" />
       <File Name="Sources/TSS/TSS_StatusCodes.h" FileDate="2016-07-22, 20:40:29" FileAge="1469230829000" FileType="16384" CompNumb="21" />
-      <File Name="Documentation/doxygen/CAN1_component.txt" FileDate="2016-07-16, 00:47:02" FileAge="1468640822000" FileType="45637" CompNumb="10" />
+      <File Name="Documentation/doxygen/CAN1_component.txt" FileDate="2016-08-05, 20:41:38" FileAge="1470440498000" FileType="45637" CompNumb="10" />
       <File Name="Sources/TSS/TSS_SensorTSI_def.h" FileDate="2016-07-22, 20:40:29" FileAge="1469230829000" FileType="16384" CompNumb="21" />
       <File Name="Static_Code/PDD/DMAMUX_PDD.h" FileDate="2016-07-15, 21:22:38" FileAge="1468628558000" FileType="1048576" />
       <File Name="Documentation/doxygen/BLUELED_component.txt" FileDate="2016-07-22, 22:34:08" FileAge="1469237648000" FileType="45637" CompNumb="19" />
@@ -137,7 +137,7 @@
       <File Name="Generated_Code/CAN_RxBuff.c" FileDate="2016-07-22, 20:40:39" FileAge="1469230839000" FileType="45637" CompNumb="11" />
       <File Name="Generated_Code/Cpu.h" FileDate="2016-07-22, 20:40:39" FileAge="1469230839000" FileType="45637" CompNumb="4" />
       <File Name="Static_Code/PDD/GPIO_PDD.h" FileDate="2016-07-15, 21:22:38" FileAge="1468628558000" FileType="1048576" />
-      <File Name="Documentation/control_panel_Settings.xml" FileDate="2016-07-31, 00:04:12" FileAge="1469934252000" FileType="3072" />
+      <File Name="Documentation/control_panel_Settings.xml" FileDate="2016-08-05, 20:41:39" FileAge="1470440499000" FileType="3072" />
       <File Name="Sources/TSS/TSS_Timer.h" FileDate="2016-07-22, 20:40:29" FileAge="1469230829000" FileType="16384" CompNumb="21" />
       <File Name="Generated_Code/Cpu.c" FileDate="2016-07-23, 00:53:59" FileAge="1469246039000" FileType="45637" CompNumb="4" />
       <File Name="Sources/TSS/TSS_API.h" FileDate="2016-07-22, 20:40:28" FileAge="1469230828000" FileType="16384" CompNumb="21" />
@@ -146,7 +146,7 @@
       <File Name="Generated_Code/TU1.c" FileDate="2016-07-23, 00:53:59" FileAge="1469246039000" FileType="45637" CompNumb="5" />
       <File Name="Static_Code/PDD/WDOG_PDD.h" FileDate="2016-07-15, 21:22:38" FileAge="1468628558000" FileType="1048576" />
       <File Name="Sources/TSS/TSS_Freemaster.c" FileDate="2016-07-22, 20:40:28" FileAge="1469230828000" FileType="16384" CompNumb="21" />
-      <File Name="Documentation/control_panel_SIGNALS.txt" FileDate="2016-07-31, 00:04:12" FileAge="1469934252000" FileType="3072" />
+      <File Name="Documentation/control_panel_SIGNALS.txt" FileDate="2016-08-05, 20:41:39" FileAge="1470440499000" FileType="3072" />
       <File Name="Sources/TSS/TSS_GPIO.h" FileDate="2016-07-22, 20:40:28" FileAge="1469230828000" FileType="16384" CompNumb="21" />
       <File Name="Generated_Code/GREENLED.h" FileDate="2016-07-22, 22:34:07" FileAge="1469237647000" FileType="45637" CompNumb="7" />
       <File Name="Static_Code/PDD/CMP_PDD.h" FileDate="2016-07-15, 21:22:38" FileAge="1468628558000" FileType="1048576" />
@@ -166,5 +166,5 @@
       <File Name="Sources/Timer1_Events.h" FileDate="2016-07-23, 00:24:29" FileAge="1469244269000" FileType="131328" />
     </GeneratedByPE>
   </GeneratedFilesList>
-  <CodeGenReference>8</CodeGenReference>
+  <CodeGenReference>11</CodeGenReference>
 </CodeGenerationInfo>

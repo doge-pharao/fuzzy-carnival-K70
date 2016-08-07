@@ -6,7 +6,6 @@
 C_SRCS += \
 ../Generated_Code/AS1.c \
 ../Generated_Code/CAN1.c \
-../Generated_Code/CAN_RxBuff.c \
 ../Generated_Code/CS1.c \
 ../Generated_Code/CS2.c \
 ../Generated_Code/Cpu.c \
@@ -20,7 +19,6 @@ C_SRCS += \
 OBJS += \
 ./Generated_Code/AS1.o \
 ./Generated_Code/CAN1.o \
-./Generated_Code/CAN_RxBuff.o \
 ./Generated_Code/CS1.o \
 ./Generated_Code/CS2.o \
 ./Generated_Code/Cpu.o \
@@ -34,7 +32,6 @@ OBJS += \
 C_DEPS += \
 ./Generated_Code/AS1.d \
 ./Generated_Code/CAN1.d \
-./Generated_Code/CAN_RxBuff.d \
 ./Generated_Code/CS1.d \
 ./Generated_Code/CS2.d \
 ./Generated_Code/Cpu.d \

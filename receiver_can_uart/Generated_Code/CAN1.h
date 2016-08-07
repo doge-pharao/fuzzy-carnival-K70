@@ -7,7 +7,7 @@
 **     Version     : Component 01.112, Driver 01.07, CPU db: 3.00.000
 **     Repository  : Kinetis
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2016-07-16, 21:16, # CodeGen: 2
+**     Date/Time   : 2016-08-07, 19:27, # CodeGen: 7
 **     Abstract    :
 **         This component "CAN_LDD" implements a CAN serial channel.
 **     Settings    :
@@ -40,7 +40,7 @@
 **              Buffer0                                    : 
 **                Buffer type                              : Receive
 **                  Accept frames                          : Standard
-**                  Message ID                             : 0x100
+**                  Message ID                             : 0x70
 **                  Invidual Acceptance Mask               : Enabled
 **                    Acceptance Mask                      : 0x1FFFFFFF
 **              Buffer1                                    : 
@@ -69,7 +69,7 @@
 **            Enabled in init. code                        : yes
 **            Auto initialization                          : no
 **            Event mask                                   : 
-**              OnFreeTxBuffer                             : Enabled
+**              OnFreeTxBuffer                             : Disabled
 **              OnFullRxBuffer                             : Enabled
 **              OnTransmitWarning                          : Disabled
 **              OnReceiveWarning                           : Disabled
@@ -88,7 +88,6 @@
 **     Contents    :
 **         Init          - LDD_TDeviceData* CAN1_Init(LDD_TUserData *UserDataPtr);
 **         SetRxBufferID - LDD_TError CAN1_SetRxBufferID(LDD_TDeviceData *DeviceDataPtr,...
-**         SendFrame     - LDD_TError CAN1_SendFrame(LDD_TDeviceData *DeviceDataPtr, LDD_CAN_TMBIndex...
 **         ReadFrame     - LDD_TError CAN1_ReadFrame(LDD_TDeviceData *DeviceDataPtr, LDD_CAN_TMBIndex...
 **
 **     Copyright : 1997 - 2015 Freescale Semiconductor, Inc. 
@@ -245,45 +244,6 @@ LDD_TError CAN1_SetRxBufferID(LDD_TDeviceData *DeviceDataPtr, LDD_CAN_TMBIndex B
 */
 /* ===================================================================*/
 LDD_TError CAN1_ReadFrame(LDD_TDeviceData *DeviceDataPtr, LDD_CAN_TMBIndex BufferIdx, LDD_CAN_TFrame *Frame);
-
-/*
-** ===================================================================
-**     Method      :  CAN1_SendFrame (component CAN_LDD)
-*/
-/*!
-**     @brief
-**         Sends a frame via the CAN device. This method allow to
-**         specify CAN buffer number, message ID, data to be sent,
-**         frame type and whether the message will be sent after the
-**         request comes. 
-**     @param
-**         DeviceDataPtr   - Device data structure
-**                           pointer returned by [Init] method.
-**     @param
-**         BufferIdx       - Index of the Tx message buffer.
-**     @param
-**         Frame           - Pointer to the CAN frame to send.
-**     @return
-**                         - Error code, possible codes:
-**                           ERR_OK - OK
-**                           ERR_DISABLED - This component is disabled
-**                           by user
-**                           ERR_SPEED - This device does not work in
-**                           the active clock configuration
-**                           ERR_PARAM_RANGE - Value of buffer index is
-**                           out of range.
-**                           ERR_PARAM_INDEX - Index of message buffer
-**                           is not for transmit.
-**                           ERR_PARAM_LENGTH - Number of data in the
-**                           frame is greater than MaxDataLength.
-**                           ERR_PARAM_ATTRIBUTE_SET - Frame type isn't
-**                           supported.
-**                           ERR_PARAM_VALUE - Value of Tx priority is
-**                           fail.
-**                           ERR_BUSY - CAN module is busy.
-*/
-/* ===================================================================*/
-LDD_TError CAN1_SendFrame(LDD_TDeviceData *DeviceDataPtr, LDD_CAN_TMBIndex BufferIdx, LDD_CAN_TFrame *Frame);
 
 /*
 ** ===================================================================

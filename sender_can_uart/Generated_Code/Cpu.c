@@ -8,7 +8,7 @@
 **     Repository  : Kinetis
 **     Datasheet   : K70P256M150SF3RM, Rev. 2, Dec 2011
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2016-07-16, 00:46, # CodeGen: 8
+**     Date/Time   : 2016-08-06, 01:12, # CodeGen: 16
 **     Abstract    :
 **
 **     Settings    :
@@ -337,7 +337,6 @@
 #include "AS1.h"
 #include "UART_RxBuff.h"
 #include "CAN1.h"
-#include "CAN_RxBuff.h"
 #include "CS1.h"
 #include "KSDK1.h"
 #include "CS2.h"
@@ -583,8 +582,6 @@ void PE_low_level_init(void)
   /* ### RingBuffer "UART_RxBuff" init code ... */
   UART_RxBuff_Init();
   /* ### CriticalSection "CS2" init code ... */
-  /* ### RingBuffer "CAN_RxBuff" init code ... */
-  CAN_RxBuff_Init();
   /* Enable interrupts of the given priority level */
   Cpu_SetBASEPRI(0U);
 }

@@ -513,8 +513,8 @@ PE_DEBUGHALT();
       <group name="Timing">
         <CAN_timing_calculator v="click to run -&amp;gt;" />
         <Propagation_segment v="3" />
-        <Time_segment_1 v="4" />
-        <Time_segment_2 v="2" />
+        <Time_segment_1 v="3" />
+        <Time_segment_2 v="3" />
         <Resync_jump_width v="1" />
         <Time_quanta_per_bit v="10" />
         <Samples_per_bit v="One sample" />

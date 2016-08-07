@@ -591,7 +591,7 @@
     </GenFiles>
     <SignalListFile>Documentation\control_panel_SIGNALS.txt</SignalListFile>
     <DestinationCompiler>GNUC</DestinationCompiler>
-    <ProjectModificationStamp>14</ProjectModificationStamp>
+    <ProjectModificationStamp>16</ProjectModificationStamp>
   </Options>
   <CpuID_2>
     <Generated>false</Generated>
@@ -1382,8 +1382,8 @@
     <GenComponentVersion>01.112</GenComponentVersion>
     <GenDriverVersion>01.07</GenDriverVersion>
     <GenEventModule>CAN1_Events</GenEventModule>
-    <HeaderAge>1224671366</HeaderAge>
-    <CodeAge>1224671366</CodeAge>
+    <HeaderAge>1225106739</HeaderAge>
+    <CodeAge>1225106739</CodeAge>
     <AsemblAge>-1</AsemblAge>
     <GenNumMethods>29</GenNumMethods>
     <Init>true</Init>

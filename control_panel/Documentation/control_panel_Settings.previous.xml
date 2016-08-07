@@ -512,13 +512,13 @@ PE_DEBUGHALT();
       </group>
       <group name="Timing">
         <CAN_timing_calculator v="click to run -&amp;gt;" />
-        <Propagation_segment v="3" />
-        <Time_segment_1 v="4" />
-        <Time_segment_2 v="2" />
-        <Resync_jump_width v="1" />
-        <Time_quanta_per_bit v="10" />
+        <Propagation_segment v="8" />
+        <Time_segment_1 v="8" />
+        <Time_segment_2 v="8" />
+        <Resync_jump_width v="4" />
+        <Time_quanta_per_bit v="25" />
         <Samples_per_bit v="One sample" />
-        <Bit_rate v="500 kbit/s" />
+        <Bit_rate v="5 kbit/s" />
       </group>
       <group name="Initialization">
         <Enabled_in_init__code v="yes" />
@@ -552,7 +552,7 @@ PE_DEBUGHALT();
       <GetRxFrameState v="don&amp;apos;t generate code" />
       <GetTransmitErrorCounter v="generate code" />
       <GetReceiveErrorCounter v="generate code" />
-      <GetError v="don&amp;apos;t generate code" />
+      <GetError v="generate code" />
       <Main v="don&amp;apos;t generate code" />
       <RequestBusOffRecovery v="don&amp;apos;t generate code" />
       <GetStats v="don&amp;apos;t generate code" />

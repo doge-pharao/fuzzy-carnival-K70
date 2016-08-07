@@ -88,19 +88,6 @@ Module "CAN1"      (component CAN_LDD)
    - CAN1_GetReceiveErrorCounter -Returns a value of the reception error counter.
    - CAN1_GetError -Returns value of error mask, e.g. LDD_CAN_BIT0_ERROR
 
-Module "CAN_RxBuff" (component RingBuffer)
-   - CAN_RxBuff_Clear -Clear (empty) the ring buffer.
-   - CAN_RxBuff_Put -Puts a new element into the buffer
-   - CAN_RxBuff_Putn -Put a number new element into the buffer.
-   - CAN_RxBuff_Get -Removes an element from the buffer
-   - CAN_RxBuff_Peek -Returns an element of the buffer without removiing it.
-   - CAN_RxBuff_Compare -Compares the elements in the buffer.
-   - CAN_RxBuff_Delete -Removes an element from the buffer
-   - CAN_RxBuff_NofElements -Returns the actual number of elements in the buffer.
-   - CAN_RxBuff_NofFreeElements -Returns the actual number of free elements/space in the buffer.
-   - CAN_RxBuff_Deinit -Driver de-initialization
-   - CAN_RxBuff_Init -Initializes the data structure
-
 Module "CS1"       (component CriticalSection)
    - CS1_CriticalVariable -Defines a variable if necessary. This is a macro.
    - CS1_EnterCritical -Enters a critical section
