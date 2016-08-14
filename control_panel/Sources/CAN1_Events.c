@@ -72,34 +72,7 @@ void CAN1_OnFreeTxBuffer(LDD_TUserData *UserDataPtr, LDD_CAN_TMBIndex BufferIdx)
 
 	  ptr->isSent = TRUE; /* set flag so sender knows we have finished */
 }
-/*
-** ===================================================================
-**     Event       :  CAN1_OnFullRxBuffer (module CAN1_Events)
-**
-**     Component   :  CAN1 [CAN_LDD]
-*/
-/*!
-**     @brief
-**         This event is called when the buffer is full after a
-**         successful receive a message. This event is available only
-**         if method ReadFrame or SetRxBufferState is enabled.
-**     @param
-**         UserDataPtr     - Pointer to the user or
-**                           RTOS specific data. This pointer is passed
-**                           as the parameter of Init method.
-**     @param
-**         BufferIdx       - Transmit buffer index.
-*/
-/* ===================================================================*/
-void CAN1_OnFullRxBuffer(LDD_TUserData *UserDataPtr, LDD_CAN_TMBIndex BufferIdx)
-{
-	 LDD_CAN_TFrame Frame;
-	 CAN_Desc *ptr = (CAN_Desc*)UserDataPtr;
 
-	 (void)CAN1_ReadFrame(ptr->handle, 0U, &Frame);
-	 ptr->rxChar = *Frame.Data;
-	 (void)ptr->rxPutFct(ptr->rxChar); /* but received character into buffer */
-}
 
 /*
 ** ===================================================================
@@ -121,30 +94,6 @@ void CAN1_OnFullRxBuffer(LDD_TUserData *UserDataPtr, LDD_CAN_TMBIndex BufferIdx)
 */
 /* ===================================================================*/
 void CAN1_OnTransmitWarning(LDD_TUserData *UserDataPtr)
-{
-  /* Write your code here ... */
-}
-
-/*
-** ===================================================================
-**     Event       :  CAN1_OnReceiveWarning (module CAN1_Events)
-**
-**     Component   :  CAN1 [CAN_LDD]
-*/
-/*!
-**     @brief
-**         This event is called when the CAN controller goes into a
-**         warning status due to the receive error counter exceeding 96
-**         and neither an error status nor a BusOff status are present.
-**         The event is available only if Interrupt service/event is
-**         enabled.
-**     @param
-**         UserDataPtr     - Pointer to the user or
-**                           RTOS specific data. This pointer is passed
-**                           as the parameter of Init method.
-*/
-/* ===================================================================*/
-void CAN1_OnReceiveWarning(LDD_TUserData *UserDataPtr)
 {
   /* Write your code here ... */
 }

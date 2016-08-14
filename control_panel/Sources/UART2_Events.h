@@ -37,12 +37,7 @@
 #include "TU1.h"
 #include "GREENLED.h"
 #include "AS1.h"
-#include "UART_RxBuff.h"
 #include "CAN1.h"
-#include "CAN_RxBuff.h"
-#include "CS1.h"
-#include "KSDK1.h"
-#include "CS2.h"
 #include "ORANGELED.h"
 #include "BLUELED.h"
 #include "YELLOWLED.h"
@@ -52,24 +47,6 @@
 #ifdef __cplusplus
 extern "C" {
 #endif 
-
-/*
-** ===================================================================
-**     Event       :  AS1_OnBlockReceived (module UART2_Events)
-**
-**     Component   :  AS1 [Serial_LDD]
-*/
-/*!
-**     @brief
-**         This event is called when the requested number of data is
-**         moved to the input buffer.
-**     @param
-**         UserDataPtr     - Pointer to the user or
-**                           RTOS specific data. This pointer is passed
-**                           as the parameter of Init method.
-*/
-/* ===================================================================*/
-void AS1_OnBlockReceived(LDD_TUserData *UserDataPtr);
 
 /*
 ** ===================================================================

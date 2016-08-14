@@ -58,19 +58,6 @@ Module "AS1"       (component Serial_LDD)
                 finishes immediately after calling it - it doesn't wait the end of data reception. Use event <OnBlockReceived> 
                 to check the end of data reception or method GetReceivedDataNum to check the state of receiving.
 
-Module "UART_RxBuff" (component RingBuffer)
-   - UART_RxBuff_Clear -Clear (empty) the ring buffer.
-   - UART_RxBuff_Put -Puts a new element into the buffer
-   - UART_RxBuff_Putn -Put a number new element into the buffer.
-   - UART_RxBuff_Get -Removes an element from the buffer
-   - UART_RxBuff_Peek -Returns an element of the buffer without removiing it.
-   - UART_RxBuff_Compare -Compares the elements in the buffer.
-   - UART_RxBuff_Delete -Removes an element from the buffer
-   - UART_RxBuff_NofElements -Returns the actual number of elements in the buffer.
-   - UART_RxBuff_NofFreeElements -Returns the actual number of free elements/space in the buffer.
-   - UART_RxBuff_Deinit -Driver de-initialization
-   - UART_RxBuff_Init -Initializes the data structure
-
 Module "CAN1"      (component CAN_LDD)
    - CAN1_Init -Initializes the device. Allocates memory for the device data structure, allocates interrupt vectors and sets 
                 interrupt priority, sets pin routing, sets timing, etc. If the "Enable in init. code" is set to "yes" value 
@@ -78,37 +65,9 @@ Module "CAN1"      (component CAN_LDD)
                 is not necessary and needn't to be generated.
    - CAN1_SendFrame -Sends a frame via the CAN device. This method allow to specify CAN buffer number, message ID, data to be 
                 sent, frame type and whether the message will be sent after the request comes.
-   - CAN1_ReadFrame -Reads a frame from the CAN device. The user is informed about CAN reception through OnFullRxBuffer event 
-                or GetStateRX method.
    - CAN1_GetTransmitErrorCounter -Returns a value of the transmission error counter. This method is available only if method 
                 SendFrame is enabled.
-   - CAN1_GetReceiveErrorCounter -Returns a value of the reception error counter.
    - CAN1_GetError -Returns value of error mask, e.g. LDD_CAN_BIT0_ERROR
-
-Module "CAN_RxBuff" (component RingBuffer)
-   - CAN_RxBuff_Clear -Clear (empty) the ring buffer.
-   - CAN_RxBuff_Put -Puts a new element into the buffer
-   - CAN_RxBuff_Putn -Put a number new element into the buffer.
-   - CAN_RxBuff_Get -Removes an element from the buffer
-   - CAN_RxBuff_Peek -Returns an element of the buffer without removiing it.
-   - CAN_RxBuff_Compare -Compares the elements in the buffer.
-   - CAN_RxBuff_Delete -Removes an element from the buffer
-   - CAN_RxBuff_NofElements -Returns the actual number of elements in the buffer.
-   - CAN_RxBuff_NofFreeElements -Returns the actual number of free elements/space in the buffer.
-   - CAN_RxBuff_Deinit -Driver de-initialization
-   - CAN_RxBuff_Init -Initializes the data structure
-
-Module "CS1"       (component CriticalSection)
-   - CS1_CriticalVariable -Defines a variable if necessary. This is a macro.
-   - CS1_EnterCritical -Enters a critical section
-   - CS1_ExitCritical -Exits a critical section
-
-Module "KSDK1"     (component KinetisSDK)
-
-Module "CS2"       (component CriticalSection)
-   - CS2_CriticalVariable -Defines a variable if necessary. This is a macro.
-   - CS2_EnterCritical -Enters a critical section
-   - CS2_ExitCritical -Exits a critical section
 
 Module "ORANGELED" (component BitIO_LDD)
    - ORANGELED_Init -Initializes the device. Allocates memory for the device data structure, allocates interrupt vectors and 

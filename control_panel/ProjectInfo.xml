@@ -59,17 +59,12 @@
       <PathName>/home/alejandro/workspace.kds.k70/control_panel/Generated_Code/AS1.c</PathName>
       <PathName>/home/alejandro/workspace.kds.k70/control_panel/Generated_Code/BLUELED.c</PathName>
       <PathName>/home/alejandro/workspace.kds.k70/control_panel/Generated_Code/CAN1.c</PathName>
-      <PathName>/home/alejandro/workspace.kds.k70/control_panel/Generated_Code/CAN_RxBuff.c</PathName>
-      <PathName>/home/alejandro/workspace.kds.k70/control_panel/Generated_Code/CS1.c</PathName>
-      <PathName>/home/alejandro/workspace.kds.k70/control_panel/Generated_Code/CS2.c</PathName>
       <PathName>/home/alejandro/workspace.kds.k70/control_panel/Generated_Code/Cpu.c</PathName>
       <PathName>/home/alejandro/workspace.kds.k70/control_panel/Generated_Code/GREENLED.c</PathName>
-      <PathName>/home/alejandro/workspace.kds.k70/control_panel/Generated_Code/KSDK1.c</PathName>
       <PathName>/home/alejandro/workspace.kds.k70/control_panel/Generated_Code/ORANGELED.c</PathName>
       <PathName>/home/alejandro/workspace.kds.k70/control_panel/Generated_Code/PE_LDD.c</PathName>
       <PathName>/home/alejandro/workspace.kds.k70/control_panel/Generated_Code/TSS1.c</PathName>
       <PathName>/home/alejandro/workspace.kds.k70/control_panel/Generated_Code/TU1.c</PathName>
-      <PathName>/home/alejandro/workspace.kds.k70/control_panel/Generated_Code/UART_RxBuff.c</PathName>
       <PathName>/home/alejandro/workspace.kds.k70/control_panel/Generated_Code/Vectors.c</PathName>
       <PathName>/home/alejandro/workspace.kds.k70/control_panel/Generated_Code/YELLOWLED.c</PathName>
       <PathName>/home/alejandro/workspace.kds.k70/control_panel/Project_Settings/Startup_Code/startup.c</PathName>
@@ -93,13 +88,9 @@
       <PathName>/home/alejandro/workspace.kds.k70/control_panel/Generated_Code/AS1.h</PathName>
       <PathName>/home/alejandro/workspace.kds.k70/control_panel/Generated_Code/BLUELED.h</PathName>
       <PathName>/home/alejandro/workspace.kds.k70/control_panel/Generated_Code/CAN1.h</PathName>
-      <PathName>/home/alejandro/workspace.kds.k70/control_panel/Generated_Code/CAN_RxBuff.h</PathName>
-      <PathName>/home/alejandro/workspace.kds.k70/control_panel/Generated_Code/CS1.h</PathName>
-      <PathName>/home/alejandro/workspace.kds.k70/control_panel/Generated_Code/CS2.h</PathName>
       <PathName>/home/alejandro/workspace.kds.k70/control_panel/Generated_Code/Cpu.h</PathName>
       <PathName>/home/alejandro/workspace.kds.k70/control_panel/Generated_Code/GREENLED.h</PathName>
       <PathName>/home/alejandro/workspace.kds.k70/control_panel/Generated_Code/IO_Map.h</PathName>
-      <PathName>/home/alejandro/workspace.kds.k70/control_panel/Generated_Code/KSDK1.h</PathName>
       <PathName>/home/alejandro/workspace.kds.k70/control_panel/Generated_Code/ORANGELED.h</PathName>
       <PathName>/home/alejandro/workspace.kds.k70/control_panel/Generated_Code/PE_Const.h</PathName>
       <PathName>/home/alejandro/workspace.kds.k70/control_panel/Generated_Code/PE_Error.h</PathName>
@@ -107,7 +98,6 @@
       <PathName>/home/alejandro/workspace.kds.k70/control_panel/Generated_Code/PE_Types.h</PathName>
       <PathName>/home/alejandro/workspace.kds.k70/control_panel/Generated_Code/TSS1.h</PathName>
       <PathName>/home/alejandro/workspace.kds.k70/control_panel/Generated_Code/TU1.h</PathName>
-      <PathName>/home/alejandro/workspace.kds.k70/control_panel/Generated_Code/UART_RxBuff.h</PathName>
       <PathName>/home/alejandro/workspace.kds.k70/control_panel/Generated_Code/YELLOWLED.h</PathName>
       <PathName>/home/alejandro/workspace.kds.k70/control_panel/Sources/ADC_Events.h</PathName>
       <PathName>/home/alejandro/workspace.kds.k70/control_panel/Sources/Application.h</PathName>

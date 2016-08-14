@@ -47,7 +47,7 @@ by the component.
 <td class="regNotResetVal">0xDAB30001</td>
  <td>CAN1_MCR register, peripheral CAN1.</td></tr>
 <tr><td>0x400A4004</td><td>CAN1_CTRL1</td>
-<td class="regNotResetVal">0x0912CC12</td>
+<td class="regNotResetVal">0x0912C812</td>
  <td>CAN1_CTRL1 register, peripheral CAN1.</td></tr>
 <tr><td>0x400A4034</td><td>CAN1_CTRL2</td>
 <td class="regNotResetVal">0x00B20000</td>
@@ -542,7 +542,7 @@ registers of the peripheral(s) configured by the component.
         
 </div>
 <table class="regtbl2"><tr><td class="trowtit" colspan="2">Address</td><td colspan="2">0x400A4004</td></tr>
-<tr class="trowtit"><td  class="trowtit" colspan="2">Initial value</td><td colspan="2">0x0912CC12</td></tr>
+<tr class="trowtit"><td  class="trowtit" colspan="2">Initial value</td><td colspan="2">0x0912C812</td></tr>
 <tr class="trowtit"><td  class="trowtit" colspan="2">After-reset value</td><td colspan="2">0x00000000</td></tr>
 <tr><td class="ttitle2">Bit</td><td class="ttitle2">Field</td><td class="ttitle2">Value</td><td class="ttitle2">Description</td></tr>
 <tr><td>24 - 31</td><td>PRESDIV</td><td>0x00</td><td>Prescaler Division Factor</td>
@@ -554,7 +554,7 @@ registers of the peripheral(s) configured by the component.
 <tr><td>13</td><td>CLKSRC</td><td>0x00</td><td>CAN Engine Clock Source</td>
 <tr><td>12</td><td>LPB</td><td>0x00</td><td>Loop Back Mode</td>
 <tr><td>11</td><td>TWRNMSK</td><td>0x01</td><td>Tx Warning Interrupt Mask</td>
-<tr><td>10</td><td>RWRNMSK</td><td>0x01</td><td>Rx Warning Interrupt Mask</td>
+<tr><td>10</td><td>RWRNMSK</td><td>0x00</td><td>Rx Warning Interrupt Mask</td>
 <tr><td>7</td><td>SMP</td><td>0x00</td><td>CAN Bit Sampling</td>
 <tr><td>6</td><td>BOFFREC</td><td>0x00</td><td>Bus Off Recovery</td>
 <tr><td>5</td><td>TSYN</td><td>0x00</td><td>Timer Sync</td>
@@ -763,9 +763,9 @@ registers of the peripheral(s) configured by the component.
 **            Auto initialization                          : no
 **            Event mask                                   : 
 **              OnFreeTxBuffer                             : Enabled
-**              OnFullRxBuffer                             : Enabled
+**              OnFullRxBuffer                             : Disabled
 **              OnTransmitWarning                          : Enabled
-**              OnReceiveWarning                           : Enabled
+**              OnReceiveWarning                           : Disabled
 **              OnBusOff                                   : Enabled
 **              OnWakeUp                                   : Disabled
 **              OnError                                    : Enabled
@@ -830,7 +830,7 @@ by the component.
 <td class="regNotResetVal">0xDAB30001</td>
  <td>CAN1_MCR register, peripheral CAN1.</td></tr>
 <tr><td>0x400A4004</td><td>CAN1_CTRL1</td>
-<td class="regNotResetVal">0x0912CC12</td>
+<td class="regNotResetVal">0x0912C812</td>
  <td>CAN1_CTRL1 register, peripheral CAN1.</td></tr>
 <tr><td>0x400A4034</td><td>CAN1_CTRL2</td>
 <td class="regNotResetVal">0x00B20000</td>
@@ -1325,7 +1325,7 @@ registers of the peripheral(s) configured by the component.
         
 </div>
 <table class="regtbl2"><tr><td class="trowtit" colspan="2">Address</td><td colspan="2">0x400A4004</td></tr>
-<tr class="trowtit"><td  class="trowtit" colspan="2">Initial value</td><td colspan="2">0x0912CC12</td></tr>
+<tr class="trowtit"><td  class="trowtit" colspan="2">Initial value</td><td colspan="2">0x0912C812</td></tr>
 <tr class="trowtit"><td  class="trowtit" colspan="2">After-reset value</td><td colspan="2">0x00000000</td></tr>
 <tr><td class="ttitle2">Bit</td><td class="ttitle2">Field</td><td class="ttitle2">Value</td><td class="ttitle2">Description</td></tr>
 <tr><td>24 - 31</td><td>PRESDIV</td><td>0x00</td><td>Prescaler Division Factor</td>
@@ -1337,7 +1337,7 @@ registers of the peripheral(s) configured by the component.
 <tr><td>13</td><td>CLKSRC</td><td>0x00</td><td>CAN Engine Clock Source</td>
 <tr><td>12</td><td>LPB</td><td>0x00</td><td>Loop Back Mode</td>
 <tr><td>11</td><td>TWRNMSK</td><td>0x01</td><td>Tx Warning Interrupt Mask</td>
-<tr><td>10</td><td>RWRNMSK</td><td>0x01</td><td>Rx Warning Interrupt Mask</td>
+<tr><td>10</td><td>RWRNMSK</td><td>0x00</td><td>Rx Warning Interrupt Mask</td>
 <tr><td>7</td><td>SMP</td><td>0x00</td><td>CAN Bit Sampling</td>
 <tr><td>6</td><td>BOFFREC</td><td>0x00</td><td>Bus Off Recovery</td>
 <tr><td>5</td><td>TSYN</td><td>0x00</td><td>Timer Sync</td>
@@ -1546,9 +1546,9 @@ registers of the peripheral(s) configured by the component.
 **            Auto initialization                          : no
 **            Event mask                                   : 
 **              OnFreeTxBuffer                             : Enabled
-**              OnFullRxBuffer                             : Enabled
+**              OnFullRxBuffer                             : Disabled
 **              OnTransmitWarning                          : Enabled
-**              OnReceiveWarning                           : Enabled
+**              OnReceiveWarning                           : Disabled
 **              OnBusOff                                   : Enabled
 **              OnWakeUp                                   : Disabled
 **              OnError                                    : Enabled

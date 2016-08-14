@@ -17,8 +17,6 @@ static void Init(void) {
 	// Inicializacion UART
 	uartData.handle = AS1_Init(&uartData);
 	uartData.isSent = FALSE;
-	uartData.rxChar = '\0';
-	uartData.rxPutFct = UART_RxBuff_Put;
 
 	canData.handle = CAN1_Init(&canData);
 	canData.isSent = FALSE;
@@ -30,14 +28,6 @@ static void Init(void) {
 
 	LDD_TDeviceData* myTimer = TU1_Init(&adcData);
 	TU1_Enable(myTimer);
-
-	/* set up to receive RX into input buffer */
-	UART_RxBuff_Init(); /* initialize RX buffer */
-
-	/* Set up ReceiveBlock() with a single byte buffer. We will be called in OnBlockReceived() event. */
-	while (AS1_ReceiveBlock(uartData.handle, (LDD_TData *) &uartData.rxChar,
-			sizeof(uartData.rxChar)) != ERR_OK) {
-	} /* initial kick off for receiving data */
 
 }
 
@@ -59,7 +49,6 @@ void APP_Run(void) {
 		if (canData.errorMask != CAN_NO_ERROR) {
 			SendString("-------- ERROR BEGIN --------\r\n", &uartData);
 
-			errorCounterRX = CAN1_GetReceiveErrorCounter(canData.handle);
 			errorCounterTX = CAN1_GetTransmitErrorCounter(canData.handle);
 			if (errorCounterRX != oldErrCounterRX
 					|| errorCounterTX != oldErrCounterTX) {

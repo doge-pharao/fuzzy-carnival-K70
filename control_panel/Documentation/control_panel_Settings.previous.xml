@@ -364,7 +364,7 @@ PE_DEBUGHALT();
         <Enabled_in_init__code v="yes" />
         <group name="Event mask">
           <OnBlockSent v="Enabled" />
-          <OnBlockReceived v="Enabled" />
+          <OnBlockReceived v="Disabled" />
           <OnTxComplete v="Disabled" />
           <OnError v="Disabled" />
           <OnBreak v="Disabled" />
@@ -411,47 +411,13 @@ PE_DEBUGHALT();
     </Methods>
     <Events>
       <Event_module_name v="UART2_Events" />
-      <event name="OnBlockReceived" v="generate code">
-        <Event_procedure_name v="AS1_OnBlockReceived" />
-      </event>
+      <event name="OnBlockReceived" v="don&amp;apos;t generate code" />
       <event name="OnBlockSent" v="generate code">
         <Event_procedure_name v="AS1_OnBlockSent" />
       </event>
       <event name="OnBreak" v="don&amp;apos;t generate code" />
       <event name="OnError" v="don&amp;apos;t generate code" />
       <event name="OnTxComplete" v="don&amp;apos;t generate code" />
-    </Events>
-  </Bean>
-  <Bean name="UART_RxBuff" type="RingBuffer">
-    <Enabled v="Y" />
-    <Properties>
-      <Component_name v="UART_RxBuff" />
-      <SDK v="KSDK1" />
-      <Reentrant v="yes" />
-      <Critical_Section v="CS1" />
-      <Buffer_Size v="64" />
-      <Element_Size v="1 Byte" />
-    </Properties>
-    <Methods>
-      <Clear v="generate code" />
-      <Put v="generate code" />
-      <Putn v="generate code" />
-      <Get v="generate code" />
-      <Peek v="generate code" />
-      <Compare v="generate code" />
-      <Delete v="generate code" />
-      <NofElements v="generate code" />
-      <NofFreeElements v="generate code" />
-      <Deinit v="generate code" />
-      <Init v="generate code" />
-    </Methods>
-    <Events>
-      <Event_module_name v="Events" />
-      <event name="OnBufferFull" v="don&amp;apos;t generate code" />
-      <event name="OnBufferEmpty" v="don&amp;apos;t generate code" />
-      <event name="OnItemPut" v="don&amp;apos;t generate code" />
-      <event name="OnItemGet" v="don&amp;apos;t generate code" />
-      <event name="OnClear" v="don&amp;apos;t generate code" />
     </Events>
   </Bean>
   <Bean name="CAN1" type="CAN_LDD">
@@ -512,13 +478,13 @@ PE_DEBUGHALT();
       </group>
       <group name="Timing">
         <CAN_timing_calculator v="click to run -&amp;gt;" />
-        <Propagation_segment v="8" />
-        <Time_segment_1 v="8" />
-        <Time_segment_2 v="8" />
-        <Resync_jump_width v="4" />
-        <Time_quanta_per_bit v="25" />
+        <Propagation_segment v="3" />
+        <Time_segment_1 v="3" />
+        <Time_segment_2 v="3" />
+        <Resync_jump_width v="1" />
+        <Time_quanta_per_bit v="10" />
         <Samples_per_bit v="One sample" />
-        <Bit_rate v="5 kbit/s" />
+        <Bit_rate v="500 kbit/s" />
       </group>
       <group name="Initialization">
         <Enabled_in_init__code v="yes" />
@@ -582,85 +548,6 @@ PE_DEBUGHALT();
       <event name="OnError" v="generate code">
         <Event_procedure_name v="CAN1_OnError" />
       </event>
-    </Events>
-  </Bean>
-  <Bean name="CAN_RxBuff" type="RingBuffer">
-    <Enabled v="Y" />
-    <Properties>
-      <Component_name v="CAN_RxBuff" />
-      <SDK v="KSDK1" />
-      <Reentrant v="yes" />
-      <Critical_Section v="CS2" />
-      <Buffer_Size v="64" />
-      <Element_Size v="1 Byte" />
-    </Properties>
-    <Methods>
-      <Clear v="generate code" />
-      <Put v="generate code" />
-      <Putn v="generate code" />
-      <Get v="generate code" />
-      <Peek v="generate code" />
-      <Compare v="generate code" />
-      <Delete v="generate code" />
-      <NofElements v="generate code" />
-      <NofFreeElements v="generate code" />
-      <Deinit v="generate code" />
-      <Init v="generate code" />
-    </Methods>
-    <Events>
-      <Event_module_name v="Events" />
-      <event name="OnBufferFull" v="don&amp;apos;t generate code" />
-      <event name="OnBufferEmpty" v="don&amp;apos;t generate code" />
-      <event name="OnItemPut" v="don&amp;apos;t generate code" />
-      <event name="OnItemGet" v="don&amp;apos;t generate code" />
-      <event name="OnClear" v="don&amp;apos;t generate code" />
-    </Events>
-  </Bean>
-  <Bean name="CS1" type="CriticalSection">
-    <Enabled v="Y" />
-    <Properties>
-      <Component_name v="CS1" />
-      <SDK v="KSDK1" />
-      <Use_Processor_Expert_Default v="no" />
-      <Use_FreeRTOS v="no" />
-    </Properties>
-    <Methods>
-      <CriticalVariable v="generate code" />
-      <EnterCritical v="generate code" />
-      <ExitCritical v="generate code" />
-    </Methods>
-    <Events>
-      <EmptySection_DummyValue />
-    </Events>
-  </Bean>
-  <Bean name="KSDK1" type="KinetisSDK">
-    <Enabled v="Y" />
-    <Properties>
-      <Component_name v="KSDK1" />
-      <SDK_Version v="none" />
-    </Properties>
-    <Methods>
-      <EmptySection_DummyValue />
-    </Methods>
-    <Events>
-      <EmptySection_DummyValue />
-    </Events>
-  </Bean>
-  <Bean name="CS2" type="CriticalSection">
-    <Enabled v="Y" />
-    <Properties>
-      <Component_name v="CS2" />
-      <SDK v="KSDK1" />
-      <Use_Processor_Expert_Default v="no" />
-      <Use_FreeRTOS v="no" />
-    </Properties>
-    <Methods>
-      <CriticalVariable v="generate code" />
-      <EnterCritical v="generate code" />
-      <ExitCritical v="generate code" />
-    </Methods>
-    <Events>
-      <EmptySection_DummyValue />
     </Events>
   </Bean>
   <Bean name="ORANGELED" type="BitIO_LDD">

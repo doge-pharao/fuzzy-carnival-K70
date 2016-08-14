@@ -45,30 +45,6 @@ extern "C" {
 
 /*
 ** ===================================================================
-**     Event       :  AS1_OnBlockReceived (module UART2_Events)
-**
-**     Component   :  AS1 [Serial_LDD]
-*/
-/*!
-**     @brief
-**         This event is called when the requested number of data is
-**         moved to the input buffer.
-**     @param
-**         UserDataPtr     - Pointer to the user or
-**                           RTOS specific data. This pointer is passed
-**                           as the parameter of Init method.
-*/
-/* ===================================================================*/
-void AS1_OnBlockReceived(LDD_TUserData *UserDataPtr)
-{
-  UART_Desc *ptr = (UART_Desc*)UserDataPtr;
-
-  (void)AS1_ReceiveBlock(ptr->handle, (LDD_TData *)&ptr->rxChar, sizeof(ptr->rxChar));
-  (void)ptr->rxPutFct(ptr->rxChar); /* but received character into buffer */
-}
-
-/*
-** ===================================================================
 **     Event       :  AS1_OnBlockSent (module UART2_Events)
 **
 **     Component   :  AS1 [Serial_LDD]
