@@ -1,77 +1,11 @@
-# Compiled Object files
-*.slo
-*.lo
-*.o
-*.obj
-
-# Precompiled Headers
-*.gch
-*.pch
-
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
-
-# Fortran module files
-*.mod
-*.smod
-
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-*.lib
-
-# Executables
-*.exe
-*.out
-*.app
-
-#################
-## Eclipse
-#################
-output/
-*.pydevproject
-RemoteSystemsTempFiles/
-**/Generated_Code/
-**/Static_Code/
-.metadata
-bin/
-tmp/
-*.tmp
-*.bak
-*.swp
-*~.nib
-local.properties
-.classpath
-.settings/
-.loadpath
-
-# QT
-#  build artifacts
-build-*
-#  user configs
-*.pro.user.*
-
-# External tool builders
-.externalToolBuilders/
-
-# Locally stored "Eclipse launch configurations"
-*.launch
-
-# CDT-specific
-.cproject
-
-# PDT-specific
-.buildpath
-
 #KDS
-/*.g_c
-/*.g_x
-/*.cwGeneratedFileSetLog
-/Generated_Code
-/Documentation
-/Static_Code
-/Debug
-/ProjectInfo.xml
+**/.*.g_c
+**/.*.g_x
+**/*.cwGeneratedFileSetLog
+**/Generated_Code
+**/Documentation
+**/Debug
+**/ProjectInfo.xml
+.metadata
+.settings
+RemoteSystemsTempFiles
