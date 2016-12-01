@@ -23,12 +23,13 @@ static void SendString(const unsigned char *str, UART_Desc *desc) {
 }
 
 static void Init(void) {
-	// Inicializacion UART
+	// Init UART Devie
 	uartData.handle = AS1_Init(&uartData);
 	uartData.isSent = FALSE;
 	uartData.rxChar = '\0';
 	uartData.rxPutFct = UART_RxBuff_Put;
 
+	// Init CAN Device
 	canData.handle = CAN1_Init(&canData);
 	canData.isSent = FALSE;
 	canData.errorMask = CAN_NO_ERROR;
@@ -108,10 +109,10 @@ void APP_Run(void) {
 
 		} else {
 			if (UART_RxBuff_NofElements() != 0) {
-				// Rx --Recibe un caracter desde consola--
+				// Rx - Receive a single character from UART -
 				// prepare frame
-				Frame.MessageID = 0x70U; /* Set Tx ID value - standard */
-				Frame.FrameType = LDD_CAN_DATA_FRAME; /* Specyfying type of Tx frame - Data frame */
+				Frame.MessageID = 0x70U; 				/* Set Tx ID value - standard */
+				Frame.FrameType = LDD_CAN_DATA_FRAME; 	/* Specyfying type of Tx frame - Data frame */
 
 				unsigned char ch;
 
@@ -124,8 +125,8 @@ void APP_Run(void) {
 					}
 					txbuffer[8] = '\0';
 
-					Frame.Length = i + 1; /* Set number of bytes in data frame - 4B */
-					Frame.Data = txbuffer; /* Set pointer to OutData buffer */
+					Frame.Length = i + 1; 	/* Set number of bytes in data frame - 4B */
+					Frame.Data = txbuffer; 	/* Set pointer to OutData buffer */
 
 					canData.isSent = FALSE;
 					Error = CAN1_SendFrame(canData.handle, 1U, &Frame); /* Sends the data frame over buffer 0 */

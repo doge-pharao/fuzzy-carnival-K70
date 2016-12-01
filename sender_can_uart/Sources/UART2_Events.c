@@ -62,7 +62,7 @@ void AS1_OnBlockReceived(LDD_TUserData *UserDataPtr)
   UART_Desc *ptr = (UART_Desc*)UserDataPtr;
 
   (void)AS1_ReceiveBlock(ptr->handle, (LDD_TData *)&ptr->rxChar, sizeof(ptr->rxChar));
-  (void)ptr->rxPutFct(ptr->rxChar); /* but received character into buffer */
+  (void)ptr->rxPutFct(ptr->rxChar); /* put received character into buffer */
 }
 
 /*
