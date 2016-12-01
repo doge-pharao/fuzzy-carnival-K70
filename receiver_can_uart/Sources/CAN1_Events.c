@@ -71,7 +71,7 @@ void CAN1_OnFullRxBuffer(LDD_TUserData *UserDataPtr, LDD_CAN_TMBIndex BufferIdx)
 	 (void)CAN1_ReadFrame(ptr->handle, 0U, &Frame);
 
 	 for(int i = 0; i < Frame.Length; i++) {
-		 (void)ptr->rxPutFct(Frame.Data[i]); /* but received character into buffer */
+		 (void)ptr->rxPutFct(Frame.Data[i]); /* put received character into buffer */
 	 }
 }
 

@@ -28,10 +28,11 @@ static void SendString(const unsigned char *str, UART_Desc *desc) {
 static void Init(void) {
 	Frame.Data = rxbuffer; /* Set pointer to OutData buffer */
 
-	// Inicializacion UART
+	// UART Init
 	uartData.handle = AS1_Init(&uartData);
 	uartData.isSent = FALSE;
 
+	// CAN Init
 	canData.handle = CAN1_Init(&canData);
 	canData.isSent = FALSE;
 	canData.rxChar = '\0';
